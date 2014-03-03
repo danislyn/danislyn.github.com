@@ -1,0 +1,13 @@
+header{
+	margin-bottom: 20px;
+}
+.navbar-inner{
+	font-size: 16px;
+	height: 50px;
+	padding-top: 10px;
+}
+
+footer{
+	margin-top: 20px;
+	text-align: center;
+}

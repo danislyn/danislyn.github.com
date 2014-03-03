@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ page.title }}</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<meta name="author" content="{{ site.author.name }}">
+		{% if page.description %}
+		<meta name="description" content="{{ page.description }}">
+		{% endif %}
+		{% if page.keywords %}
+		<meta name="keywords" content="{{ page.keywords }}">
+		{% endif %}
+    	
+    	<link rel="stylesheet" type="text/css" href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css">
+		<link rel="stylesheet" type="text/css" href="{{ ASSET_PATH }}/css/style.css">
+		<link rel="stylesheet" type="text/css" href="/assets/custom/css/index.css">
+
+		<!-- atom & rss feed -->
+    	<!-- <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    	<link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed"> -->
+
+	</head>
+	<body>
+		<header>
+			<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container-narrow">
+						<a class="brand" href="{{ HOME_PATH }}">弗晓得</a>
+						<ul class="nav">
+							<li><a href="/index.html">首页</a></li>
+							<li><a href="/archive.html">文章归档</a></li>
+							<li><a href="/categories.html">分类</a></li>
+							<li><a href="javascript:void(0);">展示</a></li>
+							<li><a href="javascript:void(0);">联系我</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="container-narrow">
+			<div class="content">
+				{{ content }}
+			</div>
+
+		</div>
+
+		<footer>
+			<p>
+				&copy; {{ site.time | date: '%Y' }} {{ site.author.name }} with help from 
+				<a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+        	</p>
+		</footer>
+
+		<script type="text/javascript" src="/assets/custom/js/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/assets/custom/js/headroom.min.js"></script>
+		<script type="text/javascript">
+		$(function(){
+			/*$('header').headroom({
+				'tolerance': 5,
+				'offset': 205,
+				'classes': {
+					'initial': "animated",
+					'pinned': "slideDown",
+					'unpinned': "slideUp"
+				}
+			});*/
+
+			var headroom = new Headroom($('header'), {
+				'tolerance': 5,
+				'offset': 205,
+				'classes': {
+					'initial': "animated",
+					'pinned': "slideDown",
+					'unpinned': "slideUp"
+				}
+			});
+			headroom.init();
+
+		});
+		</script>
+	</body>
+</html>
