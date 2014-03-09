@@ -14,6 +14,7 @@
     	<link rel="stylesheet" type="text/css" href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css">
 		<link rel="stylesheet" type="text/css" href="{{ ASSET_PATH }}/css/style.css">
 		<link rel="stylesheet" type="text/css" href="/assets/custom/css/index.css">
+		<link rel="shortcut icon" href="/favicon.ico" />
 
 		<!-- atom & rss feed -->
     	<!-- <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
@@ -21,11 +22,13 @@
 
 	</head>
 	<body>
-		<header>
+		<header class="headroom">
 			<div class="navbar">
 				<div class="navbar-inner">
 					<div class="container-narrow">
-						<a class="brand" href="{{ HOME_PATH }}">弗晓得</a>
+						<a class="brand" href="{{ HOME_PATH }}">
+							弗晓得
+						</a>
 						<ul class="nav">
 							<li><a href="/index.html">首页</a></li>
 							<li><a href="/archive.html">文章归档</a></li>
@@ -53,9 +56,12 @@
 		</footer>
 
 		<script type="text/javascript" src="/assets/custom/js/jquery-1.10.2.min.js"></script>
-		<script type="text/javascript" src="/assets/custom/js/headroom.min.js"></script>
+		<!--<script type="text/javascript" src="/assets/custom/js/headroom.min.js"></script>
+		<script type="text/javascript" src="/assets/custom/js/jQuery.headroom.min.js"></script>-->
 		<script type="text/javascript">
 		$(function(){
+			// $('header').headroom();
+
 			/*$('header').headroom({
 				'tolerance': 5,
 				'offset': 205,
@@ -66,7 +72,7 @@
 				}
 			});*/
 
-			var headroom = new Headroom($('header'), {
+			/*var headroom = new Headroom($('header'), {
 				'tolerance': 5,
 				'offset': 205,
 				'classes': {
@@ -75,7 +81,24 @@
 					'unpinned': "slideUp"
 				}
 			});
-			headroom.init();
+			headroom.init();*/
+
+
+
+			// 文章中代码tab缩进改成4个空格
+			$('#postContent').find('pre').each(function(){
+				$(this).children('code').each(function(){
+					$(this).text($(this).text().replace(/\t/g, '    '));
+				});
+			});
+
+			//文章中的外部link添加target
+			$('#postContent').find('a').each(function(){
+				var link = $(this).attr('href');
+				if(/^((https?|s?ftp):\/\/)/i.test(link)){
+					$(this).attr('target', '_blank');
+				}
+			});
 
 		});
 		</script>

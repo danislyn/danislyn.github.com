@@ -5,7 +5,7 @@
 <div class="row-fluid post-full">
   <div class="span12">
     <div class="date">
-      <span>{{ page.date | date_to_long_string }}</span>
+      <span>{{ post.date | date_to_utc | date: "%Y-%m-%d" }}</span>
     </div>
     <div class="content">
       {{ content }}
