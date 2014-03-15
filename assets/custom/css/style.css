@@ -1,3 +1,4 @@
+/* global */
 ul{
     list-style: none;
 }
@@ -15,25 +16,122 @@ ul{
     *zoom: 1;
 }
 
+/* container */
 body{
     min-width: 1170px;
 }
 header{
 	margin-bottom: 20px;
 }
+footer{
+    margin-top: 20px;
+    text-align: center;
+}
+.container-narrow {
+    margin: 0 auto;
+    max-width: 700px;
+}
+.container-narrow > hr {
+    margin: 30px 0;
+}
+.navbar .nav {
+    float: right;
+    margin: 0;
+}
 .navbar-inner{
 	font-size: 16px;
 	height: 50px;
 	padding-top: 10px;
 }
-.post-sidenav{
-    display: none;
-}
 #mainContainer{
     margin-left: 65px;
     width: 1170px;
 }
-footer{
-	margin-top: 20px;
-	text-align: center;
+#postAffix{
+    display: none;
+}
+
+
+/* posts list */
+.posts{
+    margin: 0;
+}
+.posts li{
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    box-shadow: -2px -2px 4px #efefee;
+    -webkit-box-shadow: -2px -2px 4px #efefee;
+    -moz-box-shadow: -2px -2px 4px #efefee;
+    height: 80px;
+    line-height: 80px;
+    margin-top: 12px;
+    padding-left: 20px;
+}
+.posts li:first-child{
+    margin-top: 0px;
+}
+.posts li a:hover, .posts li a:focus{
+    text-decoration: none;
+}
+.posts li .date{
+    color: #999;
+}
+.posts li .title{
+    font-size: 28px;
+}
+
+
+/* posts index */
+/*.post > h3.title {
+  position: relative;
+  padding-top: 10px;
+}
+.post > h3.title span.date {
+  position: absolute;
+  right: 0;
+  font-size: 0.9em;
+}
+.post > .more {
+  margin: 10px 0;
+  text-align: left;
+}*/
+
+
+/* tag_box */
+.tag_box {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+}
+.tag_box li {
+    line-height: 28px;
+}
+.tag_box li i {
+    opacity: 0.9;
+}
+.tag_box.inline li {
+    float: left;
+}
+.tag_box a {
+    padding: 3px 6px;
+    margin: 2px;
+    background: #eee;
+    color: #555;
+    border-radius: 3px;
+    text-decoration: none;
+    border: 1px dashed #cccccc;
+}
+.tag_box a span {
+    vertical-align: super;
+    font-size: 0.8em;
+}
+.tag_box a:hover {
+    background-color: #e5e5e5;
+}
+.tag_box a.active {
+    background: #57A957;
+    border: 1px solid #4c964d;
+    color: #FFF;
 }

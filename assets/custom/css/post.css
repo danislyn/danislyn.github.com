@@ -2,13 +2,26 @@ code, pre code{
     color: #333;
     font-size: 14px;
 }
-#postContent{
+.page-header{
+    margin: 0;
+}
+.post-full .date{
+    color: #999;
+    font-size: 16px;
+    font-style: italic;
+    margin: 10px 0px;
+}
+.post-full .content{
     font-size: 16px;
     margin-bottom: 20px;
 }
-
-.post-sidenav {
+#postAffix{
     display: inline-block;
+}
+
+
+/* affix */
+.post-sidenav {
     width: 200px;
     margin: 30px 0 0;
     padding: 0;
