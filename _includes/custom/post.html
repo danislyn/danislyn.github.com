@@ -6,7 +6,7 @@
             </a>
         </div>
         <div class="category">
-            <a href="#category" class="category-link">分类</a>
+            <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ page.category }}-ref" class="category-link">{{ page.category }}</a>
         </div>
     </div>
     <div class="article-inner">
@@ -24,6 +24,7 @@
                 <a href="javascript:void(0);"><!-- Share --></a>
             </div>
 
+            <hr>
             {% unless page.categories == empty %}
             <ul class="tag-box inline">
                 <li><i class="icon icon-folder-open"></i></li>
