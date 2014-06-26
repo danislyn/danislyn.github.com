@@ -8,10 +8,10 @@ pygments: true
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : fuxiaode
-tagline: try to know
+title : Fuxiaode
+tagline: 
 author :
-  name : fuxiaode
+  name : danislyn
   email : danislyn@gmail.com
   github : danislyn
 
