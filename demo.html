@@ -52,17 +52,11 @@
     #logo a:hover{
         color: #FFCC66;
     }
-    #mainNav{
-        background: rgba(255,255,255,0.2);
-        border-top: 1px solid rgba(255,255,255,0.2);
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        height: 48px;
-    }
 
 
     .outer{
         margin: 0 auto;
-        max-width: 1220px;
+        max-width: 1170px;
         padding: 0 20px;
         *zoom: 1;
     }
@@ -72,18 +66,6 @@
     }
     .outer:after{
         clear: both;
-    }
-    @media screen and (min-width: 768px){
-        #mainContent{
-            float: left;
-            margin: 0 0.83%;
-            width: 73.33%;
-        }
-        #sidebar{
-            float: left;
-            margin: 0 0.83%;
-            width: 23.33%;
-        }
     }
 
 
@@ -96,6 +78,27 @@
 
 
     /* nav STARTS */
+    #mainNav{
+        background: rgba(255,255,255,0.2);
+        border-top: 1px solid rgba(255,255,255,0.2);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        height: 48px;
+    }
+    #mainNavToggle{
+        display: none;
+        padding: 15px 10px;
+    }
+    .nav-icon{
+        display: inline-block;
+        padding: 6px 10px;
+    }
+    .nav-icon .icon-bar{
+        background-color: #f5f5f5;
+        display: block;
+        height: 3px;
+        margin-top: 3px;
+        width: 24px;
+    }
     .nav-list{
         height: 48px;
         line-height: 48px;
@@ -237,6 +240,42 @@
         -moz-border-radius: 16px;
     }
     /* button ENDS */
+
+    /* media STARTS */
+    @media screen and (min-width: 768px){
+        #mainContent{
+            float: left;
+            margin-right: 0.83%;
+            width: 73.33%;
+        }
+        #sidebar{
+            float: left;
+            margin-left: 0.83%;
+            width: 23.33%;
+        }
+    }
+    @media screen and (max-width: 767px){
+        #mainNavToggle{
+            display: inline-block;
+        }
+        #mainNavList{
+            display: none;
+        }
+        .nav-list{
+            margin: 0 -20px;
+            position: relative;
+        }
+        .nav-list li{
+            background-color: #555;
+            float: none;
+            margin: 0;
+        }
+        .nav-list li a{
+            background: none;
+            padding: 0 30px;
+        }
+    }
+    /* media ENDS */
     </style>
 </head>
     
@@ -251,7 +290,12 @@
             </div>
             <div id="mainNav">
                 <div class="outer">
-                    <ul class="nav-list">
+                    <a href="javascript:void(0);" class="nav-icon" id="mainNavToggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <ul class="nav-list" id="mainNavList">
                         <li>
                             <a href="#index">首页</a>
                         </li>
@@ -391,5 +435,14 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript" src="assets/custom/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+    (function($){
+        $('#mainNavToggle').click(function(){
+            $('#mainNavList').toggle();
+        });
+    })(jQuery);
+    </script>
 </body>
 </html>
