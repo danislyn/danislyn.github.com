@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Javascript模式之五-代码复用模式"
-description: ""
+description: "类式继承；原型继承；通过复制属性实现继承；混入；借用和绑定"
 category: javascript
 tags: [javascript]
 ---

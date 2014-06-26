@@ -1,29 +1,40 @@
 ---
 layout: page
-title: 弗晓得
-keywords: fuxiaode, web开发
-description: justjavac的个人博客
-tagline: 你造吗
+keywords: fuxiaode, web开发，javascript，学习记录，随笔，冒哥
+description: 冒哥的个人博客
 ---
 {% include JB/setup %}
 
-<div class="row-fluid">
-	<ul class="posts">
-	    {% for post in site.posts %}
-	    <li>
-	    	<span class="date">{{ post.date | date_to_utc | date: "%Y-%m-%d" }}</span>
-	    	<a class="title" href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-	    </li>
-	    {% endfor %}
-	</ul>
-
+{% for post in site.posts %}
+<div class="article" id="">
+    <div class="article-info">
+        <div class="post-time">
+            <a href="{{ BASE_PATH }}{{ post.url }}" data-date="{{ post.date | date_to_utc | date: "%Y-%m-%d" }}">
+            	{{ post.date | date_to_utc | date: "%Y年%m月%d日" }}
+            </a>
+        </div>
+        <div class="category">
+            <a href="#category" class="category-link">分类</a>
+        </div>
+    </div>
+    <div class="article-inner">
+        <div class="article-title">
+            <h1>
+                <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+            </h1>
+        </div>
+        <div class="article-entry">
+            <p>
+                {% if post.description %}
+                {{ post.description }}
+                {% else %}
+                {{ post.content | split: '<!-- break -->' | first }}
+                {% endif %}
+            </p>
+            <div class="read-more">
+                <a href="{{ BASE_PATH }}{{ post.url }}" class="btn btn-inverse btn-radius">阅读全文</a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<!-- <div class="row-fluid">
-	<div class="">
-		<img src="/assets/custom/img/fire_horse.jpg">
-	</div>
-	<div class="">
-		<img src="/assets/custom/img/fire_fist.jpg">
-	</div>
-</div> -->
+{% endfor %}

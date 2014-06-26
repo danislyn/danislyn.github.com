@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Javascript模式之四-对象创建模式"
-description: ""
+description: "命名空间模式；模块模式；沙箱模式；链模式"
 category: javascript
 tags: [javascript]
 ---

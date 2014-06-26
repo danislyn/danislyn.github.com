@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Javascript模式之一-基本技巧"
-description: ""
+description: "Javascript是一门面向对象的语言。只有五种基本类型不是对象：数值类型、字符串类型、布尔类型、空类型和未定义类型。其中前三个类型有对应的以基本类型封装形式体现的对象表示。"
 category: javascript
 tags: [javascript]
 ---

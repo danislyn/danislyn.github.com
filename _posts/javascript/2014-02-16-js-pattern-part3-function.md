@@ -1,7 +1,10 @@
 ---
 layout: post
 title: "Javascript模式之三-函数"
-description: ""
+description: "Javascript中函数有两个重要特征。<br>
+第一，函数是第一类对象（first-class object），可以作为带有属性和方法的值以及参数进行传递。<br>
+第二，函数提供了局部作用域。Javascript中仅存在函数作用域，花括号`{}`并不提供局部作用域，因此如果在`if`条件语句或在`for`以及`while`循环中，使用`var`关键字定义一个变量，这并不意味着该变量对于`if`或`for`来说是局部变量。它仅对于包装函数来说是局部变量，并且如果没有包装函数，它将称为一个全局变量。<br>
+此外，函数中声明的局部变量可被提升到局部作用域的顶部。"
 category: javascript
 tags: [javascript]
 ---
