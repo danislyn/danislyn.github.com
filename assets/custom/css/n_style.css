@@ -149,6 +149,11 @@ hr{
 .nav-list{
     height: 48px;
     line-height: 48px;
+    /* hack for IE 垂直居中 */
+    height: 40px !important;
+    padding-top: 8px !important;
+    *height: 48px;
+    *padding-top: 0px;
 }
 .nav-list li{
     float: left;
