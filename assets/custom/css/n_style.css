@@ -71,6 +71,9 @@ hr{
     border-bottom: 1px solid #fff;
     margin: 20px 0;
 }
+.subtitle{
+    font-style: italic;
+}
 
 /* outline STARTS */
 #bodyWrap{
@@ -372,8 +375,9 @@ hr{
 .pagination li a:hover{
     color: #0088cc;
 }
+.pagination li.disabled a,
 .pagination li.disabled a:hover{
-    color: inherit;
+    color: #999;
     cursor: default;
 }
 /* pagination ENDS */
@@ -410,6 +414,10 @@ hr{
     .nav-list li a{
         background: none;
         padding: 0 30px;
+    }
+    .pagination li.prev,
+    .pagination li.next{
+        float: none;
     }
 }
 /* media ENDS */
