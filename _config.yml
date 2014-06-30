@@ -28,6 +28,8 @@ production_url : fuxiaode.cn
 paginate: 5
 #paginate_path: "/page:num"
 
+markdown: kramdown
+
 # required in JB analytics
 safe : true
 

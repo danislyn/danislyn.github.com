@@ -149,12 +149,13 @@
 				});
 			});
 
-			// 文章中的外部link添加target
+			// 文章中的外部link添加target和class
 			$('.article-entry .content').find('a').each(function(){
 				var link = $(this).attr('href');
 				if(/^((https?|s?ftp):\/\/)/i.test(link)){
 					$(this).attr('target', '_blank');
 				}
+				$(this).addClass('info');
 			});
 
 			// 文章中侧边导航

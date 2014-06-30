@@ -276,7 +276,7 @@ hr{
 }
 /* widget ENDS */
 
-/* button STARTS */
+/* button & link STARTS */
 .btn{
     background-color: #0088cc;
     color: #fff;
@@ -302,6 +302,21 @@ hr{
     border-radius: 16px;
     -webkit-border-radius: 16px;
     -moz-border-radius: 16px;
+}
+a.default{
+    color: inherit;
+}
+a.default:hover{
+    color: #0088cc;
+}
+a.info{
+    color: #0088cc;
+}
+a.inverse{
+
+}
+a.underline:hover{
+    text-decoration: underline;
 }
 /* button ENDS */
 
