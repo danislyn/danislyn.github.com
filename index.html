@@ -5,7 +5,7 @@ description: 冒哥的个人博客
 ---
 {% include JB/setup %}
 
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 <div class="article" id="">
     <div class="article-info">
         <div class="post-time">
@@ -38,3 +38,28 @@ description: 冒哥的个人博客
     </div>
 </div>
 {% endfor %}
+
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+    <ul>
+        {% if paginator.previous_page %}
+        <li class="prev">
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="btn">上一页</a>
+        </li>
+        {% else %}
+        <li class="prev disabled">
+            <a></a>
+        </li>
+        {% endif %}
+        {% if paginator.next_page %}
+        <li class="next">
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="btn">下一页</a> 
+        </li>
+        {% else %}
+        <li class="next disabled">
+            <a></a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
+{% endif %}
