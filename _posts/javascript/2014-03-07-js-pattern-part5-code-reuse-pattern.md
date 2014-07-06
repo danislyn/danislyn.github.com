@@ -3,7 +3,7 @@ layout: post
 title: "Javascript模式之五-代码复用模式"
 description: "类式继承；原型继承；通过复制属性实现继承；混入；借用和绑定"
 category: javascript
-tags: [javascript]
+tags: [javascript, 读书笔记]
 ---
 {% include JB/setup %}
 
@@ -281,3 +281,8 @@ ES5中将`bind()`方法添加到`Function.prototype`，使得`bind()`就像`appl
 	}
 
 这个实现可能看起来有点熟悉，它使用了部分应用并拼接了参数列表，即那些传递给`bind()`的参数（除了第一个以外），以及那些传递给由`bind()`所返回的新函数的参数，其中该新函数将在以后被调用。
+
+
+参考
+-----
+[JavaScript模式](http://book.douban.com/subject/11506062/)

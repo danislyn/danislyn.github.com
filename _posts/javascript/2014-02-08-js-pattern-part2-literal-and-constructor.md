@@ -4,7 +4,7 @@ title: "Javascript模式之二-字面量和构造函数"
 description: "对象创建方式<br>
 对象字面量：这是一种优美的对象创建方式，它以包装在大括号中的逗号分割的键-值（key-value）对的方式创建对象。<br>构造函数：主要包括内置构造函数（几乎总是有一个更好且更短的字面量表示法）和自定义构造函数。"
 category: javascript
-tags: [javascript]
+tags: [javascript, 读书笔记]
 ---
 {% include JB/setup %}
 
@@ -118,3 +118,8 @@ example.
 	}
 
 注：在ES5的strict模式中并不支持`arguments.callee`属性。
+
+
+参考
+-----
+[JavaScript模式](http://book.douban.com/subject/11506062/)

@@ -3,7 +3,7 @@ layout: post
 title: "Javascript模式之四-对象创建模式"
 description: "命名空间模式；模块模式；沙箱模式；链模式"
 category: javascript
-tags: [javascript]
+tags: [javascript, 读书笔记]
 ---
 {% include JB/setup %}
 
@@ -200,3 +200,8 @@ example.
 			return this.
 		}
 	}
+
+
+参考
+-----
+[JavaScript模式](http://book.douban.com/subject/11506062/)

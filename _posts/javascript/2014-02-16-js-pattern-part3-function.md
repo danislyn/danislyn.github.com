@@ -6,7 +6,7 @@ description: "Javascript中函数有两个重要特征。<br>
 第二，函数提供了局部作用域。Javascript中仅存在函数作用域，花括号`{}`并不提供局部作用域，因此如果在`if`条件语句或在`for`以及`while`循环中，使用`var`关键字定义一个变量，这并不意味着该变量对于`if`或`for`来说是局部变量。它仅对于包装函数来说是局部变量，并且如果没有包装函数，它将称为一个全局变量。<br>
 此外，函数中声明的局部变量可被提升到局部作用域的顶部。"
 category: javascript
-tags: [javascript]
+tags: [javascript, 读书笔记]
 ---
 {% include JB/setup %}
 
@@ -326,3 +326,8 @@ example.接上
 	console.log(scareMe.property);  //output: undefined
 
 正如看到的，当将该函数分配给一个新的变量时，函数的自定义并没有发生。每次当调用`prank()`时，它都通知'Boo!'消息，同时它还覆盖了全局`scareMe()`函数，但是`prank()`自身保持了可见旧函数，其中还包括属性。当该函数以`spooky`对象的`boo()`方法使用时，也发生了同样的情况。所有这些调用不断地重写全局`scareMe()`指针，以至于当它最终被调用时，它才第一次具有更新函数主体并通知'Double boo!'消息的权利。此外，它也不能访问`scareMe.property`属性。
+
+
+参考
+-----
+[JavaScript模式](http://book.douban.com/subject/11506062/)
