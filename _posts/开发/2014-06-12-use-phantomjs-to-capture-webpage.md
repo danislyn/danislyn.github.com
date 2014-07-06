@@ -3,8 +3,7 @@ layout: post
 title: "使用phantomjs对网页截图"
 description: "本文介绍了使用phantomjs"
 category: 开发
-tags: []
-published: false
+tags: [截图, javascript]
 ---
 {% include JB/setup %}
 
