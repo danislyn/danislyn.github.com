@@ -1,4 +1,4 @@
-body, dd, dl, dt, form, h1, h2, h3, h4, h5, h6, ol, p, ul{
+body, dd, dl, dt, form, h1, h2, h3, h4, h5, h6, p, ul{
     margin: 0;
     padding: 0;
 }
@@ -15,7 +15,7 @@ a, p{
 a, a:link, a:hover{
     text-decoration: none;
 }
-ol, ul{
+ul{
     list-style: none;
 }
 img{

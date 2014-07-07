@@ -24,9 +24,9 @@ tags: [截图, javascript]
 -------------
 由于PC端web已经采用Highcharts绘制了数据图表，因此自然会想到两种办法。
 
--使用Highcharts自带的exporting module，将chart转成图片形式。
+1. 使用Highcharts自带的exporting module，将chart转成图片形式。
 
--直接在浏览器里对相应的图表区域截图。
+2. 直接在浏览器里对相应的图表区域截图。
 
 不管用哪种方法，我们首先要把系统中所有的图表的地方汇聚起来，做一个REST API，将功能的action、参数以及图表类型传入url中，统一生成Highchart。
 
