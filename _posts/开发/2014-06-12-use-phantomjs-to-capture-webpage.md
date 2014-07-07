@@ -24,9 +24,9 @@ tags: [截图, javascript]
 -------------
 由于PC端web已经采用Highcharts绘制了数据图表，因此自然会想到两种办法。
 
-1. 使用Highcharts自带的exporting module，将chart转成图片形式。
+-使用Highcharts自带的exporting module，将chart转成图片形式。
 
-2. 直接在浏览器里对相应的图表区域截图。
+-直接在浏览器里对相应的图表区域截图。
 
 不管用哪种方法，我们首先要把系统中所有的图表的地方汇聚起来，做一个REST API，将功能的action、参数以及图表类型传入url中，统一生成Highchart。
 
@@ -65,11 +65,14 @@ casperjs
     var url = 'http://www.baidu.com/';
 
     casper.start(url, function() {
+        // 填写表单（搜索关键字）
+        // 最后一个参数true表示submit
         this.fill('form#form1', { wd: 'phantomjs' }, true);
     });
 
     casper.then(function() {
         this.viewport(1366, 768);
+        // 注意：这里要等待结果刷新，百度搜索结果是异步刷出来的
         this.waitFor(function check(){
             return this.evaluate(function(){
                 return document.querySelectorAll('#content_left').length > 0;
@@ -80,6 +83,8 @@ casperjs
     });
 
     casper.then(function() {
+        // 填写表单（搜索关键字）
+        // 注意此时form id不同于之前
         this.fill('form#form', { wd: 'casperjs' }, true);
     });
 
@@ -98,6 +103,6 @@ casperjs
 
 截图效果
 
-<img src="/assets/photos/20140612_02.png" style="max-width:720px;">
-<img src="/assets/photos/20140612_02.png" style="max-width:720px;">
+<img src="/assets/photos/20140612_02.png">
+<img src="/assets/photos/20140612_03.png">
 
