@@ -40,10 +40,64 @@ phantomjs
 ----------
 [phantomjs](http://phantomjs.org/)是一个基于webkit的无界面浏览器，你可以通过javascript的语法去控制它。它与传统的爬虫不同，爬虫是直接对Http Response进行处理，只能获取所有的原始数据（包括DOM document和script），至于script执行后会对document产生怎样的改变，它不知道，只能自己写业务逻辑去处理。而phantomjs就是一个浏览器，它包含完整的渲染引擎和js执行器，它可以站在浏览器层面（而不是Http Response）去看待问题。因此phantomjs被主要用于网页截图，网络检测（Monitoring），以及界面测试（Testing）等。
 
+一个最简单的demo
+
+    var page = require('webpage').create();
+    var url = 'http://www.baidu.com/';
+    page.open(url, function() {
+        page.render('baidu.png');
+        phantom.exit()
+    });
+
+截图效果
+
+<img src="/assets/photos/20140612_01.png" style="max-width:720px;">
+
 
 
 casperjs
 ---------
 [casperjs](http://casperjs.org/)是对phantomjs的一个封装，提供了浏览器的多步访问，填写表单，点击事件，以及截图的自定义等。最重要的就是它的多步访问，提供了更好的异步操作，可避免callback的多层嵌套。
 
-###未完待续
+多步访问截图demo
+
+    var casper = require('casper').create();
+    var url = 'http://www.baidu.com/';
+
+    casper.start(url, function() {
+        this.fill('form#form1', { wd: 'phantomjs' }, true);
+    });
+
+    casper.then(function() {
+        this.viewport(1366, 768);
+        this.waitFor(function check(){
+            return this.evaluate(function(){
+                return document.querySelectorAll('#content_left').length > 0;
+            });
+        }, function then(){
+            this.captureSelector('phantomjs.png', 'body');
+        });
+    });
+
+    casper.then(function() {
+        this.fill('form#form', { wd: 'casperjs' }, true);
+    });
+
+    casper.then(function() {
+        this.viewport(1366, 768);
+        this.waitFor(function check(){
+            return this.evaluate(function(){
+                return document.querySelectorAll('#content_left').length > 0;
+            });
+        }, function then(){
+            this.captureSelector('casperjs.png', 'body');
+        });
+    });
+
+    casper.run();
+
+截图效果
+
+<img src="/assets/photos/20140612_02.png" style="max-width:720px;">
+<img src="/assets/photos/20140612_02.png" style="max-width:720px;">
+
