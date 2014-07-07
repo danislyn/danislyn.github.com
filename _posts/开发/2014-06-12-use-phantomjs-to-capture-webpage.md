@@ -25,7 +25,6 @@ tags: [截图, javascript]
 由于PC端web已经采用Highcharts绘制了数据图表，因此自然会想到两种办法。
 
 1. 使用Highcharts自带的exporting module，将chart转成图片形式。
-
 2. 直接在浏览器里对相应的图表区域截图。
 
 不管用哪种方法，我们首先要把系统中所有的图表的地方汇聚起来，做一个REST API，将功能的action、参数以及图表类型传入url中，统一生成Highchart。
@@ -106,3 +105,50 @@ casperjs
 <img src="/assets/photos/20140612_02.png">
 <img src="/assets/photos/20140612_03.png">
 
+
+
+回归正题
+---------
+我们有了REST API，通过casperjs去遍历访问url给以各种参数，并对页面中的Highchart截图。在实际的操作中需要注意的是
+
+1. 循环中的闭包（[closure](http://www.cnblogs.com/mindsbook/archive/2009/09/21/javascriptYouMustKnowClosure.html)）
+2. 如果图表是异步加载，需要等待完再截图
+
+部分示例代码如下
+
+    // 省略……
+    // categories是功能的分类数组
+    // pages是对每个category下生成的合法url数组，即pages是url的二维数组
+    casper.then(function(){
+        for(var i=0; i<pages.length; i++){
+            (function(that, category, urls){
+                that.each(urls, function(self, link){
+                    var params = (link.split('?')[1]).split('&');
+                    // TODO: get params
+
+                    self.thenOpen(link, function(){
+                        self.waitFor(function check(){
+                            return self.evaluate(function(){
+                                // TODO: 异步加载的判断
+                                return true;
+                            });
+                        }, function then(){
+                            self.captureSelector(PATH + '/' + category + '/' + param + '.png', '#chart');
+                        });
+                    });
+                });
+            })(this, categories[i], pages[i]);
+        }
+    });
+
+截图效果
+
+<img src="/assets/photos/20140612_04.png">
+
+
+
+总结
+-----
+我们使用了最低成本的方法实现了在移动端展示数据图表，都是基于PC端使用的Highcharts。省去了在移动端浏览器导入图表js库出现的兼容和性能问题，也省去了自己编写后台代码去生成图片。
+
+利用phantomjs + casperjs的截图方法，经实验，生成的900 × 600像素的图片平均大小在20K左右，这个大小在移动端是可以接受的。如果一个页面中图片较多，我们还能写js对图片延迟加载（img的src属性延迟赋值）。唯一美中不足的是phantomjs对字体的效果不太好。
