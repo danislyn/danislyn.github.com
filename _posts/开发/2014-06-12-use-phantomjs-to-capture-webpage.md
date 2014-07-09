@@ -4,7 +4,7 @@ title: "使用phantomjs对网页截图"
 description: "phantomjs是一个基于webkit的无界面浏览器，你可以通过javascript的语法去控制它。它与传统的爬虫不同，爬虫是直接对Http Response进行处理，只能获取所有的原始数据（包括DOM document和script），至于script执行后会对document产生怎样的改变，它不知道，只能自己写业务逻辑去处理。而phantomjs就是一个浏览器，它包含完整的渲染引擎和js执行器，它可以站在浏览器层面（而不是Http Response）去看待问题。因此phantomjs被主要用于网页截图，网络检测（Monitoring），以及界面测试（Testing）等。"
 keywords: Highcharts, 网页截图, 移动web端, phantomjs, casperjs, 爬虫, 浏览器
 category: 开发
-tags: [截图, javascript]
+tags: [截图, javascript, phantomjs]
 ---
 {% include JB/setup %}
 

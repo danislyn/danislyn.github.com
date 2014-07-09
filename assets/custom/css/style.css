@@ -100,6 +100,16 @@ hr{
 #logo a:hover{
     color: #FFCC66;
 }
+#mainContent{
+    float: left;
+    margin-right: 0.83%;
+    width: 73.33%;
+}
+#sidebar{
+    float: left;
+    margin-left: 0.83%;
+    width: 23.33%;
+}
 #footer{
     background-color: #555;
     color: #aaa;
@@ -411,19 +421,17 @@ a.underline:hover{
 /* pagination ENDS */
 
 /* media STARTS */
-@media screen and (min-width: 768px){
+@media screen and (max-width: 767px){
     #mainContent{
-        float: left;
-        margin-right: 0.83%;
-        width: 73.33%;
+        float: none;
+        margin-right: 0;
+        width: 100%;
     }
     #sidebar{
-        float: left;
-        margin-left: 0.83%;
-        width: 23.33%;
+        float: none;
+        margin-left: 0;
+        width: 100%;
     }
-}
-@media screen and (max-width: 767px){
     #mainNavToggle{
         display: inline-block;
     }
