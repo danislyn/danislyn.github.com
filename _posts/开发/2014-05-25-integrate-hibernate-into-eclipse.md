@@ -8,7 +8,7 @@ tags: [Hibernate, 泛型编程]
 {% include JB/setup %}
 
 
-前一阵子帮别人有偿做本科毕设的XX管理系统，对方要求一定要Java，不然他没学过不利于答辩。想我们大软院从大一开始就在做XX管理系统了，大二大三只是学的内容不一样，但大作业的载体都是该死的XX管理系统。从原生Java Swing做的靠文件读写数据的XX管理系统，到下学期加入数据库读写的，再过一学期用jsp做网页版的XX管理系统，然后再用J2EE框架，或者换php再实现一个XX管理系统。最后熬到坑爹的研究生，第一学期云计算课程先用传统方式实现一个XX管理系统，然后再把数据迁移到云平台上做实验。好吧，我错了，不知不觉又习惯喷了<img src="assets/photos/wulian.jpg" style="width:56px; vertical-align:text-top;">
+前一阵子帮别人有偿做本科毕设的XX管理系统，对方要求一定要Java，不然他没学过不利于答辩。想我们大软院从大一开始就在做XX管理系统了，大二大三只是学的内容不一样，但大作业的载体都是该死的XX管理系统。从原生Java Swing做的靠文件读写数据的XX管理系统，到下学期加入数据库读写的，再过一学期用jsp做网页版的XX管理系统，然后再用J2EE框架，或者换php再实现一个XX管理系统。最后熬到坑爹的研究生，第一学期云计算课程先用传统方式实现一个XX管理系统，然后再把数据迁移到云平台上做实验。好吧，我错了，不知不觉又习惯喷了<img src="/assets/photos/wulian.jpg" style="width:56px; vertical-align:text-top;">
 
 <!-- break -->
 
@@ -30,13 +30,19 @@ Hibernate插件安装
 2. 添加 http://download.jboss.org/jbosstools/updates/stable/helios/
 3. 选择All JBoss Tools下的Hibernate Tools即可（因为Hibernate被JBoss收了，只需装这一个就行）
 
-<img src="assets/photos/20140525_01.jpg">
+<img src="/assets/photos/20140525_01.jpg" style="width:694px;">
 
 漫长的等待
 
-<img src="assets/photos/20140525_02.jpg">
+<img src="/assets/photos/20140525_02.jpg" style="width:532px;">
 
 注意，有可能安装出错，我试了两三次才好（叹气）
+
+<img src="/assets/photos/20140525_03.jpg" style="width:378px;">
+
+最后这个关于unsigned的Warning无视之，直接OK后就安装成功了^_^
+
+<img src="/assets/photos/20140525_04.jpg" style="width:548px;">
 
 
 
@@ -44,11 +50,11 @@ Hibernate Config
 -----------------
 HibernateTool安装完成后，在eclipse中就会多了一个Hibernate perspective。
 
-点击菜单栏中的<img src="assets/photos/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
+点击菜单栏中的<img src="/assets/photos/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
 
-<img src="assets/photos/20140525_03.jpg">
+<img src="/assets/photos/20140525_05.jpg" style="width:593px;">
 
-<img src="assets/photos/20140525_04.jpg">
+<img src="/assets/photos/20140525_06.jpg" style="width:593px;">
 
 
 
