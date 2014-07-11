@@ -48,33 +48,64 @@ Hibernate插件安装
 
 Hibernate Config
 -----------------
-HibernateTool安装完成后，在eclipse中就会多了一个Hibernate perspective。
+HibernateTool安装完成后，可在eclipse中添加Hibernate perspective。
 
+<img src="/assets/photos/20140525_05.jpg" style="width:359px;">
+
+####步骤1
+将Hibernate核心jar包添加到project中，可到[这里](https://github.com/danislyn/FactoryManage/tree/master/MyLib/hibernate3.2.3_core)下载。
+
+<img src="/assets/photos/20140525_06.jpg" style="width:260px;">
+
+####步骤2
+在project的src根下添加名为hibernate.cfg.xml的文件，内容如下
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE hibernate-configuration PUBLIC
+            "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+            "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    <hibernate-configuration>
+        <session-factory>
+            <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+            <property name="hibernate.connection.password">123123</property>
+            <!-- 指定数据库对应的schema（我用的是mysql） -->
+            <property name="hibernate.connection.url">jdbc:mysql://localhost/factory_manage</property>
+            <property name="hibernate.connection.username">root</property>
+            <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+            <!-- 下面这句很重要 -->
+            <property name="current_session_context_class">thread</property>
+            <!-- 下面为表的mapping项（已省略） -->
+        </session-factory>
+    </hibernate-configuration>
+
+####步骤3
+打开Hibernate perspective，在该区域中右击添加configuration
+这里的Type我选择了Annotations的方式
+
+<img src="/assets/photos/20140525_07.jpg" style="width:800px;">
+
+OK后就能在刚才的区域中看到数据库中的表了
+
+<img src="/assets/photos/20140525_08.jpg" style="width:198px;">
+
+####步骤4
 点击菜单栏中的<img src="/assets/photos/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
 
-<img src="/assets/photos/20140525_05.jpg" style="width:593px;">
+<img src="/assets/photos/20140525_09.jpg" style="width:602px;">
 
-<img src="/assets/photos/20140525_06.jpg" style="width:593px;">
+这里的Exporters我就勾选了前两项，一个是table对应的实体类，另一个则是mapping配置。而其他的如.cfg.xml和DAO code我准备都手工操作。因为这个code generation每次生成时会把以前的覆盖掉。
+
+<img src="/assets/photos/20140525_10.jpg" style="width:601px;">
+
+####步骤5
+运行Hibernate code generation
+
 
 
 
 Hibernate Session Factory
 --------------------------
-首先看一段hibernate.cfg.xml中的配置
-
-    <session-factory>
-        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
-        <property name="hibernate.connection.password">123123</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/factory_manage</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-        
-        <property name="current_session_context_class">thread</property>
-        <mapping resource="pojo/User.hbm.xml" />
-        <!-- 省略其他表项 -->
-    </session-factory>
-
-然后创建一个hibernate的package，新建HibernateSessionFactory.java，内容如下。
+创建一个hibernate的package，新建HibernateSessionFactory.java，内容如下。
 
     package hibernate;
 
