@@ -54,11 +54,14 @@ HibernateTool安装完成后，可在eclipse中添加Hibernate perspective。
 <img src="/assets/photos/20140525_05.jpg" style="max-width:359px;">
 
 **步骤1**
+
 将Hibernate核心jar包添加到project中，可到[这里](https://github.com/danislyn/FactoryManage/tree/master/MyLib/hibernate3.2.3_core)下载。
 
 <img src="/assets/photos/20140525_06.jpg" style="max-width:260px;">
 
+
 **步骤2**
+
 在project的src根下添加名为hibernate.cfg.xml的文件，内容如下
 
     <?xml version="1.0" encoding="UTF-8"?>
@@ -79,8 +82,11 @@ HibernateTool安装完成后，可在eclipse中添加Hibernate perspective。
         </session-factory>
     </hibernate-configuration>
 
+
 **步骤3**
+
 打开Hibernate perspective，在该区域中右击添加configuration
+
 这里的Type我选择了Annotations的方式
 
 <img src="/assets/photos/20140525_07.jpg" style="max-width:800px;">
@@ -89,7 +95,9 @@ OK后就能在刚才的区域中看到数据库中的表了
 
 <img src="/assets/photos/20140525_08.jpg" style="max-width:198px;">
 
+
 **步骤4**
+
 点击菜单栏中的<img src="/assets/photos/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
 
 注意要把“Reverse engineer from JDBC Connection”选项打开，这是Hibernate的反向工程。从数据库的表映射成实体类和配置文件，当然也可以从配置文件映射成数据库的表。
@@ -100,13 +108,18 @@ OK后就能在刚才的区域中看到数据库中的表了
 
 <img src="/assets/photos/20140525_10.jpg" style="max-width:601px;">
 
+
 **步骤5**
+
 运行Hibernate code generation，就会生成数据库factory_manage下所有表的映射。
 
 <img src="/assets/photos/20140525_11.jpg" style="max-width:238px;">
 
+
 **步骤6**
+
 mapping文件（.hbm.xml）大可用生成的，只需要注意的是一对多和多对一映射时是否要lazy fetch（默认为true）。
+
 最后记得将mapping文件的路径添加到hibernate.cfg.xml中！
 
 
