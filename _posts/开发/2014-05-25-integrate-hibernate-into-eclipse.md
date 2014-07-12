@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "eclipse中集成Hibernate"
-description: 利用HibernateTools，可以先在数据库中建好table，然后通过Hibernate的Reverse Engineering映射成对应的实体类和配置文件。通过建立泛型DAO接口和实现类，不必为具体每个实体类编写诸如`getById`的方法。Mapping和DAO泛型编程，大大减少了基于增删改查的XX管理系统的开发工作量。
+description: 在eclipse中集成HibernateTools后，可以先在数据库中建好table，然后通过Hibernate的Reverse Engineering映射成对应的实体类和配置文件。通过建立泛型DAO接口和实现类，不必为具体每个实体类编写诸如`getById`的方法。Mapping和DAO泛型编程，大大减少了基于增删改查的XX管理系统的开发工作量。
 keywords: eclipse, Hibernate, HibernateTools, Java, DAO, 泛型编程, 软件工程
 category: 开发
 tags: [Hibernate, 泛型编程]
@@ -522,4 +522,4 @@ DAO泛型编程
 
 总结
 -----
-利用HibernateTools，可以先在数据库中建好table，然后通过Hibernate的Reverse Engineering映射成对应的实体类和配置文件。通过建立泛型DAO接口和实现类，不必为具体每个实体类编写诸如`getById`的方法。Mapping和DAO泛型编程，大大减少了基于增删改查的XX管理系统的开发工作量。
+在eclipse中集成HibernateTools后，可以先在数据库中建好table，然后通过Hibernate的Reverse Engineering映射成对应的实体类和配置文件。通过建立泛型DAO接口和实现类，不必为具体每个实体类编写诸如`getById`的方法。Mapping和DAO泛型编程，大大减少了基于增删改查的XX管理系统的开发工作量。
