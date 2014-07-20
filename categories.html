@@ -7,11 +7,27 @@ group: navigation
 {% include JB/setup %}
 
 
-{% for category in site.categories %} 
-<h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
-<ul>
-    {% assign pages_list = category[1] %}  
-    {% include JB/pages_list %}
-</ul>
+{% for category in site.categories %}
+<div class="article" id="">
+    <div class="article-inner">
+        <div class="article-title">
+            <h1 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h1>
+        </div>
+        <div class="article-entry">
+            <div class="content">
+                <ul>
+                {% assign pages_list = category[1] %}
+                {% for node in pages_list %}
+                    <li>
+                        <span>{{ node.date | date_to_utc | date: "%Y-%m-%d" }}</span>
+                        <span>&raquo;</span>
+                        <a class="default" href="{{ BASE_PATH }}{{ node.url }}">{{ node.title }}</a>
+                    </li>
+                {% endfor %}
+                {% assign pages_list = nil %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
-

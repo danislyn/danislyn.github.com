@@ -8,9 +8,26 @@ group: navigation
 
 
 {% for tag in site.tags %} 
-<h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
-<ul>
-    {% assign pages_list = tag[1] %}  
-    {% include JB/pages_list %}
-</ul>
+<div class="article" id="">
+    <div class="article-inner">
+        <div class="article-title">
+            <h1 id="{{ tag[0] }}-ref">{{ tag[0] }}</h1>
+        </div>
+        <div class="article-entry">
+            <div class="content">
+                <ul>
+                {% assign pages_list = tag[1] %}
+                {% for node in pages_list %}
+                    <li>
+                        <span>{{ node.date | date_to_utc | date: "%Y-%m-%d" }}</span>
+                        <span>&raquo;</span>
+                        <a class="default" href="{{ BASE_PATH }}{{ node.url }}">{{ node.title }}</a>
+                    </li>
+                {% endfor %}
+                {% assign pages_list = nil %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
