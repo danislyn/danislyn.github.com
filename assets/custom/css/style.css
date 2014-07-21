@@ -322,8 +322,8 @@ a.default:hover{
 a.info{
     color: #0088cc;
 }
-a.inverse{
-
+a.inverse:hover{
+    color: #fff;
 }
 a.underline:hover{
     text-decoration: underline;
