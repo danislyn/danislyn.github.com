@@ -516,8 +516,8 @@ a.underline:hover{
 @media screen and (max-width: 640px){
     #aboutLeft{
         float: none;
-        width: 100%;
         text-align: center;
+        width: 100%;
     }
     #aboutRight{
         float: none;
