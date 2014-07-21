@@ -1,6 +1,5 @@
 ---
 layout: page
-title: 文章分类
 header: Posts By Category
 group: navigation
 ---
@@ -8,7 +7,7 @@ group: navigation
 
 
 {% for category in site.categories %}
-<div class="article" id="">
+<div class="article">
     <div class="article-inner">
         <div class="article-title">
             <h1 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h1>

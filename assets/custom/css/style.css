@@ -420,6 +420,63 @@ a.underline:hover{
 }
 /* pagination ENDS */
 
+/* colorful font STARTS */
+.fs-20{
+    font-size: 20px;
+}
+.fs-24{
+    font-size: 24px;
+}
+.fs-28{
+    font-size: 28px;
+}
+.fs-32{
+    font-size: 32px;
+}
+.aqua{
+    color: #5EF6B5;
+}
+.blue{
+    color: #0092C7;
+}
+.gold{
+    color: #FFD700;
+}
+.orange{
+    color: #F38322;
+}
+.pink{
+    color: #F50299;
+}
+.purple{
+    color: #8A2B8E;
+}
+.violet{
+    color: #EE82EE;
+}
+/* colorful font ENDS */
+
+/* about STARTS */
+#aboutContent{
+    overflow: hidden;
+    *zoom: 1;
+}
+#aboutContent p{
+    font-size: 18px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+#aboutLeft{
+    float: left;
+    width: 30%;
+}
+#aboutRight{
+    float: left;
+    margin-left: 20px;
+    width: 60%;
+}
+/* about ENDS */
+
 /* media STARTS */
 @media screen and (max-width: 767px){
     #mainContent{
