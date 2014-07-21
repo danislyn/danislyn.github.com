@@ -517,6 +517,8 @@ a.underline:hover{
     #aboutLeft,
     #aboutRight{
         float: none;
+        margin: 0;
+        width: 100%;
     }
 }
 /* media ENDS */
