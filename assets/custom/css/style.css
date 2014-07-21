@@ -513,4 +513,10 @@ a.underline:hover{
         float: none;
     }
 }
+@media screen and (max-width: 640px){
+    #aboutLeft,
+    #aboutRight{
+        float: none;
+    }
+}
 /* media ENDS */
