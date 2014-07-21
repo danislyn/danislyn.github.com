@@ -514,10 +514,14 @@ a.underline:hover{
     }
 }
 @media screen and (max-width: 640px){
-    #aboutLeft,
+    #aboutLeft{
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
     #aboutRight{
         float: none;
-        margin: 0;
+        margin: 12px 0 0 0;
         width: 100%;
     }
 }
