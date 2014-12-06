@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Javascript模式之五-代码复用模式"
-description: "类式继承；原型继承；通过复制属性实现继承；混入；借用和绑定"
+description: "本章中讲述了javascript中继承的实现方式，由于js中对象是基于原型链的，因此继承方式也分为类式继承（类似Java的继承语法）和原型继承。此外还能通过复制属性实现继承，混入、借用和绑定都可以扩展对象。"
 category: javascript
 tags: [javascript, 读书笔记]
 ---

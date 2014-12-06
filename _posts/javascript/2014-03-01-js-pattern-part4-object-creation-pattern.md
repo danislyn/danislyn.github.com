@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Javascript模式之四-对象创建模式"
-description: "命名空间模式；模块模式；沙箱模式；链模式"
+description: "本章主要讲述了javascript中如何使用封装的方式来创建对象，这些模式有命名空间模式、模块模式和沙箱模式。而链模式是实现对象链式调用语法的方式。"
 category: javascript
 tags: [javascript, 读书笔记]
 ---
