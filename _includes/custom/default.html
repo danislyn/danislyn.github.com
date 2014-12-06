@@ -148,13 +148,20 @@
 	        	});
 	        })();
 
-	        // 文章中的外部link添加target和class
+	        // 文章中的link添加target和class
 			$('.article-entry .content').find('a').each(function(){
+				$(this).addClass('info');
 				var link = $(this).attr('href');
+				// 外部链接
 				if(/^((https?|s?ftp):\/\/)/i.test(link)){
 					$(this).attr('target', '_blank');
-					$(this).addClass('info');
 				}
+				// 站内链接
+				else if(/^\//i.test(link)){
+					$(this).attr('target', '_blank');
+				}
+				// 页内链接
+				// 不另起页面
 			});
 
 			// 文章中代码处理
