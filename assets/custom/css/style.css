@@ -248,6 +248,11 @@ hr{
 .article-entry .content h3{
     margin: 1em 0 10px 0;
 }
+.article-entry .content ul{
+    list-style: initial;
+    margin: 1em 0;
+    padding-left: 40px;
+}
 .article-entry .read-more{
     margin-top: 20px;
 }
