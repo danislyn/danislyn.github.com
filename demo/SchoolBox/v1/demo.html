@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>学校选择器v1</title>
+
+    <style type="text/css">
+    #mainContainer{
+        margin: 20px auto;
+        position: relative;
+        width: 1000px;
+    }
+
+    .school-box-wrapper{
+        margin: 10px 0;
+    }
+    .school-box{
+        background-color: white;
+        border: 1px solid #005EAC;
+        width: 650px;
+    }
+    .school-box-header{
+        background: #3777BC;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 10px;
+    }
+    .school-box-provinces,
+    .school-box-schools{
+        border: 1px solid #C3C3C3;
+        margin: 5px 10px 10px 10px;
+    }
+    .school-box-schools{
+        height: 200px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .school-box-provinces a,
+    .school-box-schools a{
+        color: #005EAC;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        height: 18px;
+        line-height: 18px;
+        text-decoration: none;
+    }
+    .school-box-provinces a{
+        margin: 2px 5px;
+        padding: 1px;
+    }
+    .school-box-provinces a:hover{
+        text-decoration: underline;
+    }
+    .school-box-provinces a.chosen{
+        background-color: #005EAC;
+        color: white;
+    }
+    .school-box-schools a{
+        margin: 4px 12px;
+        overflow: hidden;
+        padding-left: 10px;
+        width: 160px;
+    }
+    .school-box-schools a:hover{
+        background-color: #005EAC;
+        color: white;
+    }
+
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div class="school-box-wrapper">
+            <div class="school-box">
+                <div class="school-box-header">选择学校</div>
+                <div class="school-box-provinces">
+                    <a href="javascript:void(0)" class="province-item" data-province="1">江苏</a>
+                </div>
+                <div class="school-box-schools">
+                    <a href="javascript:void(0)" class="school-item" data-school="10284">南京大学</a>
+                    <a href="javascript:void(0)" class="school-item" data-school="10286">东南大学</a>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
