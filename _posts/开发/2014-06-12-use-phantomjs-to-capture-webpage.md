@@ -51,7 +51,7 @@ phantomjs
 
 截图效果
 
-<img src="/assets/photos/20140612_01.png" style="max-width:720px;">
+<img src="/assets/captures/20140612_01.png" style="max-width:720px;">
 
 
 
@@ -103,8 +103,8 @@ casperjs
 
 截图效果
 
-<img src="/assets/photos/20140612_02.png">
-<img src="/assets/photos/20140612_03.png">
+<img src="/assets/captures/20140612_02.png">
+<img src="/assets/captures/20140612_03.png">
 
 
 
@@ -144,7 +144,7 @@ casperjs
 
 截图效果
 
-<img src="/assets/photos/20140612_04.png">
+<img src="/assets/captures/20140612_04.png">
 
 
 

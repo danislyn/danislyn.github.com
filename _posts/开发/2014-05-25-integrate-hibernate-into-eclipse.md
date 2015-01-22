@@ -31,19 +31,19 @@ Hibernate插件安装
 2. 添加 http://download.jboss.org/jbosstools/updates/stable/helios/
 3. 选择All JBoss Tools下的Hibernate Tools即可（因为Hibernate被JBoss收了，只需装这一个就行）
 
-<img src="/assets/photos/20140525_01.jpg" style="max-width:694px;">
+<img src="/assets/captures/20140525_01.jpg" style="max-width:694px;">
 
 漫长的等待
 
-<img src="/assets/photos/20140525_02.jpg" style="max-width:532px;">
+<img src="/assets/captures/20140525_02.jpg" style="max-width:532px;">
 
 注意，有可能安装出错，我试了两三次才好（叹气）
 
-<img src="/assets/photos/20140525_03.jpg" style="max-width:378px;">
+<img src="/assets/captures/20140525_03.jpg" style="max-width:378px;">
 
 最后这个关于unsigned的Warning无视之，直接OK后就安装成功了^_^
 
-<img src="/assets/photos/20140525_04.jpg" style="max-width:548px;">
+<img src="/assets/captures/20140525_04.jpg" style="max-width:548px;">
 
 
 
@@ -51,13 +51,13 @@ Hibernate Config
 -----------------
 HibernateTool安装完成后，可在eclipse中添加Hibernate perspective。
 
-<img src="/assets/photos/20140525_05.jpg" style="max-width:359px;">
+<img src="/assets/captures/20140525_05.jpg" style="max-width:359px;">
 
 **步骤1**
 
 将Hibernate核心jar包添加到project中，可到[这里](https://github.com/danislyn/FactoryManage/tree/master/MyLib/hibernate3.2.3_core)下载。
 
-<img src="/assets/photos/20140525_06.jpg" style="max-width:260px;">
+<img src="/assets/captures/20140525_06.jpg" style="max-width:260px;">
 
 
 **步骤2**
@@ -89,31 +89,31 @@ HibernateTool安装完成后，可在eclipse中添加Hibernate perspective。
 
 这里的Type我选择了Annotations的方式
 
-<img src="/assets/photos/20140525_07.jpg" style="max-width:800px;">
+<img src="/assets/captures/20140525_07.jpg" style="max-width:800px;">
 
 OK后就能在刚才的区域中看到数据库中的表了
 
-<img src="/assets/photos/20140525_08.jpg" style="max-width:198px;">
+<img src="/assets/captures/20140525_08.jpg" style="max-width:198px;">
 
 
 **步骤4**
 
-点击菜单栏中的<img src="/assets/photos/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
+点击菜单栏中的<img src="/assets/captures/hibernate-icon.jpg" style="width:48px;">这个图标，打开"Hibernate Code Generation Configurations"，我们新建一个Configuration。
 
 注意要把“Reverse engineer from JDBC Connection”选项打开，这是Hibernate的反向工程。从数据库的表映射成实体类和配置文件，当然也可以从配置文件映射成数据库的表。
 
-<img src="/assets/photos/20140525_09.jpg" style="max-width:600px;">
+<img src="/assets/captures/20140525_09.jpg" style="max-width:600px;">
 
 这里的Exporters我就勾选了前两项，一个是table对应的实体类，另一个则是mapping配置。而其他的如.cfg.xml和DAO code我准备都手工操作。因为这个code generation每次生成时会把以前的覆盖掉。
 
-<img src="/assets/photos/20140525_10.jpg" style="max-width:601px;">
+<img src="/assets/captures/20140525_10.jpg" style="max-width:601px;">
 
 
 **步骤5**
 
 运行Hibernate code generation，就会生成数据库factory_manage下所有表的映射。
 
-<img src="/assets/photos/20140525_11.jpg" style="max-width:238px;">
+<img src="/assets/captures/20140525_11.jpg" style="max-width:238px;">
 
 
 **步骤6**
