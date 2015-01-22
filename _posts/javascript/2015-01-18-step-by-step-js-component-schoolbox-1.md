@@ -127,3 +127,6 @@ tags: [javascript, web组件]
 省份-学校 级联
 ---------------
 待续
+
+[学校选择器v2 Demo](/demo/SchoolBox/v2/demo.html)
+
