@@ -18,7 +18,7 @@ tags: [javascript, web组件]
 ---------
 由于本人设计能力拙劣，所以偷懒直接参考了[人人网](http://www.renren.com)里的学校选择器的画风。
 
-<img src="/assets/images/20150118_01.jpg" style="max-width:645px;">
+<img src="/assets/captures/20150118_01.jpg" style="max-width:645px;">
 
 我们这里只做了国内的高校，比人人网少一层，先从简，定义了下面的元素。
 
@@ -97,7 +97,7 @@ tags: [javascript, web组件]
 
 大体效果如图，依样画葫芦还凑合吧。
 
-<img src="/assets/images/20150118_02.jpg" style="max-width:671px;">
+<img src="/assets/captures/20150118_02.jpg" style="max-width:671px;">
 
 [学校选择器v1 Demo](/demo/SchoolBox/v1/demo.html)
 
