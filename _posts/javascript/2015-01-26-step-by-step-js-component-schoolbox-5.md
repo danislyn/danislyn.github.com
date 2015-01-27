@@ -149,7 +149,7 @@ tags: [javascript, web组件]
 
 注意这里代码`$cur.removeClass && $cur.removeClass('active');`这样写是因为可能找不到`$cur`元素，那么`$cur.removeClass`就肯定是`false`了，就不会执行`$cur.removeClass('active')`了。
 
-还有一点要注意的是，`$cur.index()`值的范围并不是`0 ~ length-1`，实际上值为`-1`时表示找不到元素，而超过`length-1`时又会从头开始找，即`$cur.index()`等于`length`时其实是第一个子元素。所以这里的代码中当`$cur.index() == $searchList.children().length-1`时要即时为第一个元素添加class，以保证`$cur.index()`的值范围在`0 ~ length-1`中。
+<!-- 还有一点要注意的是，`$cur.index()`值的范围并不是`0 ~ length-1`，实际上值为`-1`时表示找不到元素，而超过`length-1`时又会从头开始找，即`$cur.index()`等于`length`时其实是第一个子元素。所以这里的代码中当`$cur.index() == $searchList.children().length-1`时要即时为第一个元素添加class，以保证`$cur.index()`的值范围在`0 ~ length-1`中。 -->
 
 
 
