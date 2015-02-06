@@ -8,8 +8,6 @@ tags: [javascript, chart]
 
 **Highcharts**是一个用纯JavaScript编写的一个图表库，能够很简单便捷的在web网站或是web应用程序添加有交互性的图表，并且免费提供给个人学习、个人网站和非商业用途使用（摘自百度百科）。另外HighCharts还有很好的兼容性，能够完美支持当前大多数浏览器，现在官方的最新版本为Highcharts-4.0.4。
 
-官方网站：[www.highcharts.com](http://www.highcharts.com/) 中文网：[www.hcharts.cn](http://www.hcharts.cn/)
-
 <!-- break -->
 
 
@@ -377,3 +375,9 @@ AjaxChart构造
 最后demo
 
 [AjaxChart Demo](/demo/AjaxChart/v1/demo.html)
+
+
+
+参考资料
+---------
+Highcharts官方网站：[www.highcharts.com](http://www.highcharts.com/) 中文网：[www.hcharts.cn](http://www.hcharts.cn/)
