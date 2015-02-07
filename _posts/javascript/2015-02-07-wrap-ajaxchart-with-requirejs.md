@@ -57,11 +57,11 @@ RequireJS
 
 ### 2. 定义AjaxChart模块 ###
 
-define(['jquery', 'highcharts'], function($, Highcharts){
-    // 以上省略...
+    define(['jquery', 'highcharts'], function($, Highcharts){
+        // 以上省略...
 
-    return AjaxChart;
-});
+        return AjaxChart;
+    });
 
 AjaxChart依赖于`jquery`和`highcharts`，最后返回`AjaxChart`对象。注意这里的文件名也要是`AjaxChart.js`。
 
