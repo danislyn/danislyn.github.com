@@ -1,0 +1,42 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>AjaxChart</title>
+
+    <style type="text/css">
+    #mainContainer{
+        margin: 20px auto;
+        position: relative;
+        width: 1000px;
+    }
+    .hide{
+        display: none;
+    }
+    .chart-wrap{
+        height: 300px;
+        overflow: hidden;
+        *zoom: 1;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <h2>Chart with ajax</h2>
+        <div class="chart-wrap hide" id="chartDemo1"></div>
+        <div>
+            由于js跨域调用，这里无法演示。服务端返回数据格式请看 <a href="ajaxdata.json" target="_blank">ajaxdata.json</a> 或 <a href="ajaxdata.json" target="_blank">ajaxdata2.json</a>
+        </div>
+
+        <h2>Chart with local data</h2>
+        <div class="chart-wrap" id="chartDemo2"></div>
+
+        <h2>Chart with events</h2>
+        <div class="chart-wrap" id="chartDemo3"></div>
+
+        <h2>Chart with callback</h2>
+        <div class="chart-wrap" id="chartDemo4"></div>
+    </div>
+
+    <script type="text/javascript" src="js/require.js" data-main="js/app/main.js"></script>
+</body>
+</html>
