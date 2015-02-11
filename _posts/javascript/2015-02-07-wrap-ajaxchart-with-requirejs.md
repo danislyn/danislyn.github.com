@@ -88,4 +88,4 @@ AjaxChart依赖于`jquery`和`highcharts`，最后返回`AjaxChart`对象。注�
 
 最后demo
 
-[AjaxChart Demo](/demo/AjaxChart/v2/demo.html)
+[AjaxChart with RequireJS Demo](/demo/AjaxChart/v2/demo.html)
