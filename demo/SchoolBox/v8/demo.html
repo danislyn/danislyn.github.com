@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>学校选择器v8</title>
+
+    <link rel="stylesheet" type="text/css" href="SchoolBox.css">
+    <style type="text/css">
+    .hide{
+        display: none;
+    }
+    #mainContainer{
+        margin: 20px auto;
+        position: relative;
+        width: 1000px;
+    }
+    #formResult div{
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="formResult">
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school">选择学校</a>
+            </div>
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school">选择学校</a>
+            </div>
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school">选择学校</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="SchoolBox.js"></script>
+    <script type="text/javascript">
+    (function(){
+        // 实例化对象
+        var schoolBox = new SchoolBox({
+            searchSchool: true
+        });
+
+        // bind event
+        $('.choose-school').click(function(){
+            var $schoolInput = $(this).siblings('.school-input');
+            var $schoolId = $(this).siblings('.school-id');
+
+            // 监听自定义事件
+            schoolBox.unbind('schoolChosen').on('schoolChosen', function(data){
+                $schoolInput.val(data.schoolName);
+                $schoolId.val(data.schoolId);
+            });
+
+            schoolBox.show();
+        });
+
+    })();
+    </script>
+</body>
+</html>

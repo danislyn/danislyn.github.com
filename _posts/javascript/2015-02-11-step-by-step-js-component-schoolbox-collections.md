@@ -6,7 +6,7 @@ tags: [javascript, web组件]
 ---
 {% include JB/setup %}
 
-前一段时间整理完了SchoolBox这个系列的代码和文章，这里再做个合集，方便大家找到相应的篇目。我总共整理了7个版本的代码和6篇文章，分别如下。
+前一段时间整理完了SchoolBox这个系列的代码和文章，这里再做个合集，方便大家找到相应的篇目。我总共整理了8个版本的代码和7篇文章，分别如下。
 
 <!-- break -->
 
@@ -78,6 +78,16 @@ Demo：[demo v6](/demo/SchoolBox/v6/demo.html)
 Demo：[demo v7](/demo/SchoolBox/v7/demo.html)
 
 文章：[一步步做组件-学校选择器(6)](/javascript/2015/01/27/step-by-step-js-component-schoolbox-6/)
+
+
+
+### 版本8（后增） ###
+
+实现学校选择器的模态对话框，并在页面中共用同一个选择器对象。
+
+Demo：[demo v8](/demo/SchoolBox/v8/demo.html)
+
+文章：[一步步做组件-学校选择器(7)](/javascript/2015/02/25/step-by-step-js-component-schoolbox-7/)
 
 
 
