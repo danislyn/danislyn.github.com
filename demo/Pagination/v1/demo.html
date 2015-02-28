@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>AjaxChart</title>
+
+    <link rel="stylesheet" type="text/css" href="jqPagination.css">
+    <style type="text/css">
+    #mainContainer{
+        margin: 20px auto;
+        position: relative;
+        width: 1000px;
+    }
+    .pagination{
+        margin: 20px 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <h2>$('#xxxPagination').jqPagination();</h2>
+        <p>默认使用元素属性里的pn和tpn；默认使用当前location.pathname</p>
+        <div class="pagination" id="pagination1" data-pn="5" data-tpn="12"></div>
+
+        <h2>$('#xxxPagination').jqPagination({pn: 5, tpn: 12});</h2>
+        <p>手动设置pn和tpn</p>
+        <div class="pagination" id="pagination2"></div>
+
+        <h2>$('#xxxPagination').jqPagination({hrefPrefix: '/somepage?aa=xx&page='});</h2>
+        <p>自定义分页path</p>
+        <div class="pagination" id="pagination3" data-pn="5" data-tpn="12"></div>
+
+        <h2>$('#xxxPagination').jqPagination({pageClick: function(){}});</h2>
+        <p>自定义ajax分页</p>
+        <div class="pagination" id="pagination4" data-pn="5" data-tpn="12"></div>
+    </div>
+
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jqPagination.js"></script>
+    <script type="text/javascript">
+    (function(){
+
+        $('#pagination1').jqPagination();
+
+        $('#pagination2').jqPagination({
+            pn: 5,
+            tpn: 12
+        });
+
+        $('#pagination3').jqPagination({
+            hrefPrefix: 'demo.html?a=1&page='
+        });
+
+        $('#pagination4').jqPagination({
+            pageClick: function(){
+                alert('a');
+            }
+        });
+
+    })();
+    </script>
+</body>
+</html>
