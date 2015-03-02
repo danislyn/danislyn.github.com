@@ -1,6 +1,6 @@
 # This is the default format. 
 # For more see: http://jekyllrb.com/docs/permalinks/
-permalink: /:categories/:year/:month/:day/:title 
+permalink: /blog/:year/:month/:day/:title 
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
 pygments: true
@@ -106,7 +106,7 @@ JB :
   # Set 'provider' to false to turn analytics off globally.
   #        
   analytics :
-    provider : custom 
+    provider : baidu
     google : 
         tracking_id : 'UA-48810215-1'
     getclicky :
@@ -123,7 +123,7 @@ JB :
   # Set 'provider' to false to turn sharing off globally.
   #
   sharing :
-    provider : custom
+    provider : baidu
     
   # Settings for all other include helpers can be defined by creating 
   # a hash with key named for the given helper. ex:

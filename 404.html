@@ -1,1 +1,32 @@
-Sorry this page does not exist =(
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>页面链接已失效</title>
+</head>
+<body>
+    <h2>页面链接已失效，正在重定向...</h2>
+
+    <script type="text/javascript">
+    // 默认回到首页
+    var redirect = function(){
+        window.location.href = 'http://fuxiaode.cn';
+    };
+
+    var url = window.location.href;
+
+    // 非新版blog url
+    if(!/.*fuxiaode.cn\/blog\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url) && /.*\/.*\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url)){
+        // 重定向到新版blog url
+        redirect = function(){
+            // FUCK
+            // window.location.href = url.replace('fuxiaode\.cn\/\w*\/', 'fuxiaode.cn/blog/');
+            var temp = url.split('/');
+            var post = temp.splice(temp.length - 5, 4).join('/');
+            window.location.href = 'http://fuxiaode.cn/blog/' + post;
+        };
+    }
+
+    setTimeout(redirect, 2000);
+    </script>
+</body>
+</html>
