@@ -17,7 +17,7 @@ tags: [javascript, 读书笔记]
     var obj2 = {};
     obj1 == obj2;  //output: false
 
-因此，可以认为每次在使用对象字面量创建对象的时候，实际上就是在创建一个单体。注意有时人们在js中所说的“单体”，就是指前面提到的“[模块模式](/javascript/2014/03/01/js-pattern-part4-object-creation-pattern/#section-1)”。
+因此，可以认为每次在使用对象字面量创建对象的时候，实际上就是在创建一个单体。注意有时人们在js中所说的“单体”，就是指前面提到的“[模块模式](/blog/2014/03/01/js-pattern-part4-object-creation-pattern/#section-1)”。
 
 **1.通过静态属性实现单体**
 
@@ -53,7 +53,7 @@ tags: [javascript, 读书笔记]
         };
     }
 
-这种实现实际上是来自于前面提到的“[自定义函数](/javascript/2014/02/16/js-pattern-part3-function/#section-7)”模式的另一个例子。这种方法的缺点在于，重写构造函数会丢失所有在初始化定义和重定义时刻之间添加到它里面的属性。
+这种实现实际上是来自于前面提到的“[自定义函数](/blog/2014/02/16/js-pattern-part3-function/#section-7)”模式的另一个例子。这种方法的缺点在于，重写构造函数会丢失所有在初始化定义和重定义时刻之间添加到它里面的属性。
 
     Universe.prototype.nothing = true;
     var uni = new Universe();

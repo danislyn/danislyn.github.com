@@ -17,7 +17,7 @@ tags: [javascript, web组件]
 
 Demo：[demo v1](/demo/SchoolBox/v1/demo.html)
 
-文章：[穿插在第一篇中](/javascript/2015/01/18/step-by-step-js-component-schoolbox-1/#section-1)
+文章：[穿插在第一篇中](/blog/2015/01/18/step-by-step-js-component-schoolbox-1/#section-1)
 
 
 
@@ -27,7 +27,7 @@ Demo：[demo v1](/demo/SchoolBox/v1/demo.html)
 
 Demo：[demo v2](/demo/SchoolBox/v2/demo.html)
 
-文章：[一步步做组件-学校选择器(1)](/javascript/2015/01/18/step-by-step-js-component-schoolbox-1/)
+文章：[一步步做组件-学校选择器(1)](/blog/2015/01/18/step-by-step-js-component-schoolbox-1/)
 
 
 
@@ -37,7 +37,7 @@ Demo：[demo v2](/demo/SchoolBox/v2/demo.html)
 
 Demo：[demo v3](/demo/SchoolBox/v3/demo.html)
 
-文章：[一步步做组件-学校选择器(2)](/javascript/2015/01/19/step-by-step-js-component-schoolbox-2/)
+文章：[一步步做组件-学校选择器(2)](/blog/2015/01/19/step-by-step-js-component-schoolbox-2/)
 
 
 
@@ -47,7 +47,7 @@ Demo：[demo v3](/demo/SchoolBox/v3/demo.html)
 
 Demo：[demo v4](/demo/SchoolBox/v4/demo.html)
 
-文章：[一步步做组件-学校选择器(3)](/javascript/2015/01/20/step-by-step-js-component-schoolbox-3/)
+文章：[一步步做组件-学校选择器(3)](/blog/2015/01/20/step-by-step-js-component-schoolbox-3/)
 
 
 
@@ -57,7 +57,7 @@ Demo：[demo v4](/demo/SchoolBox/v4/demo.html)
 
 Demo：[demo v5](/demo/SchoolBox/v5/demo.html)
 
-文章：[一步步做组件-学校选择器(4)](/javascript/2015/01/25/step-by-step-js-component-schoolbox-4/)
+文章：[一步步做组件-学校选择器(4)](/blog/2015/01/25/step-by-step-js-component-schoolbox-4/)
 
 
 
@@ -67,7 +67,7 @@ Demo：[demo v5](/demo/SchoolBox/v5/demo.html)
 
 Demo：[demo v6](/demo/SchoolBox/v6/demo.html)
 
-文章：[一步步做组件-学校选择器(5)](/javascript/2015/01/26/step-by-step-js-component-schoolbox-5/)
+文章：[一步步做组件-学校选择器(5)](/blog/2015/01/26/step-by-step-js-component-schoolbox-5/)
 
 
 
@@ -77,7 +77,7 @@ Demo：[demo v6](/demo/SchoolBox/v6/demo.html)
 
 Demo：[demo v7](/demo/SchoolBox/v7/demo.html)
 
-文章：[一步步做组件-学校选择器(6)](/javascript/2015/01/27/step-by-step-js-component-schoolbox-6/)
+文章：[一步步做组件-学校选择器(6)](/blog/2015/01/27/step-by-step-js-component-schoolbox-6/)
 
 
 
@@ -87,7 +87,7 @@ Demo：[demo v7](/demo/SchoolBox/v7/demo.html)
 
 Demo：[demo v8](/demo/SchoolBox/v8/demo.html)
 
-文章：[一步步做组件-学校选择器(7)](/javascript/2015/02/25/step-by-step-js-component-schoolbox-7/)
+文章：[一步步做组件-学校选择器(7)](/blog/2015/02/25/step-by-step-js-component-schoolbox-7/)
 
 
 

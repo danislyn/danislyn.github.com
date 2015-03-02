@@ -13,7 +13,7 @@ tags: [javascript, chart]
 
 问题来源
 ----------
-我在很早一篇[使用PhantomJs对网页截图](/开发/2014/06/12/use-phantomjs-to-capture-webpage/)中就提到了Highcharts，那时用它在网页上绘制图表，然后用[Phantomjs](http://phantomjs.org/)去截图，因为我想让服务端只负责生成数据，而让客户端去生成图表及图片。在那个项目中，所有的图表都是通过Ajax取来数据后，再调用Highcharts生成图表的。而常用的图表类型也无非那几种，每次都要先Ajax请求，然后构造highcharts的一堆配置参数。
+我在很早一篇[使用PhantomJs对网页截图](/blog/2014/06/12/use-phantomjs-to-capture-webpage/)中就提到了Highcharts，那时用它在网页上绘制图表，然后用[Phantomjs](http://phantomjs.org/)去截图，因为我想让服务端只负责生成数据，而让客户端去生成图表及图片。在那个项目中，所有的图表都是通过Ajax取来数据后，再调用Highcharts生成图表的。而常用的图表类型也无非那几种，每次都要先Ajax请求，然后构造highcharts的一堆配置参数。
 
     $.post(
         'someAjaxUrl',
@@ -369,7 +369,7 @@ AjaxChart构造
         }
     };
 
-如果需要支持更多的自定义事件，最好使用[观察者模式](/javascript/2015/01/20/step-by-step-js-component-schoolbox-3/#section)，为`AjaxChart.prototype`添加一个`on`和`fire`方法，并在对象中维持一个`handlers`对象。这里就不给出代码了，可参考链接中的内容很容易写出类似的代码。
+如果需要支持更多的自定义事件，最好使用[观察者模式](/blog/2015/01/20/step-by-step-js-component-schoolbox-3/#section)，为`AjaxChart.prototype`添加一个`on`和`fire`方法，并在对象中维持一个`handlers`对象。这里就不给出代码了，可参考链接中的内容很容易写出类似的代码。
 
 
 最后demo

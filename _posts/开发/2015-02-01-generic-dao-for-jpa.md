@@ -12,7 +12,7 @@ JPA全称Java Persistence API。JPA通过JDK 5.0注解或XML描述对象关系�
 
 背景知识
 ----------
-关于JPA就不多做介绍了，如果用过Hibernate或Spring，就会对JPA一目了然。可以点击这里看看[JPA概要](http://www.cnblogs.com/holbrook/archive/2012/12/30/2839842.html)。我之前也写过一篇介绍在eclipse中集成Hibernate的文章中也提到了[DAO泛型编程](/开发/2014/05/25/integrate-hibernate-into-eclipse/#dao)。
+关于JPA就不多做介绍了，如果用过Hibernate或Spring，就会对JPA一目了然。可以点击这里看看[JPA概要](http://www.cnblogs.com/holbrook/archive/2012/12/30/2839842.html)。我之前也写过一篇介绍在eclipse中集成Hibernate的文章中也提到了[DAO泛型编程](/blog/2014/05/25/integrate-hibernate-into-eclipse/#dao)。
 
 
 问题来源
