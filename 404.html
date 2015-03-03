@@ -20,9 +20,9 @@
         redirect = function(){
             // FUCK
             // window.location.href = url.replace('fuxiaode\.cn\/\w*\/', 'fuxiaode.cn/blog/');
-            var temp = url.split('/');
-            var post = temp.splice(temp.length - 5, 5).join('/');
-            window.location.href = 'http://fuxiaode.cn/blog/' + post;
+            var temps = url.split('/');
+            temps[temps.length - 6] = 'blog';
+            window.location.href = temps.join('/');
         };
     }
 
