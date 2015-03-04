@@ -17,21 +17,33 @@
 </head>
 <body>
     <div id="mainContainer">
-        <h2>$('#xxxPagination').jqPagination();</h2>
-        <p>默认使用元素属性里的pn和tpn；默认使用当前location.pathname</p>
+        <h2>基础使用</h2>
+        <p>默认使用元素属性里的pn和tpn；默认使用"page"作为分页参数；默认使用当前location.pathname</p>
+        <h3><pre>
+$('#xxxPagination').jqPagination();
+        </pre></h3>
         <div class="pagination" id="pagination1" data-pn="5" data-tpn="12"></div>
 
-        <h2>$('#xxxPagination').jqPagination({pn: 5, tpn: 12});</h2>
-        <p>手动设置pn和tpn</p>
+
+        <h2>手动设置pn和tpn，以及分页参数名称</h2>
+        <h3><pre>
+$('#xxxPagination').jqPagination({
+    pn: 5,
+    tpn: 12,
+    name: 'p'
+});
+        </pre></h3>
         <div class="pagination" id="pagination2"></div>
 
-        <h2>$('#xxxPagination').jqPagination({hrefPrefix: '/somepage?aa=xx&page='});</h2>
-        <p>自定义分页path</p>
-        <div class="pagination" id="pagination3" data-pn="5" data-tpn="12"></div>
 
-        <h2>$('#xxxPagination').jqPagination({pageClick: function(){}});</h2>
-        <p>自定义ajax分页</p>
-        <div class="pagination" id="pagination4" data-pn="5" data-tpn="12"></div>
+        <h2>自定义分页url</h2>
+        <h3><pre>
+$('#xxxPagination').jqPagination({
+    pageHref: 'http://www.baidu.com?from=fuxiaode.cn&page='
+});
+        </pre></h3>
+        <h2></h2>
+        <div class="pagination" id="pagination3" data-pn="5" data-tpn="12"></div>
     </div>
 
     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
@@ -43,17 +55,12 @@
 
         $('#pagination2').jqPagination({
             pn: 5,
-            tpn: 12
+            tpn: 12,
+            name: 'p'
         });
 
         $('#pagination3').jqPagination({
-            hrefPrefix: 'demo.html?a=1&page='
-        });
-
-        $('#pagination4').jqPagination({
-            pageClick: function(){
-                alert('a');
-            }
+            pageHref: 'http://www.baidu.com?from=fuxiaode.cn&page='
         });
 
     })();

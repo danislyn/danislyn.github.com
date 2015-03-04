@@ -1,22 +1,22 @@
-.pagination{
-    margin: 20px auto;
+.jqPagination{
+    margin: 25px auto;
     text-align: center;
     width: 100%;
 }
-.pages{
+.jqPagination .pages{
     font-family: Arial, Helvetica, sans-serif;
 }
-.pages li{
+.jqPagination .pages li{
     display: inline-block;
     margin: 0 2px;
 }
-.pages li.prev{
+.jqPagination .pages li.prev{
     margin-right: 15px;
 }
-.pages li.nex{
+.jqPagination .pages li.nex{
     margin-left: 15px;
 }
-.pages li a{
+.jqPagination .pages li a{
     background: url(img/pagination.png) repeat-x 0 0;
     border: 1px solid #d5d5d5;
     color: #666666;
@@ -26,24 +26,24 @@
     padding: 4px 8px;
     text-decoration: none;
 }
-.pages li a:hover{
+.jqPagination .pages li a:hover{
     background: #efefef;
 }
-.pages li.active a{
+.jqPagination .pages li.active a{
     background-position: 0 -26px;
     border-color: #687282;
     color: #fff;
     cursor: default;
 }
-.pages li.active a:hover{
+.jqPagination .pages li.active a:hover{
     background: #687282;
 }
-.pages li.disabled a{
+.jqPagination .pages li.disabled a{
     cursor: default;
 }
-.pages li.disabled a:hover{
+.jqPagination .pages li.disabled a:hover{
     background: url(img/pagination.png) repeat-x 0 0;
 }
-.pages li.hide{
+.jqPagination .pages li.hide{
     display: none;
 }

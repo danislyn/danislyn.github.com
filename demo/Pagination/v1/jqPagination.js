@@ -6,13 +6,12 @@
 // 
 // $('#xxxPagination').myPagination();  // 默认使用元素属性里的pn和tpn；默认使用当前location.pathname
 // $('#xxxPagination').myPagination({pn: 5, tpn: 12});  // 手动设置pn和tpn
-// $('#xxxPagination').myPagination({hrefPrefix: '/somepage?aa=xx&page='});  // 自定义分页path
-// $('#xxxPagination').myPagination({pageClick: function(){}});  // 自定义ajax分页
+// $('#xxxPagination').myPagination({pageHref: '/somepage?aa=xx&page='});  // 自定义分页path
 
 (function($){
 
     $.fn.jqPagination = function(options){
-        var CLASS_PAGINATION = 'pagination';
+        var CLASS_PAGINATION = 'jqPagination';
         var CLASS_PAGE_LIST = 'pages';
         var CLASS_PAGE = 'page';
         var CLASS_PRE_PAGE = 'pre-page';
@@ -30,24 +29,28 @@
         var TEXT_EMPTY = '&nbsp';
 
 
-        // default value of 'hrefPrefix'
-        var defaultPath = window.location.pathname + '?page=';
-        if(/\?(\w+)=/.test(window.location.href)){
-            defaultPath = window.location.href + 
-                (/page=/.test(window.location.href) ? '' : '&page=');
-        }
-
         // default option values
         var opts = $.extend({
             'pn': this.attr('data-pn') || 1,
             'tpn': this.attr('data-tpn') || 1,
-            'hrefPrefix': defaultPath
+            'name': 'page'
         }, options);
+
+
+        // default value of 'pageHref'
+        var defaultHref = window.location.pathname + '?' + opts.name + '=';
+        if(/\?(\w+)=/.test(window.location.href)){
+            // 如果已经有参数
+            defaultHref = window.location.href + 
+                (eval('/' + opts.name + '=/').test(window.location.href) ? '' : '&' + opts.name + '=');
+        }
+
+        opts['pageHref'] = opts['pageHref'] || defaultHref;
 
 
         // page link
         var getPageHref = function(pageNo){
-            return opts.hrefPrefix.replace(/page=\d*/, 'page=' + pageNo);
+            return opts.pageHref.replace(eval('/' + opts.name + '=\\d*/'), opts.name + '=' + pageNo);
         };
 
         // page click
@@ -60,7 +63,7 @@
                 /^\/|((http|https|svn|ftp|file):\/\/)/.test($link.prop('href')) ? 
                     (window.location.href = $link.prop('href')) : $link.click();
             }
-        }
+        };
 
 
         var generatePages = function($el){
@@ -83,6 +86,7 @@
             // append to list
             $el.empty().append($list);
 
+
             // ======================================================
             // PART-2: generate specific pages with a sliding-window
             // ======================================================
@@ -104,9 +108,9 @@
             var pn = Number(opts.pn);
             var tpn = Number(opts.tpn);
             var lowerPn = Math.max(pn-2, 2);  // 第1页已写在html中
-            var upperPn = Math.min(pn+2, tpn-1);  //最后1页已写在html中
+            var upperPn = Math.min(pn+2, tpn-1);  // 最后1页已写在html中
 
-            // generate new specific pages（第2到最后第2页）
+            // generate new specific pages（当前页的前后2页）
             for(var i=lowerPn; i<=upperPn; i++){
                 var $newPage = $pageCopy.clone();
                 $newPage.find('a').attr('data-page', i).text(i);
@@ -179,18 +183,10 @@
                 targetClick($target);
             });
 
-            // =================================================
-            // PART-3: bind 'click' or 'href' of specific pages
-            // =================================================
-            if('pageClick' in opts){
-                $el.find('li').not('.' + CLASS_ACTIVE).find('a.' + CLASS_PAGE)
-                    .unbind('click').bind('click', opts.pageClick);
-            }
-            if('hrefPrefix' in opts){
-                $el.find('a.' + CLASS_PAGE).each(function(){
-                    $(this).attr('href', getPageHref($(this).attr('data-page')));
-                });
-            }
+            // specific pages
+            $el.find('a.' + CLASS_PAGE).each(function(){
+                $(this).attr('href', getPageHref($(this).attr('data-page')));
+            });
         };
 
 
