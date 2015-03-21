@@ -29,7 +29,7 @@ Javascript中函数有两个重要特征。
 **2、函数表达式。**
 与上面的相同，但缺少一个名字，通常也称为匿名函数。
 
-	var add = function add(a, b){...};
+	var add = function(a, b){...};
 
 唯一的区别在于该函数对象的`name`属性将会成为一个空字符串或`undefined`。
 `name`属性是Javascript语言的一个扩展（它并不是ECMA标准的一部分），可用于debug时错误定位，也可用于在自身内部递归调用同一个函数。
