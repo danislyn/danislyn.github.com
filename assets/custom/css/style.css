@@ -251,7 +251,13 @@ hr{
 .article-entry .content ul{
     list-style: initial;
     margin: 1em 0;
-    padding-left: 40px;
+    padding-left: 20px;
+}
+.article-entry .content strong{
+    background-color: #ff0;
+}
+.article-entry .content em{
+    font-weight: bold;
 }
 .article-entry .read-more{
     margin-top: 20px;
