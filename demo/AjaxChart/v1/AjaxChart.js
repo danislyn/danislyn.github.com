@@ -173,7 +173,8 @@ NOTE: ajax服务端返回数据格式 {series: [{name: "seriesName", data: [["la
                         cursor: 'pointer',
                         events: {
                             click: function(evt){
-                                handler(evt.point.name, evt.point.y);
+                                var xLabel = evt.point.name || evt.point.category;
+                                handler(xLabel, evt.point.y);
                             }
                         }
                     }
@@ -199,9 +200,17 @@ NOTE: ajax服务端返回数据格式 {series: [{name: "seriesName", data: [["la
                     this._url,
                     params,
                     function(json){
-                        var result = $.parseJSON(json);
-                        that._updateChart(result, clickHandler);
-                        afterUpdate && afterUpdate();
+                        var result;
+                        if(typeof json === 'string'){
+                            result = $.parseJSON(json);
+                        }
+                        if(typeof json === 'object'){
+                            result = json;
+                        }
+                        if(typeof result !== 'undefined'){
+                            that._updateChart(result, clickHandler);
+                            afterUpdate && afterUpdate();
+                        }
                     }
                 );
             }

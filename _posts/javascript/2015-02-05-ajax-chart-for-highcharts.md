@@ -258,8 +258,16 @@ AjaxChart构造
                 this._url,
                 params,
                 function(json){
-                    var result = $.parseJSON(json);
-                    that._updateChart(result);
+                    var result;
+                    if(typeof json === 'string'){
+                        result = $.parseJSON(json);
+                    }
+                    if(typeof json === 'object'){
+                        result = json;
+                    }
+                    if(typeof result !== 'undefined'){
+                        that._updateChart(result);
+                    }
                 }
             );
         }
@@ -269,7 +277,7 @@ AjaxChart构造
         }
     };
 
-这里`chartData`就是Highcharts配置里`series`的格式，这样可以在本地生成符合格式的数据，然后直接`refresh`。`chartData`的格式可以参考[ajaxdata.json](/demo/AjaxChart/v1/ajaxdata.json)或[ajaxdata2.json](/demo/AjaxChart/v1/ajaxdata2.json)。
+这里`chartData`就是Highcharts配置里`series`的格式，这样可以在本地生成符合格式的数据，然后直接`refresh`。`chartData`的格式可以参考[ajaxdata.json](/demo/AjaxChart/v1/ajaxdata.json)或[ajaxdata2.json](/demo/AjaxChart/v1/ajaxdata2.json)。并且这里对ajax返回结果也做了一些判断，以支持JSON字符串或JSON对象。
 
 
 
@@ -315,7 +323,8 @@ AjaxChart构造
                     cursor: 'pointer',
                     events: {
                         click: function(evt){
-                            handler(evt.point.name, evt.point.y);
+                            var xLabel = evt.point.name || evt.point.category;
+                            handler(xLabel, evt.point.y);
                         }
                     }
                 }
