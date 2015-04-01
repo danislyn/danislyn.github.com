@@ -27,6 +27,9 @@
     	<link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     	<link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
+    	<!-- jquery放头部吧 -->
+    	<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+
     	{% include JB/analytics %}
 	</head>
 	<body>
@@ -57,6 +60,12 @@
 	                        </li> -->
 	                        <li>
 	                            <a href="/about.html">关于我</a>
+	                        </li>
+	                        <li class="search">
+	                        	<form action="search.html" method="get">
+	                        		<input type="text" name="query" placeholder="Search...">
+	                        		<!-- <img src="/assets/custom/images/search.png" id="searchIcon"> -->
+	                        	</form>
 	                        </li>
 	                    </ul>
 	                </div>
@@ -107,9 +116,7 @@
 	    </div>
 
 
-		<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/custom/js/highlight.pack.js"></script>
-
 		<script type="text/javascript">
 		(function($){
 			// 移动版页面导航栏click
@@ -174,16 +181,6 @@
 					hljs.highlightBlock(block);
 				});
 			});
-
-			// 文章中侧边导航
-			/*var affixEle = $('#postAffix');
-			// patch id
-			$('#postContent').find('h2').first().attr('id', '_1');
-			$('#postContent').find('h2').each(function(){
-				affixEle.append('<li><a href="#' + $(this).attr('id') + '"><i class="icon-chevron-right"></i>' + $(this).text() + '</a></li>');
-			});
-			affixEle.append('<li><a href="#ds-thread"><i class="icon-chevron-right"></i>&lt;评论&gt;</a></li>');
-			*/
 			
 		})(jQuery);
 		</script>

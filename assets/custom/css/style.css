@@ -179,6 +179,22 @@ hr{
     line-height: 32px;
     padding: 0 20px;
 }
+.nav-list li.search{
+    float: right;
+    margin-right: 20px;
+}
+.nav-list li.search form{
+    display: inherit;
+}
+.nav-list li.search input[type=text]{
+    font-size: 16px;
+    height: 26px;
+    padding: 2px 4px;
+    width: 220px;
+}
+#searchIcon{
+    width: initial;
+}
 /* nav ENDS */
 
 /* article STARTS */
@@ -517,6 +533,11 @@ a.underline:hover{
     }
     .nav-list li a{
         background: none;
+        padding: 0 30px;
+    }
+    .nav-list li.search{
+        float: none;
+        margin: 0;
         padding: 0 30px;
     }
     .pagination.post li.prev,

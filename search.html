@@ -1,0 +1,45 @@
+---
+layout: page
+header: Search Results
+---
+{% include JB/setup %}
+
+<div class="article">
+    <div class="article-inner">
+        <div class="article-title">
+            <h1>搜索结果</h1>
+        </div>
+        <div class="article-entry">
+            <div class="content" id="searchResult"></div>
+            <div id="searchProvider">
+                搜索结果由<a class="default info" href="http://tapirgo.com/" target="_blank">Tapir</a>提供（暂不支持中文）
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Tapir: http://tapirgo.com/
+    // token: 551b57e63093edd78200000b
+    // secret token: ebb08f86bbf7b6f8c9697db17253080785c125e8
+
+    var Tapir_URL = 'http://www.tapirgo.com/api/1/search.json?token=551b57e63093edd78200000b&query=<keyword>&callback=?';
+    var keyword = (window.location.href.split('query='))[1];
+    var linkReg = /^http/;
+
+    // JSONP
+    $.getJSON(Tapir_URL.replace('<keyword>', keyword), function(data){
+        var $list = $('<ul></ul>');
+
+        for(var i=0, len=data.length; i<len; i++){
+            var $li = $('<li></li>');
+            $li.append('<span>' + (data[i]['published_on'].split('T'))[0] + '</span>');
+            $li.append('<span>&nbsp;&raquo;&nbsp;</span>');
+            $li.append('<a class="default info underline" href="' + (linkReg.test(data[i]['link']) ? data[i]['link'] : ('http://' + data[i]['link'])) + '" target="_blank">' + data[i]['title'] + '</a>');
+            $list.append($li);
+        }
+
+        $('#searchResult').append($list);
+    });
+
+</script>
