@@ -6,7 +6,7 @@ tags: [javascript, web组件]
 ---
 {% include JB/setup %}
 
-前一段时间整理完了SchoolBox这个系列的代码和文章，这里再做个合集，方便大家找到相应的篇目。我总共整理了8个版本的代码和7篇文章，分别如下。
+前一段时间整理完了SchoolBox这个系列的代码和文章，这里再做个合集，方便大家找到相应的篇目。我总共整理了10个版本的代码和8篇文章，分别如下。
 
 <!-- break -->
 
@@ -91,4 +91,16 @@ Demo：[demo v8](/demo/SchoolBox/v8/demo.html)
 
 
 
-**最后谢谢大家~~**
+### 版本9 & 10（补充） ###
+
+页面上多个元素共享同一个模态对话框，在触发事件时加入“由哪个监听元素触发”，以避免对所有监听元素都做出响应。
+
+监听时判断，Demo：[demo v9](/demo/SchoolBox/v9/demo.html)
+
+回调时判断，Demo：[demo v10](/demo/SchoolBox/v10/demo.html)
+
+文章：[一步步做组件-学校选择器(8)](/blog/2015/04/04/step-by-step-js-component-schoolbox-8/)
+
+
+
+*最后谢谢大家~~*

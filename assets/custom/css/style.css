@@ -538,7 +538,7 @@ a.underline:hover{
     .nav-list li.search{
         float: none;
         margin: 0;
-        padding: 0 30px;
+        padding: 0 0 10px 30px;
     }
     .pagination.post li.prev,
     .pagination.post li.next{

@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>学校选择器v9</title>
+
+    <link rel="stylesheet" type="text/css" href="SchoolBox.css">
+    <style type="text/css">
+    .hide{
+        display: none;
+    }
+    #mainContainer{
+        margin: 20px auto;
+        position: relative;
+        width: 1000px;
+    }
+    #formResult div{
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="formResult">
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school" id="chooseSchool1">选择学校</a>
+            </div>
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school" id="chooseSchool2">选择学校</a>
+            </div>
+            <div>
+                <input type="text" class="school-input" readonly/>
+                <input type="text" class="school-id" readonly>
+                <a href="javascript:void(0)" class="choose-school" id="chooseSchool3">选择学校</a>
+            </div>
+        </div>
+
+        <div id="wrapper"></div>
+    </div>
+
+
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="SchoolBox.js"></script>
+    <script type="text/javascript">
+    (function(){
+        // 实例化对象
+        var schoolBox = new SchoolBox({
+            searchSchool: true
+        });
+
+        // bind event
+        $('.choose-school').click(function(){
+            var $source = $(this);
+            var id = $source.attr('id');
+
+            // 监听自定义事件
+            schoolBox.on('schoolChosen', id, function(data){
+                $source.siblings('.school-input').val(data.schoolName);
+                $source.siblings('.school-id').val(data.schoolId);
+            });
+
+            schoolBox.show(id);
+        });
+
+    })();
+    </script>
+</body>
+</html>
