@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Slides</title>
+    <meta charset="utf-8">
+    <style>
+    body{
+        font-family: 'Microsoft Yahei';
+    }
+    h1, h2, h3{
+        font-family: 'Microsoft Yahei';
+        font-weight: normal;
+    }
+    ul{
+        font-size: 32px;
+        margin: 32px 0;
+        line-height: 1em;
+    }
+    ul ul{
+        font-size: 28px;
+        margin: 16px 0;
+    }
+    ul ul ul{
+        font-size: 24px;
+        margin: 10px 0;
+    }
+    ul li{
+        margin-bottom: 10px;
+    }
+
+    table{
+        width: 100%;
+        font-size: 24px;
+        line-height: 1em;
+    }
+    table thead th{
+        padding: 10px 15px;
+        background-color: #ccc;
+    }
+    table tbody td{
+        padding: 10px 15px;
+    }
+    table tbody tr:nth-child(2n) td{
+        background-color: #eee;
+    }
+
+    .remark-code,
+    .remark-inline-code{
+        font-family: 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace';
+    }
+    </style>
+</head>
+<body>
+    <script src="./remark-latest.min.js"></script>
+    <script type="text/javascript">
+    // url query to json
+    var getQuery = function(){
+        var queryObj = {},
+            query = window.location.search.substring(1),
+            paris = query.split('&'),
+            pair, key;
+
+        for(var i=0, len=paris.length; i<len; i++){
+            pair = paris[i].split('=');
+            key = pair[0];
+
+            if(typeof queryObj[key] === 'undefined'){
+                queryObj[key] = decodeURIComponent(pair[1]);
+            }
+            // 重复传递该key参数，转为Array
+            else if(typeof queryObj[key] === 'string'){
+                var arr = [queryObj[key], decodeURIComponent(pair[1])];
+                queryObj[key] = arr;
+            }
+            else{
+                queryObj[key].push(decodeURIComponent(pair[1]));
+            }
+        }
+
+        return queryObj;
+    };
+    
+
+    var slideshow = remark.create({
+        sourceUrl: './source/' + getQuery()['source'],
+        ratio: '4:3',
+        navigation: {
+            scroll: false,
+            touch: true,
+            click: true
+        },
+        countIncrementalSlides: false,
+        highlightLines: true
+    });
+    </script>
+</body>
+</html>
