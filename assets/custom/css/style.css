@@ -485,8 +485,17 @@ a.underline:hover{
 
 /* about STARTS */
 #aboutContent{
-    overflow: hidden;
+    /*overflow: hidden;*/
     *zoom: 1;
+}
+#aboutContent:before,
+#aboutContent:after{
+    content: '\20';
+    display: table;
+    line-height: 0;
+}
+#aboutContent:after{
+    clear: both;
 }
 #aboutContent p{
     font-size: 18px;
