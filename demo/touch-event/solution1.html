@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>点击穿透问题</title>
+	<title>遮挡解决穿透</title>
 
 	<style type="text/css">
 	body{
@@ -89,9 +89,31 @@
 		var $under = $('#underLayer');
 		var $mask = $('#bgMask');
 
-		$close.on('tap', function(e){
+		// 遮挡物
+		var $tap = $('<div></div>');
+		$tap.css({
+			width: '40px',
+			height: '40px',
+			'border-radius': '20px',
+			position: 'absolute',
+			opacity: '1'
+		});
+
+		$close.on('touchend', function(e){
 			$popup.hide();
 			$mask.hide();
+
+			var touch = e.changedTouches[0];
+			$tap.css({
+				top: (touch.pageY-20) + 'px',
+				left: (touch.pageX-20) + 'px'
+			});
+
+			$('body').append($tap);
+
+			setTimeout(function(){
+				$tap.remove();
+			}, 400);
 		});
 
 		$under.on('click', function(){

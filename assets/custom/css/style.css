@@ -75,6 +75,24 @@ hr{
     font-style: italic;
 }
 
+/* table STARTS */
+table{
+    /*width: 100%;*/
+    line-height: 1em;
+}
+table thead th{
+    padding: 6px 10px;
+    background-color: #ccc;
+}
+table tbody td{
+    padding: 6px 10px;
+}
+table tbody tr:nth-child(2n) td{
+    background-color: #eee;
+}
+/* table ENDS */
+
+
 /* outline STARTS */
 #bodyWrap{
     background-color: #eee;

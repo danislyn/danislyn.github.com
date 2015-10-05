@@ -81,15 +81,18 @@
 
 
 	<script type="text/javascript" src="//cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+	<script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 	<script type="text/javascript">
 	Zepto(function($){
+		FastClick.attach(document.body);
+
 		// 点击穿透
 		var $close = $('#closePopup');
 		var $popup = $('#popupLayer');
 		var $under = $('#underLayer');
 		var $mask = $('#bgMask');
 
-		$close.on('tap', function(e){
+		$close.on('click', function(e){
 			$popup.hide();
 			$mask.hide();
 		});
