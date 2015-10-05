@@ -95,14 +95,14 @@ tap是怎么来的
 穿透的解决办法
 -------------
 
-#### 1. 遮挡 ####
+### 1. 遮挡 ###
 
 由于 click 事件的滞后性，在这段时间内原来点击的元素消失了，于是便“穿透”了。因此我们顺着这个思路就想到，可以给元素的消失做一个fade效果，类似jQuery里的`fadeOut`，并设置动画duration大于300ms，这样当延迟的 click 触发时，就不会“穿透”到下方的元素了。
 
 同样的道理，不用延时动画，我们还可以动态地在触摸位置生成一个透明的元素，这样当上层元素消失而延迟的click来到时，它点击到的是那个透明的元素，也不会“穿透”到底下。在一定的timeout后再将生成的透明元素移除。[具体可见demo](/demo/touch-event/solution1.html)
 
 
-#### 2. pointer-events ####
+### 2. pointer-events ###
 
 `pointer-events`是CSS3中的属性，它有很多取值，有用的主要是`auto`和`none`，其他属性值为SVG服务。
 
@@ -127,13 +127,13 @@ tap是怎么来的
 	});
 
 
-#### 3. fastclick ####
+### 3. fastclick ###
 
-使用[fastclick](https://github.com/ftlabs/fastclick)，并为document都绑定上
+使用[fastclick](https://github.com/ftlabs/fastclick)库，其实现思路是，取消 click 事件（[参看源码 164-173 行](https://github.com/ftlabs/fastclick/blob/master/lib/fastclick.js#L164-L173)），用 touchend 模拟快速点击行为（[参看源码 521-610 行](https://github.com/ftlabs/fastclick/blob/master/lib/fastclick.js#L521-L610)）。
 
 	FastClick.attach(document.body);
 
-从此所有点击事件都使用`click`，不会出现“穿透”的问题，并且没有300ms的延迟。[demo](/demo/touch-event/solution3.html)
+从此所有点击事件都使用`click`，不会出现“穿透”的问题，并且没有300ms的延迟。[解决穿透的demo](/demo/touch-event/solution3.html)
 
 
 
