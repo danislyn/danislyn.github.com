@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script id="others_zepto_10rc1" type="text/javascript" class="library" src="http://sandbox.runjs.cn/js/sandbox/other/zepto.min.js"></script>
+</head>
+<body>
+    <div id="d" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 100px;
+        border: 1px solid black;">滑动我
+    </div>
+</body>
+<script type="text/javascript">
+var log = function (msg) {
+    console.log(msg);
+};
+var d = $('body');
+
+var touchEvents = function (el, type, func) {
+    this.long = 400; //用于设置长点击阀值
+    this.el = el || document;
+    this.func = func || function () { };
+    this.type = type || 'tap';
+    this.mouseData = {
+        sTime: 0,
+        eTime: 0,
+        sX: 0,
+        eX: 0,
+        sY: 0,
+        eY: 0
+    };
+    this.addEvent();
+
+};
+touchEvents.prototype = {
+    constructor: touchEvents,
+    addEvent: function () {
+        var scope = this;
+        this.startFn = function (e) {
+            scope.touchStart.call(scope, e);
+        };
+        this.moveFn = function (e) {
+            scope.touchMove.call(scope, e);
+        };
+        this.endFn = function (e) {
+            scope.touchEnd.call(scope, e);
+        };
+        this.el.addEventListener('touchstart', this.startFn);
+        //此处可以换成这样
+        //            document.addEventListener('touchmove', this.touchMove);
+        this.el.addEventListener('touchmove', this.moveFn);
+        this.el.addEventListener('touchend', this.endFn);
+    },
+    removeEvent: function () {
+        this.el.removeEventListener('touchstart', this.touchStart);
+        this.el.removeEventListener('touchmove', this.touchMove);
+        this.el.removeEventListener('touchend', this.touchEnd);
+    },
+    touchStart: function (e) {
+        var pos = e.changedTouches[0];
+        this.mouseData.sTime = new Date().getTime();
+        this.mouseData.sX = pos.pageX;
+        this.mouseData.sY = pos.pageY;
+    },
+    touchMove: function (e) {
+        e.preventDefault();
+        return false;
+    },
+    touchEnd: function (e) {
+        var pos = e.changedTouches[0];
+        this.mouseData.eTime = new Date().getTime();
+        this.mouseData.eX = pos.pageX;
+        this.mouseData.eY = pos.pageY;
+        this.onTouchEnd(e);
+    },
+    onTouchEnd: function (e) {
+        if (this.type == this._getDir()) {
+            this.func(e, this);
+        }
+    },
+    _getDir: function () {
+        //时间间隔，间隔小于100都认为是快速，大于400的认为是慢速
+        var timeLag = this.mouseData.eTime - this.mouseData.sTime;
+        var dir = 'swipe';
+        if (timeLag > this.long) dir = 'longSwipe';
+        if (this.mouseData.sX == this.mouseData.eX && this.mouseData.sY == this.mouseData.eY) {
+            dir = 'tap';
+            if (timeLag > this.long) dir = 'longTap';
+        } else {
+            if (Math.abs(this.mouseData.eY - this.mouseData.sY) > Math.abs(this.mouseData.eX - this.mouseData.sX)) {
+                dir = this._getUDDir(dir);
+            } else {
+                dir = this._getLRDir(dir);
+            }
+        }
+        log(dir);
+        d.append($('<div>间隔：' + timeLag + ', 方向：' + dir + '</div>'));
+        return dir;
+    },
+    //单独用于计算上下的
+    _getUDDir: function (dir) {
+        if (this.mouseData.eY - this.mouseData.sY > 0) dir += 'Down';
+        if (this.mouseData.eY - this.mouseData.sY < 0) dir += 'Up';
+        return dir;
+    },
+    //计算左右
+    _getLRDir: function (dir) {
+        if (this.mouseData.eX - this.mouseData.sX > 0) dir += 'Right';
+        if (this.mouseData.eX - this.mouseData.sX < 0) dir += 'Left';
+        return dir;
+    }
+};
+
+new touchEvents(d[0], 'tap', function (e) {
+    log(arguments);
+});
+
+</script>
+</html>
