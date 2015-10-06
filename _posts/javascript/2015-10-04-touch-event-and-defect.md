@@ -135,6 +135,8 @@ tap是怎么来的
 
 从此所有点击事件都使用`click`，不会出现“穿透”的问题，并且没有300ms的延迟。[解决穿透的demo](/demo/touch-event/solution3.html)
 
+有人（叶小钗）对事件机制做了详细的剖析，循循善诱，并剖析了fastclick的源码以自己模拟事件的创建。[请看这篇文章，看完后一定会对移动端的事件有更深的了解](http://www.cnblogs.com/yexiaochai/p/3462657.html)
+
 
 
 参考资料

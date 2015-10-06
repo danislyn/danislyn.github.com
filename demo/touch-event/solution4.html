@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>fastclick解决穿透</title>
+	<title>模拟事件解决穿透</title>
 
 	<style type="text/css">
 	body{
@@ -81,10 +81,50 @@
 
 
 	<script type="text/javascript" src="//cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
-	<script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
 	<script type="text/javascript">
 	Zepto(function($){
-		FastClick.attach(document.body);
+		// 事件捕获，干掉click
+		document.addEventListener('click', function(event){
+			if(event.myclick){
+				return true;
+			}
+
+			if(event.stopImmediatePropagation){
+				event.stopImmediatePropagation();
+			}
+			else{
+				event.propagationStopped = true;
+			}
+
+			event.stopPropagation();
+			event.preventDefault();
+			return true;
+		}, true);
+
+
+		// touch模拟
+		var touch = {};
+		var t;
+
+		document.addEventListener('touchstart', function(e){
+			touch.el = e.target;
+			touch.startTime = e.timeStamp;
+			t = e.timeStamp;
+		});
+
+		document.addEventListener('touchmove', function(e){});
+
+		document.addEventListener('touchend', function(e){
+			touch.last = e.timeStamp;
+			// 模拟事件的创建
+        	var event = document.createEvent('Events');
+        	event.initEvent('click', true, true, window, 1, e.changedTouches[0].screenX, e.changedTouches[0].screenY, e.changedTouches[0].clientX, e.changedTouches[0].clientY, false, false, false, false, 0, null);
+
+			event.myclick = true;
+			touch.el && touch.el.dispatchEvent(event);
+			return true;
+		});
+
 
 		// 点击穿透
 		var $close = $('#closePopup');
