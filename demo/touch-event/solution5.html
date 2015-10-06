@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>模拟事件解决穿透</title>
+	<title>模拟事件解决穿透-安卓增强版</title>
 
 	<style type="text/css">
 	body{
@@ -35,7 +35,7 @@
 	}
 
 	#underLayer{
-		background-color: #eee;
+		display: block;
 		width: 90%;
 		height: 500px;
 		line-height: 500px;
@@ -68,7 +68,7 @@
 </head>
 <body>
 	<div class="container">
-		<div id="underLayer">底层元素</div>
+		<textarea id="underLayer">底层元素</textarea>
 
 		<div id="popupLayer">
 			<div class="layer-title">弹出层</div>
@@ -100,6 +100,26 @@
 			event.preventDefault();
 			return false;
 		}, true);
+
+		// 安卓输入框穿透，还得干掉mousedown
+		document.addEventListener('mouseover', onMouse, true);
+		document.addEventListener('mousedown', onMouse, true);
+		document.addEventListener('mouseup', onMouse, true);
+
+		function onMouse(event){
+			if(event.stopImmediatePropagation){
+				event.stopImmediatePropagation();
+			}
+			else{
+				event.propagationStopped = true;
+			}
+
+			event.stopPropagation();
+			event.preventDefault();
+			return false;
+
+			// TODO: 何时恢复 模拟事件
+		};
 
 
 		// touch模拟
@@ -135,10 +155,6 @@
 		$close.on('click', function(e){
 			$popup.hide();
 			$mask.hide();
-		});
-
-		$under.on('click', function(){
-			alert('underLayer clicked');
 		});
 
 	});
