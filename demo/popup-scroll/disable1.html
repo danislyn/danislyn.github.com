@@ -102,14 +102,14 @@
 
 		var disableScroll = function(){
 			// body上禁用
-			$('body').css({
+			$('body, html').css({
 				'overflow': 'hidden',
 				'padding-right': getScrollbarWidth() + 'px'
 			});
 		};
 
 		var enableScroll = function(){
-			$('body').css({
+			$('body, html').css({
 				'overflow': 'auto',
 				'padding-right': '0'
 			});

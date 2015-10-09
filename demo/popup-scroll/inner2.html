@@ -89,23 +89,44 @@
 
         function preventDefault(e) {
             e = e || window.event;
-            if (e.preventDefault)
-                e.preventDefault();
+            e.preventDefault || e.preventDefault();
             e.returnValue = false;
+            // e.stopPropagation || e.stopPropagation();
+            // e.cancelBubble = false;
+            // return false;
         }
 
         function innerScroll(e){
+        	e = e || window.event;
         	e.stopPropagation();
 			e.cancelBubble = false;
+
+			var delta = e.wheelDelta || e.detail || 0;
+			var obj = $(this).get(0);
+
+			if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+				if(delta < 0) {
+					preventDefault(e);
+					return false;
+				}
+			}
+			if(obj.scrollTop === 0){
+				if(delta > 0) {
+					preventDefault(e);
+					return false;
+				}
+			}
 			// return false;
         }
 
 		var disableScroll = function(){
 			$(document).on('mousewheel', preventDefault);
+			$(document).on('touchmove', preventDefault);
 		};
 
 		var enableScroll = function(){
 			$(document).off('mousewheel', preventDefault);
+			$(document).off('touchmove', preventDefault);
 		};
 
 		// bind
@@ -117,6 +138,7 @@
 
 		// 内部可滚
 		$('#popupLayer').on('mousewheel', innerScroll);
+		$('#popupLayer').on('touchmove', function(){});
 		disableScroll();
 
 	});
