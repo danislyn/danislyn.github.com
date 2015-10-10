@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "也来说说touch事件与点击穿透问题"
-category: javascript
-tags: [Mobile]
+category: mobile
+tags: [mobile, javascript]
 ---
 {% include JB/setup %}
 

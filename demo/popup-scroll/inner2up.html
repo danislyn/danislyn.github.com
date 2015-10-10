@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>弹出层外部禁用，内部可滚</title>
+	<title>弹出层外部禁用，内部可滚up</title>
 
 	<style type="text/css">
 	body{
@@ -103,6 +103,30 @@
 			e.cancelBubble = false;
         }
 
+        function innerScroll(e){
+        	// 阻止冒泡到document
+        	// document上已经preventDefault
+        	stopPropagation(e);
+
+			var delta = e.wheelDelta || e.detail || 0;
+			var obj = $(this).get(0);
+
+			if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+				if(delta < 0) {
+					preventDefault(e);
+					return false;
+				}
+			}
+			if(obj.scrollTop === 0){
+				if(delta > 0) {
+					preventDefault(e);
+					return false;
+				}
+			}
+			// 会阻止原生滚动
+			// return false;
+        }
+
 		var disableScroll = function(){
 			$(document).on('mousewheel', preventDefault);
 			$(document).on('touchmove', preventDefault);
@@ -121,9 +145,48 @@
 		});
 
 		// 内部可滚
-		$('#popupLayer').on('mousewheel', stopPropagation);
+		$('#popupLayer').on('mousewheel', innerScroll);
 		// 外部禁用
 		disableScroll();
+
+
+		// 移动端touch重写
+		var startX, startY;
+		$('#popupLayer').on('touchstart', function(e){
+			startX = e.changedTouches[0].pageX;
+			startY = e.changedTouches[0].pageY;
+		});
+
+		// 仿innerScroll方法
+		$('#popupLayer').on('touchmove', function(e){
+			e.stopPropagation();
+
+			var deltaX = e.changedTouches[0].pageX - startX;
+			var deltaY = e.changedTouches[0].pageY - startY;
+
+			// 只能纵向滚
+			if(Math.abs(deltaY) < Math.abs(deltaX)){
+				e.preventDefault();
+				return false;
+			}
+
+			var obj = $(this).get(0);
+
+			if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+				if(deltaY < 0) {
+					e.preventDefault();
+					return false;
+				}
+			}
+			if(obj.scrollTop === 0){
+				if(deltaY > 0) {
+					e.preventDefault();
+					return false;
+				}
+			}
+			// 会阻止原生滚动
+			// return false;
+		});
 
 	});
 	</script>

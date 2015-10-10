@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>滚动事件顺序</title>
+
+	<style type="text/css">
+	body{
+		margin: 0;
+		height: 1000px;
+	}
+	.text-center{
+		text-align: center;
+	}
+	</style>
+</head>
+<body>
+	<p class="text-center">滚动看看</p>
+
+	<script type="text/javascript">
+	document.addEventListener('scroll', function(){
+		alert('document scroll');
+	});
+
+	window.addEventListener('scroll', function(){
+		alert('window scroll');
+	});
+
+	window.addEventListener('mousewheel', function(){
+		alert('window mousewheel');
+	});
+
+	window.addEventListener('mousemove', function(){
+		// 手机UC浏览器会触发
+		alert('window mousemove');
+	});
+
+	window.addEventListener('keydown', function(e){
+		if(37 <= e.keyCode && e.keyCode <= 40){
+			alert('keydown ' + e.keyCode);
+		}
+	});
+
+	document.addEventListener('touchmove', function(){
+		// 会阻止scroll的alert?
+		alert('document touchmove');
+	});
+
+	document.addEventListener('touchend', function(){
+		// 滚动不会触发touchend?
+		alert('document touchend');
+	});
+
+	</script>
+</body>
+</html>
