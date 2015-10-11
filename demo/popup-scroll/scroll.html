@@ -19,9 +19,9 @@
 	<p class="text-center">滚动看看</p>
 
 	<script type="text/javascript">
-	document.addEventListener('scroll', function(){
-		alert('document scroll');
-	});
+	// document.addEventListener('scroll', function(){
+	// 	alert('document scroll');
+	// });
 
 	window.addEventListener('scroll', function(){
 		alert('window scroll');
@@ -31,24 +31,26 @@
 		alert('window mousewheel');
 	});
 
-	window.addEventListener('mousemove', function(){
-		// 手机UC浏览器会触发
-		alert('window mousemove');
-	});
-
 	window.addEventListener('keydown', function(e){
-		if(37 <= e.keyCode && e.keyCode <= 40){
+		if(37 <= e.keyCode && e.keyCode <= 40 || e.keyCode == 32){
 			alert('keydown ' + e.keyCode);
 		}
 	});
 
+	/*window.addEventListener('mousemove', function(){
+		// 手机UC浏览器会触发
+		// alert('window mousemove');
+	});*/
+
+	document.addEventListener('touchstart', function(){
+		alert('document touchstart');
+	});
+
 	document.addEventListener('touchmove', function(){
-		// 会阻止scroll的alert?
 		alert('document touchmove');
 	});
 
 	document.addEventListener('touchend', function(){
-		// 滚动不会触发touchend?
 		alert('document touchend');
 	});
 

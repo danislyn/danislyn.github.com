@@ -39,7 +39,7 @@
 		width: 90%;
 		height: 500px;
 		line-height: 500px;
-		margin: 30px auto 200px;
+		margin: 30px auto 1000px;
 		text-align: center;
 	}
 
@@ -90,16 +90,13 @@
 
         function preventDefault(e) {
             e = e || window.event;
-            e.preventDefault || e.preventDefault();
+            e.preventDefault && e.preventDefault();
             e.returnValue = false;
         }
 
         function stopPropagation(e){
 			e = e || window.event;
-			// 为何写成 e.stopPropagation || e.stopPropagation() 无效？
-			if(e.stopPropagation){
-				e.stopPropagation();
-			}
+			e.stopPropagation && e.stopPropagation();
 			e.cancelBubble = false;
         }
 

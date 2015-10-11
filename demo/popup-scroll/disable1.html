@@ -39,7 +39,7 @@
 		width: 90%;
 		height: 500px;
 		line-height: 500px;
-		margin: 30px auto 200px;
+		margin: 30px auto 1000px;
 		text-align: center;
 	}
 
@@ -100,6 +100,18 @@
 			return getScrollbarWidth.value;
 		};
 
+		// mac下始终为false
+		var hasScrollbar = (function(){
+			var body = $('body')[0];
+			var result = body.offsetWidth - body.clientWidth;
+			var border = body.style.borderWidth;  // string
+			if(border.length > 0){
+				border = parseInt(border);
+				result = result - 2*border;
+			}
+			return result > 0;
+		})();
+
 		var disableScroll = function(){
 			// body上禁用
 			$('body, html').css({
@@ -115,7 +127,7 @@
 			});
 		};
 
-		$('#closePopup').on('tap', function(e){
+		$('#closePopup').on('click', function(e){
 			$('#popupLayer').hide();
 			$('#bgMask').hide();
 			enableScroll();
