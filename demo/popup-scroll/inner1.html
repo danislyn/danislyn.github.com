@@ -54,6 +54,7 @@
 		left: 50%;
 		margin-left: -40%;
 		margin-top: -100px;
+		line-height: 1em;
 		z-index: 1;
 	}
 
@@ -118,7 +119,7 @@
 			});
 		};
 
-		$('#closePopup').on('tap', function(e){
+		$('#closePopup').on('click', function(e){
 			$('#popupLayer').hide();
 			$('#bgMask').hide();
 			enableScroll();

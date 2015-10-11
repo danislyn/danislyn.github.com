@@ -111,7 +111,7 @@
 		};
 
 		// bind
-		$('#closePopup').on('tap', function(e){
+		$('#closePopup').on('click', function(e){
 			$('#popupLayer').hide();
 			$('#bgMask').hide();
 			enableScroll();
@@ -119,6 +119,7 @@
 
 		// 内部可滚
 		$('#popupLayer').on('mousewheel', stopPropagation);
+		$('#popupLayer').on('touchmove', stopPropagation);
 		// 外部禁用
 		disableScroll();
 
