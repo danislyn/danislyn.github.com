@@ -106,15 +106,15 @@
         	stopPropagation(e);
 
 			var delta = e.wheelDelta || e.detail || 0;
-			var obj = $(this).get(0);
+			var box = $(this).get(0);
 
-			if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+			if($(box).height() + box.scrollTop >= box.scrollHeight){
 				if(delta < 0) {
 					preventDefault(e);
 					return false;
 				}
 			}
-			if(obj.scrollTop === 0){
+			if(box.scrollTop === 0){
 				if(delta > 0) {
 					preventDefault(e);
 					return false;
@@ -167,15 +167,15 @@
 				return false;
 			}
 
-			var obj = $(this).get(0);
+			var box = $(this).get(0);
 
-			if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+			if($(box).height() + box.scrollTop >= box.scrollHeight){
 				if(deltaY < 0) {
 					e.preventDefault();
 					return false;
 				}
 			}
-			if(obj.scrollTop === 0){
+			if(box.scrollTop === 0){
 				if(deltaY > 0) {
 					e.preventDefault();
 					return false;
