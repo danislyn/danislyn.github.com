@@ -440,6 +440,7 @@ a.underline:hover{
 /* simple*/
 .pagination{
     margin: 20px 0;
+    text-align: center;
 }
 .pagination ul{
     overflow: hidden;
@@ -459,10 +460,39 @@ a.underline:hover{
     color: #999;
     cursor: default;
 }
-/* patch FUCK */
+/* patch button */
 .pagination li a.btn:hover{
     color: #fff;
 }
+/* list */
+.pagination-list{
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.pagination-list li{
+    float: left;
+    margin-right: 5px;
+}
+.pagination-list li a{
+    background-color: #aaa;
+    color: #fff;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+}
+.pagination-list li a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.pagination-list li a[href]:hover{
+    background-color: #08c;
+}
+.pagination-list li.active a{
+    background-color: #08c;
+}
+
 /* pagination ENDS */
 
 /* colorful font STARTS */

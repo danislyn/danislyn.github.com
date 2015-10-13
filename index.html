@@ -1,6 +1,6 @@
 ---
 layout: page
-description: fuxiaode,弗晓得,弗晓得依宁,javascript,模块化,web开发,前端开发,生活,思考
+description: fuxiaode,弗晓得,弗晓得依宁,javascript,模块化,web开发,前端开发,阿冒的前端之路
 ---
 {% include JB/setup %}
 
@@ -41,6 +41,39 @@ description: fuxiaode,弗晓得,弗晓得依宁,javascript,模块化,web开发,�
 
 {% if paginator.total_pages > 1 %}
 <div class="pagination">
+    <ul class="pagination-list">
+        {% if paginator.page >= 3 %}
+        <li class="first"><a href="">1</a></li>
+        {% endif %}
+
+        {% if paginator.page >= 4 %}
+        <li class="preOmit"><a>...</a></li>
+        {% endif %}
+
+        {% if paginator.previous_page %}
+        <li class="prePage"><a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ paginator.previous_page }}</a></li>
+        {% endif %}
+
+        <li class="active"><a>{{ paginator.page }}</a></li>
+
+        {% if paginator.next_page %}
+        <li class="nextPage"><a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ paginator.next_page }}</a></li>
+        {% endif %}
+
+        {% if paginator.page <= paginator.total_pages - 3 %}
+        <li class="nextOmit"><a>...</a></li>
+        {% endif %}
+
+        {% if paginator.page <= paginator.total_pages - 2 %}
+        <li class="last"><a href="{{ site.paginate_path | replace: ':num', paginator.total_pages }}">{{ paginator.total_pages }}</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+{% comment %}
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
     <ul>
         {% if paginator.previous_page %}
         <li class="prev">
@@ -63,3 +96,4 @@ description: fuxiaode,弗晓得,弗晓得依宁,javascript,模块化,web开发,�
     </ul>
 </div>
 {% endif %}
+{% endcomment %}
