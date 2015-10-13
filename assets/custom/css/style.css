@@ -601,6 +601,14 @@ a.underline:hover{
     .pagination.post li.next{
         float: none;
     }
+    .pagination-list{
+        margin-bottom: 0;
+    }
+    .pagination-list li a{
+        height: 30px;
+        line-height: 30px;
+        width: 30px;
+    }
 }
 @media screen and (max-width: 640px){
     #aboutLeft{
