@@ -29,11 +29,6 @@
 		<!-- atom & rss feed -->
     	<link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     	<link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
-
-    	<!-- jquery放头部吧 -->
-    	<script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
-
-    	{% include JB/analytics %}
 	</head>
 	<body>
 	    <div id="bodyWrap">
@@ -65,8 +60,8 @@
 	                            <a href="/atom.xml" target="_blank">RSS订阅</a>
 	                        </li>
 	                        <li class="search">
-	                        	<form action="search.html" method="get">
-	                        		<input type="text" name="query" placeholder="Search...">
+	                        	<form>
+	                        		<input type="text" name="query" id="bdcsMain" placeholder="Search...">
 	                        		<!-- <img src="/assets/custom/images/search.png" id="searchIcon"> -->
 	                        	</form>
 	                        </li>
@@ -118,7 +113,10 @@
 	        </div>
 	    </div>
 
+	    {% include JB/analytics %}
+    	{% include JB/site_search %}
 
+	    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/custom/js/highlight.pack.js"></script>
 		<script type="text/javascript">
 		(function($){
