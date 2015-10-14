@@ -323,15 +323,15 @@ PC上简单有效，但是同样手机上不鸟这些。[见demo](/demo/popup-sc
 			return false;
 		}
 
-		var obj = $(this).get(0);
+		var box = $(this).get(0);
 
-		if($(obj).height() + obj.scrollTop >= obj.scrollHeight){
+		if($(box).height() + box.scrollTop >= box.scrollHeight){
 			if(deltaY < 0) {
 				e.preventDefault();
 				return false;
 			}
 		}
-		if(obj.scrollTop === 0){
+		if(box.scrollTop === 0){
 			if(deltaY > 0) {
 				e.preventDefault();
 				return false;
