@@ -77,7 +77,7 @@ define(function(){
                     data: []
                 },
                 markPoint : {
-                    clickable: false,
+                    clickable: true,
                     symbol: 'emptyCircle',
                     symbolSize: function (v){
                         return 12 + v/10;
@@ -87,7 +87,7 @@ define(function(){
                         period: 30,
                         scaleSize: 2,
                         color: COLOR_MARK_POINT,
-                        shadowBlur: 5
+                        shadowBlur: 2
                     },
                     itemStyle: {
                         normal: {
