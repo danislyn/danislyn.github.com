@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>左定宽右自适应的等高</title>
+    <style type="text/css">
+    .container{
+        /*width: 1000px;*/
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    #leftDiv{
+        float: left;
+        width: 300px;
+    }
+    #mainDiv{
+        border-left: 300px solid #999;
+        background-color: #eee;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="leftDiv">
+            left<br><br><br><br>
+        </div>
+        <div id="mainDiv">
+            content<br><br><br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+</body>
+</html>

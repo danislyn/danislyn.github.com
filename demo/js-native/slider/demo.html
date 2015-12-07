@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>轮播</title>
+    <style type="text/css">
+    .container{
+        width: 1000px;
+        margin: 0 auto;
+    }
+    .slider{
+        font-size: 0;
+        width: 750px;
+        height: 291px;
+        overflow: hidden;
+    }
+    .slider .item{
+        display: inline-block;
+        width: 100%;
+    }
+    .slider .item img{
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slider" id="slider">
+            <a href="#" class="item"><img src="https://img.alicdn.com/tps/i1/TB1QD4eJFXXXXXwXXXXJ02v2pXX-750-291.jpg_Q90.jpg"/></a>
+            <a href="#" class="item"><img src="https://img.alicdn.com/tps/i4/TB1QU3IJpXXXXXuXFXXJ02v2pXX-750-291.jpg_Q90.jpg"/></a>
+            <a href="#" class="item"><img src="https://img.alicdn.com/tps/i4/TB1Y52QJpXXXXcQXFXXJ02v2pXX-750-291.jpg_Q90.jpg"/></a>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="slider.js"></script>
+    <script type="text/javascript">
+    var slider = new Slider({
+        el: '#slider',
+        itemClass: '.item',     // 轮播切换的子元素
+        mode: 'opacity',        // 支持'display'和'opacity'，默认为'opacity'效果
+        speed: 3000,            // 每页停留时间
+        transitionTime: 1000    // 动画过渡时间
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>浮动水平居中</title>
+    <style type="text/css">
+    .container{
+        width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    #contentWrap{
+        float: left;
+        position: relative;
+        left: 50%;
+    }
+    #contentDiv{
+        background-color: #ccc;
+        width: 200px;
+        height: 200px;
+        position: relative;
+        right: 50%;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="contentWrap">
+            <div id="contentDiv"></div>
+        </div>
+    </div>
+</body>
+</html>

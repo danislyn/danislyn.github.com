@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>等高列布局</title>
+    <style type="text/css">
+    .container{
+        width: 1000px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    .right{
+        background-color: #999;
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+    .content{
+        background-color: #ccc;
+        float: left;
+        width: 100%;
+        position: relative;
+        right: 200px;
+    }
+    .left{
+        background-color: #eee;
+        float: left;
+        width: 100%;
+        position: relative;
+        right: 600px;
+    }
+    #leftDiv{
+        float: left;
+        position: relative;
+        left: 800px;
+        width: 200px;
+    }
+    #contentDiv{
+        float: left;
+        position: relative;
+        left: 800px;
+        width: 600px;
+    }
+    #rightDiv{
+        float: left;
+        position: relative;
+        left: 800px;
+        width: 200px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="right">
+            <div class="content">
+                <div class="left">
+                    <div id="leftDiv">
+                        left<br>
+                    </div>
+                    <div id="contentDiv">
+                        content<br><br><br><br><br>
+                    </div>
+                    <div id="rightDiv">
+                        right<br><br><br><br><br><br><br><br><br><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>左定宽右自适应的等高</title>
+    <style type="text/css">
+    .container{
+        /*width: 1000px;*/
+        margin: 0 auto;
+        overflow: hidden;
+    }
+    #contentWrap{
+        background-color: #999;
+    }
+    #innerWrap{
+        background-color: #eee;
+        margin-left: 300px;
+    }
+    #leftDiv{
+        float: left;
+        width: 300px;
+        margin-left: -300px;
+    }
+    #mainDiv{
+        
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="contentWrap">
+            <div id="innerWrap">
+                <div id="leftDiv">
+                    left<br><br><br><br>
+                </div>
+                <div id="mainDiv">
+                    content<br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

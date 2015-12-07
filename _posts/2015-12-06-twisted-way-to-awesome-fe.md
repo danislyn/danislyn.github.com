@@ -54,25 +54,70 @@ published: false
 
 组件封装
 --------
-最初的写法TODO
+还没了解js对类(或模块)的封装前，我们的代码可能是这样的
 
-原生js的Slider组件
+    var getData = function(){
+        // ......
+    };
 
+    function editFunc(){
+        // ......
+    };
+
+    $('.refresh-btn').on('click', function(){
+        var data = getData();
+        var $target = $($(this).attr('data-target'));
+        $target.empty();
+
+        for(var i=0; i<data.length; i++){
+            var $child = $('<tr></tr>');
+            $child.append('<td>' + data[i]['name'] + '</td>');
+            // ......
+            $child.append('<td><a class="edit-link">编辑</a></td>');
+            $target.append($child);
+        }
+
+        $target.find('.edit-link').on('click', editFunc);
+    });
+
+一个点击就获取数据，然后刷新表格的功能。如果一个页面中有多个类似的异步刷新的表格，且每个表格的字段又各不相同，那么最偷懒的做法就是拷贝大段代码，然后再调整`<td>`的字段。这样的代码简直了，太难维护了！
+
+    var table1 = AjaxTable({
+        el: '#dataTable',
+        dataUrl: '/path/to/action/'
+    });
+
+    table1.refresh();
+
+如果代码变成这样，那就爽多了，获取数据和刷新表格的过程都封在了`AjaxTable`中，各个使用之处只需要传个参数调用下`refresh()`即可，减少了大量重复(相似的)代码。这就是对UI组件/功能组件的封装。
+
+以前为了准备面试时的“手撕代码”，写过一个简单的轮播组件，不用jquery（面试经常不允许使用任何库）
+
+- [原生js的Slider组件](/demo/js-native/slider/demo.html)
+
+还写过下面一些文章
 
 - [自己写的jquery分页插件](/blog/2015/03/03/step-by-step-jquery-plugin-pagination-1/)
-- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts/)
-
-- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections/)
+- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts/) （有点类似上面示例中的`AjaxTable`）
+- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections/) （系列长文，如何把一段生硬实现的代码一步一步封装和扩展成为一个可配置的UI组件）
 
 
 模块化开发
 ---------
-最初的写法TODO
+如果要在页面上引入外部的js库，最初学习的时候是这样引入的
+
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui/jquery-ui-1.8.24.min.js"></script>
+    <script type="text/javascript" src="jquery-ui/jquery-ui-datepicker-zh-CN.js"></script>
+    <script type="text/javascript" src="bootstrap-2.3.2.min.js"></script>
+
+由于浏览器中js的执行(非加载)过程是在单线程中的，而各js文件又会存在依赖关系，比如 jquery-ui 依赖 jquery，bootstrap 也依赖 jquery，所以`<script>`标签的引入得满足依赖顺序。当一个项目越做页面越多时，这么多页面中会存在一堆`<script>`标签，如果要将某个js文件升级版本，或者修改script的依赖关系时，这就会成为一个很繁琐的工作，特别是`<script>`分散在项目的各个文件中时。
+
+[RequireJS](http://www.requirejs.cn/)就是出来解决这个问题的，还有[SeaJS](https://github.com/seajs/seajs)，它们分别代表着**AMD**和**CMD**两种风格，关于[模块化和两者的区别可以看这篇文章](http://www.html-js.com/article/The-front-box-front-end-module)。
+
+实战案例
 
 - [用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs/)
-
-高阶综合案例
-
 - [前端模块化开发demo之攻击地图](/blog/2015/12/05/attack-map-with-amd/)
 
 
