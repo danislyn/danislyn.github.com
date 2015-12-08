@@ -123,5 +123,36 @@ published: false
 
 页面继承
 --------
+假设在一个系统里，每个页面都有相同的头和尾，还有nav，那根据上面封装和分离的思想，我们可能会这样写
+
+    <html>
+    <body>
+        {% include header.html %}
+
+        <div class="container">
+            <div class="left">
+                {% include nav.html %}
+            </div>
+            <div class="main">
+                <!-- 具体业务... -->
+            </div>
+        </div>
+        
+        {% include footer.html %}
+
+        <script src="require.min.js"></script>
+        <script type="text/javascript">
+        requirejs.config({
+            // 全局配置...
+        });
+        </script>
+
+        <script type="text/javascript">
+        require(['jquery'], function($){
+            // 具体业务...
+        });
+        </script>
+    </body>
+    </html>
 
 
