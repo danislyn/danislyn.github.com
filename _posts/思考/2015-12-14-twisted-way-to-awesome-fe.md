@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "前端要给力——平凡之路"
+title: "前端要给力 — 平凡之路"
 category: 思考
 tags: [前端]
 ---
