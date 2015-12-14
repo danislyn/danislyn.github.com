@@ -1,11 +1,10 @@
 ---
 layout: post
 title: "前端要给力"
-category: 
-tags: []
-published: false
+category: 思考
+tags: [无]
 ---
-{% include JB/setup %}
+%{ include JB/setup }%
 
 一直想总结下自己摸打滚爬的前端经历，3年，从一个极讨厌前端的人，变成一个吃前端饭碗的人。没有人带过我，跌跌撞撞的缓慢前进，但我很喜欢分享，喜欢帮助别人进步，"共同成长"会是我以后一直乐意做的事情。
 
@@ -115,7 +114,7 @@ published: false
 
 [RequireJS](http://www.requirejs.cn/)就是出来解决这个问题的，还有[SeaJS](https://github.com/seajs/seajs)，它们分别代表着**AMD**和**CMD**两种风格，关于[模块化和两者的区别可以看这篇文章](http://www.html-js.com/article/The-front-box-front-end-module)。
 
-实战案例
+### 实战案例
 
 - [用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs/)
 - [前端模块化开发demo之攻击地图](/blog/2015/12/05/attack-map-with-amd/)
@@ -123,22 +122,22 @@ published: false
 
 页面继承
 --------
-假设在一个系统里，每个页面都有相同的头和尾，还有nav，那根据上面封装和分离的思想，我们可能会这样写
+*页面继承*这块跟上面的各种具体的技术没太大关系，页面继承主要是用来组织项目文件结构（或页面结构）的一些经验规则。假设在一个系统里，每个页面都有相同的头和尾，还有nav，那根据上面封装和分离的思想，我们可能会这样写
 
     <html>
     <body>
-        {% include header.html %}
+        %{ include header.html }%
 
         <div class="container">
             <div class="left">
-                {% include nav.html %}
+                %{ include nav.html }%
             </div>
             <div class="main">
                 <!-- 具体业务... -->
             </div>
         </div>
         
-        {% include footer.html %}
+        %{ include footer.html }%
 
         <script src="require.min.js"></script>
         <script type="text/javascript">
@@ -155,4 +154,92 @@ published: false
     </body>
     </html>
 
+我们可以把这一段作为一个base的父页面，命名为`base.html`，每个“具体业务”的页面都继承自它。
 
+	%{ extends 'base.html' }%
+	
+	%{ block styles }%
+	<style type="text/css">
+	
+	</style>
+	%{ endblock }%
+	
+	%{ block content }%
+	<div>具体业务...</div>
+	%{ endblock }%
+	
+	%{ block scripts }%
+	<script type="text/javascript"
+	require(['jquery'], function($){
+        // 具体业务...
+    });
+	</script>
+	%{ endblock }%
+
+把这个页面叫做`func1.html`，具体业务的页面中只会包含自身业务功能需要关心(用到)的东西，不去多管base页面的闲事。可以看到子页面中有很多`block`之类的锚点，会将与`endblock`之间的内容插入到父页面中的相应位置，所以要先在`base.html`中“挖好坑”。
+
+	%{ block styles }% %{ endblock }%
+	%{ block content }% %{ endblock }%
+	%{ block scripts }% %{ endblock }%
+
+具体做法可以去看常见的模板系统，本例中参考的是[Django](https://docs.djangoproject.com/en/1.9/ref/templates/language/)中的模板定义。
+
+
+页面组件化
+---------
+*页面组件化*也是和具体技术没有关系，它是顺着*页面继承*的思路，把页面或文件结构做更小粒度的拆分，页面由一个个页面组件构成。
+
+    %{ include sectionA.css }%
+    %{ include sectionB.css }%
+
+    <div class="row">
+        %{ include sectionA.tpl }%
+    </div>
+    <div class="row">
+        %{ include sectionB.tpl }%
+    </div>
+    
+    <script type="text/javascript">
+    require(['sectionA', 'sectionB'], function(A, B){
+        var App = Base.extend({
+            _init: function(){
+                var that = this;
+                var mods = [A, B];
+                this.modules = [];
+                
+                mods.forEach(function(Module){
+                    that.modules.push(new Module(App));
+                });
+            }
+        });
+    });
+    </script>
+
+上面相当于一个业务页面，它由`sectionA`和`sectionB`两个页面组件组成，`sectionA.tpl`和`sectionB.tpl`是html模板。在应用层(即业务)页面中初始化两个js模块`A`和`B`，并且把自身的`App`变量传递给模块（`new Module(App)`），可以实现子模块与应用层页面的通信，甚至是模块之间的通信。
+
+这样把页面拆成粒度更细的结构，好处是页面模块可以复用，也便于管理，改动页面中的一小块时只需在所处的模块中，缩小改动的影响范围。
+
+还看过一种思想是，把css文件也当做资源由requireJS动态加载，这样上面示例中的`include xxx.css`都不需要了，页面模块的css资源作为该模块的依赖，写在js模块的`define`的依赖中。
+
+	define(['jquery', 'sectionA.css'], function($){
+	    // 业务模块...
+	});
+
+这样把css和js都抽象成“资源”，相当于
+
+> 组件 = 模板 + 资源
+
+一个页面整体的模板，相当于多个页面组件的拼装而成。更进一步，如果能让页面组件做到**异步渲染**的话（即可以由js去解析模板语法和变量，而不是交给web框架），才能真正做到页面渲染的本质：
+
+> 呈现给用户的页面 = 页面模板 (包括组件的模板) + 数据
+
+我们只需要关心“数据”，无所谓它是后端框架传递给页面的，还是ajax动态取来的。这样我们作为前端，才能把更多精力放在模板和交互上，不用管数据的传递方式。
+
+
+平凡之路
+--------
+前端发展了十几年，现在几乎到达顶峰的速度了，近两年推出的框架层出不穷，jquery早已不是一统江湖了。每个人的精力都有限，不可能一一都学过来，但是必须承认，[前端是一个完整的体系](/blog/2015/09/20/fe-review-points/)，有它独特和魅力之处。不仅是框架，还有更多的工程化问题，框架都是为了解决某类相通的问题而生。模板和数据分离也好，“状态”和“表现”分离也好，我越来越体会到
+
+> “分”是为了“合”
+
+这条平凡之路，还会“频繁”的发展和融合下去。
