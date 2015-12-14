@@ -2,7 +2,7 @@
 layout: post
 title: "QCon2015感想"
 category: 思考
-tags: [胡思乱想]
+tags: [前端, 胡思乱想]
 ---
 {% include JB/setup %}
 

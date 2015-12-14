@@ -2,7 +2,7 @@
 layout: post
 title: "前端知识体系以及面试点"
 category: 思考
-tags: [面试]
+tags: [面试, 前端]
 ---
 {% include JB/setup %}
 
