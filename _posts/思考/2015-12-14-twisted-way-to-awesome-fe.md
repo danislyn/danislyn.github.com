@@ -112,7 +112,7 @@ tags: [前端]
 
 由于浏览器中js的执行(非加载)过程是在单线程中的，而各js文件又会存在依赖关系，比如 jquery-ui 依赖 jquery，bootstrap 也依赖 jquery，所以`<script>`标签的引入得满足依赖顺序。当一个项目越做页面越多时，这么多页面中会存在一堆`<script>`标签，如果要将某个js文件升级版本，或者修改script的依赖关系时，这就会成为一个很繁琐的工作，特别是`<script>`分散在项目的各个文件中时。
 
-[RequireJS](http://www.requirejs.cn/)就是出来解决这个问题的，还有[SeaJS](https://github.com/seajs/seajs)，它们分别代表着**AMD**和**CMD**两种风格，关于[模块化和两者的区别可以看这篇文章](http://www.html-js.com/article/The-front-box-front-end-module)。
+[RequireJS](http://www.requirejs.cn/)就是出来解决这个问题的（简单来说就是用js去管理js），还有[SeaJS](https://github.com/seajs/seajs)，它们分别代表着**AMD**和**CMD**两种风格，关于[模块化和两者的区别可以看这篇文章](http://www.html-js.com/article/The-front-box-front-end-module)。
 
 ### 实战案例
 
@@ -122,7 +122,7 @@ tags: [前端]
 
 页面继承
 --------
-*页面继承*这块跟上面的各种具体的技术没太大关系，页面继承主要是用来组织项目文件结构（或页面结构）的一些经验规则。假设在一个系统里，每个页面都有相同的头和尾，还有nav，那根据上面封装和分离的思想，我们可能会这样写
+*页面继承* 这块跟上面的各种具体的技术没太大关系，页面继承主要是用来组织项目文件结构（或页面结构）的一些经验规则。假设在一个系统里，每个页面都有相同的头和尾，还有nav，那根据上面封装和分离的思想，我们可能会这样写
 
     <html>
     <body>
@@ -187,7 +187,7 @@ tags: [前端]
 
 页面组件化
 ---------
-*页面组件化*也是和具体技术没有关系，它是顺着*页面继承*的思路，把页面或文件结构做更小粒度的拆分，页面由一个个页面组件构成。
+*页面组件化* 也是和具体技术没有关系，它是顺着 *页面继承* 的思路，把页面或文件结构做更小粒度的拆分，页面由一个个页面组件构成。
 
     %{ include sectionA.css }%
     %{ include sectionB.css }%

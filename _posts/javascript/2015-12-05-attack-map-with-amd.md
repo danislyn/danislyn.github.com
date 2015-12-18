@@ -657,9 +657,9 @@ map封装过程
 
 ### demo
 
-- [在线demo](http://fuxiaode.cn/demo/AttackMap/index.html)
+- [在线demo](/demo/AttackMap/index.html)
 
-- [demo源码](https://github.com/danislyn/danislyn.github.com/blob/master/demo/AttackMap/)
+- [demo源码](/demo/AttackMap.zip)
 
 ### 感想
 
