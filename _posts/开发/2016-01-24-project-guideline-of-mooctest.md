@@ -3,7 +3,6 @@ layout: post
 title: "mooctest项目总结"
 category: 开发
 tags: [泛型编程, Testing]
-published: false
 ---
 {% include JB/setup %}
 
@@ -251,7 +250,7 @@ DAO事务与泛型编程
 
 前端UI组件的沉淀
 --------------
-在mooctest这个项目中，前端总体上用页面继承和[自定义页面tags]()来组织。虽然项目起步时偷懒没有引入[RequireJS](/blog/2015/12/14/twisted-way-to-awesome-fe/#section-6)来组织js，但最终还是拎出了不少js组件，使用最朴素的js类定义和jquery插件的写法来封装代码。
+在mooctest这个项目中，前端总体上用页面继承和[自定义页面tags](https://www.playframework.com/documentation/1.2.x/templates#tags)来组织。虽然项目起步时偷懒没有引入[RequireJS](/blog/2015/12/14/twisted-way-to-awesome-fe/#section-6)来组织js，但最终还是拎出了不少js组件，使用最朴素的js类定义和jquery插件的写法来封装代码。
 
 ### 1、动态图表
 
@@ -342,7 +341,7 @@ DAO事务与泛型编程
 
 ### 语言字典
 
-在本文最初提到的项目目录结构中就有关于messages的文件，`messages.zh_CN`和`messages.en`就是中英文的字典文件。
+在本文最初提到的项目[目录结构](#section-2)中就有关于messages的文件，`messages.zh_CN`和`messages.en`就是中英文的字典文件。
 
 Play框架在这一点方面做的比较简陋，好像一个语言只能有一个字典文件，因此我们需要使用“命名空间”的概念进行分组管理。
 
@@ -382,23 +381,244 @@ Play框架在这一点方面做的比较简陋，好像一个语言只能有一�
         CANCEL: "&{'common.btn.cancel'}",
         DONE: "&{'common.btn.done'}"
     };
+    </script>
 
 内联script是在模板文件中的，可以被Play框架处理，于是语言文案就被存在了全局`window`里。在具体功能的`.js`文件中可以直接使用`window.LANG_TEXT`变量。
 
 
 邮件队列与定时任务
 ----------------
+最后我再来说一个后端额外的小功能，发送邮件，由第三方EDM(Email Direct Marketing)商提供服务。
 
 ### EDM服务购买
 
+可以在网上找到很多这样的EDM服务商，有的是专门做企业短信和邮件营销的，也有的是域名主机和服务都做的。我这儿就不打广告了，自行找一家有点规模的稳定一点的EDM服务商即可。
+
 ### 域名配置
+
+买好EDM账号后，在EDM管理平台上就可发邮件了，但是它们默认会给你分配一个带 `edm04621@service.xxx.com` 类似这样的邮箱。这种邮箱发出来的邮件十有八九会被扔进垃圾箱或者被拦截掉，因此我们要配置自己域名的邮箱。
+
+设置一个域名的mx、txt和cname记录，以example.com域为例：
+
+	edm.example.com CNAME edm.edmcn.cn
+	edm.example.com MX sender.f.wsztest.com
+	edm.example.com TXT v=spf1 include:spf.ezcdn.cn ~all
+
+域名解析成功后，就可在EDM管理平台使用自己域名验证过的邮箱地址了，比如叫`service@edm.mooctest.net`，就可以大大减少邮件被扔进垃圾箱的概率。
 
 ### SMTP接口
 
+上面的配置都完成后，确保在EDM管理平台上可以成功发邮件后，就可以去申请开通EDM-SMTP服务。在程序中可以通过`javax.mail`库去建立邮件Transport协议。
+
+	import java.io.UnsupportedEncodingException;
+	import java.util.List;
+	import java.util.Properties;
+
+	import javax.mail.MessagingException;
+	import javax.mail.Session;
+	import javax.mail.Transport;
+	import javax.mail.internet.AddressException;
+	import javax.mail.internet.InternetAddress;
+	import javax.mail.internet.MimeMessage;
+	import javax.mail.internet.MimeMessage.RecipientType;
+
+	import common.Constants;
+	
+	public class SimpleMailSender {
+
+		private static final String SMTP_EDM = "smtp.trigger.edmcn.cn";
+		
+	    private final transient Properties props = System.getProperties();
+	    private transient MailAuthenticator authenticator;
+	    private transient Session session;
+	    
+	    public SimpleMailSender(final String smtpHostName, final String username,
+	        final String password) {
+	    	init(username, password, smtpHostName);
+	    }
+	
+	    public SimpleMailSender(final String username, final String password) {
+	    	String smtpHost;
+	    	// EDM帐号
+	    	if(isEDM(username)){
+	    		smtpHost = SMTP_EDM;
+	    	}
+	    	else{
+	    		smtpHost = "smtp." + username.split("@")[1];
+	    	}
+	    	
+	    	init(username, password, smtpHost);
+	    }
+
+	    private void init(String username, String password, String smtpHostName) {
+		    props.put("mail.smtp.auth", "true");
+		    props.put("mail.smtp.host", smtpHostName);
+		    authenticator = new MailAuthenticator(username, password);
+		    session = Session.getInstance(props, authenticator);
+	    }
+	    
+	    private boolean isEDM(String account){
+	    	if(account.startsWith("edmc") && !account.contains("@")){
+	    		return true;
+	    	}
+	    	return false;
+	    }
+	    
+	    private InternetAddress getSenderAddress() throws AddressException, UnsupportedEncodingException{
+	    	if(isEDM(authenticator.getUsername())){
+	    		return new InternetAddress(Constants.EDM_SENDER_ADDRESS, Constants.EDM_SENDER_NAME);
+	    	}
+	    	return new InternetAddress(authenticator.getUsername(), Constants.DEFAULT_SENDER_NAME);
+	    }
+		
+	    public void send(List<String> recipients, String subject, Object content)
+	        throws AddressException, MessagingException, UnsupportedEncodingException {
+		    final MimeMessage message = new MimeMessage(session);
+		    message.setFrom(getSenderAddress());
+		    
+		    final int num = recipients.size();
+		    InternetAddress[] addresses = new InternetAddress[num];
+		    for (int i = 0; i < num; i++) {
+		        addresses[i] = new InternetAddress(recipients.get(i));
+		    }
+		    message.setRecipients(RecipientType.TO, addresses);
+		    
+		    message.setSubject(subject);
+		    message.setContent(content.toString(), "text/html;charset=utf-8");
+		    Transport.send(message);
+	    }
+	}
+
 ### 队列设计
 
+使用过EDM发送邮件的人会知道，就算我们配置了自己域名的邮箱地址，在使用SMTP协议发送时，也会遇到频率过快，或者对方邮箱拒收，等失败情况。因此我们要设计一套容错和重试的机制。
+
+	import javax.persistence.*;
+	import play.db.jpa.Model;
+
+	@Entity
+	@Table(name="email_task")
+	public class EmailTask extends Model {
+		@Column(name="receiver")
+		private String receiver;
+		
+		@Column(name="subject")
+		private String subject;
+		
+		@Column(name="content")
+		private String content;
+		
+		@Column(name="try_times")
+		private Integer tryTimes;
+		
+		public EmailTask(){
+			// default
+			this.tryTimes = 0;
+		}
+		// 省略getter和setter
+	}
+
+如本文上面提到的[数据库与ORM](#orm)所述，这里设计一个`EmailTask`的Model，记录下收件人、主题和正文内容，再额外存个`tryTimes`字段。这里我们可以规定，当重试3次仍失败后，就忽略该邮件任务。
+
+当发送立即邮件时，比如“忘记密码”的邮件，直接使用上面的`SimpleMailSender`发送邮件，如果失败，则将邮件信息存成`EmailTask`存到数据库。而当发送非立即的邮件时，比如通知类的邮件，只需将邮件内容生成`EmailTask`对象存到数据库，供定时任务来调度。
+
 ### 立即任务与定时任务
+
+上面的邮件队列设计中所说的“立即邮件”和“非立即邮件”，其实就是“立即任务”和“定时任务”。在Play框架中有[Jobs](https://www.playframework.com/documentation/1.2.x/jobs)来实现任务调度。
+
+	import play.jobs.Job;
+
+	public class InstantMailJob extends Job {
+		
+		private static EmailTaskDao taskDao = new EmailTaskDao();
+		
+		private String receiver;
+		private String subject;
+		private String content;
+		
+		public InstantMailJob(String receiver, String subject, String content){
+			this.receiver = receiver;
+			this.subject = subject;
+			this.content = content;
+		}
+
+		public void doJob(){
+			try {
+				MailJobUtil.sendMail(receiver, subject, content);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("Send mail error for receiver " + receiver);
+				
+				// 发送失败，加入task，待下次再发
+				EmailTask task = new EmailTask();
+				task.setReceiver(receiver);
+				task.setSubject(subject);
+				task.setContent(content);
+				// 已失败1次
+				task.setTryTimes(1);
+				
+				taskDao.save(task);
+			}
+		}
+	}
+
+这就是“立即邮件”任务的Job，得 override `doJob`方法，邮件发送失败的话就加入`EmailTask`。使用时如下调用即可
+
+	new InstantMailJob(receiver, subject, content).now();
+
+而对于“非立即邮件”任务，要使用Play框架的定时任务Job，并且设置间隔时间。
+
+	import play.jobs.Every;
+	import play.jobs.Job;
+
+	@Every("1mn")
+	public class BackgroundMailJob extends Job {
+		
+		private static EmailTaskDao taskDao = new EmailTaskDao();
+
+		public void doJob(){
+			// 避免邮件服务器异常，一次只发前10个
+			List<EmailTask> tasks = taskDao.getTopTasks();
+			
+			for(EmailTask task : tasks){
+				try {
+					MailJobUtil.sendMail(task.getReceiver(), task.getSubject(), task.getContent());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Send mail error for receiver " + task.getReceiver());
+					
+					// 把当前任务加到队尾
+					EmailTask failedTask = new EmailTask();
+					failedTask.setReceiver(task.getReceiver());
+					failedTask.setSubject(task.getSubject());
+					failedTask.setContent(task.getContent());
+					// 累计失败次数
+					failedTask.setTryTimes(task.getTryTimes() + 1);
+					
+					taskDao.save(failedTask);
+				}
+				
+				// 删除成功的任务
+				taskDao.remove(task);
+			}
+		}
+	}
+
+同样也要 override `doJob`方法，但这里还得设置任务周期 `@Every("1mn")`，这个有点类似linux中的crontab。我这里设置了每1分钟执行一次任务，为了避免邮件SMTP调用频率太快而失败，每次执行Job时只取队列中前几个`EmailTask`。
+
+### 邮件统计数据
+
+这是一开始在EDM管理平台上批量发送邮件的统计数据，发现软退率不低，查看邮局统计后发现是QQ邮箱普遍网关拦截。
+
+<img src="/assets/captures/20160124_04.png" style="max-width:900px">
+
+而下面是使用了EDM-SMTP协议和邮件队列发送的结果统计，可见成功率稍微高一点。倒数第二条记录软退很高，是因为几乎都是QQ邮箱！
+
+<img src="/assets/captures/20160124_05.png" style="max-width:900px">
 
 
 后记
 -----
+项目能坚持做下去不容易，写文章更不容易，对自己是个总结，也希望可以帮到更多的人。
