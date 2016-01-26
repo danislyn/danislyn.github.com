@@ -278,7 +278,11 @@ table tbody tr:nth-child(2n) td{
     margin: 1em 0;
 }
 .article-entry .content h1,
-.article-entry .content h2,
+.article-entry .content h2{
+    margin: 1em 0 0 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+}
 .article-entry .content h3{
     margin: 1em 0 10px 0;
 }
@@ -286,6 +290,9 @@ table tbody tr:nth-child(2n) td{
     list-style: initial;
     margin: 1em 0;
     padding-left: 20px;
+}
+.article-entry .content li > ul{
+    margin: 0 0 0.5em 0;
 }
 .article-entry .content strong{
     background-color: #ff0;
