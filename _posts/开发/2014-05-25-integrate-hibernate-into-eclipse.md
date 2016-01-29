@@ -13,7 +13,7 @@ tags: [Hibernate, 泛型编程]
 
 <!-- break -->
 
-其实我想说的是要不是看在同学的份上，真不想做这个事情，还要求Java，真不想碰Swing的东西了，也不想烦人的Struts。有人要网页版，我就用更简单易学的[Play Framework](www.playframework.com)（我都用较早的1.2.7版本）。而还有人要窗口程序，不得以去查了查简单的办法。
+其实我想说的是要不是看在同学的份上，真不想做这个事情，还要求Java，真不想碰Swing的东西了，也不想烦人的Struts。有人要网页版，我就用更简单易学的[Play Framework](https://www.playframework.com)（我都用较早的1.2.7版本）。而还有人要窗口程序，不得以去查了查简单的办法。
 
 
 
