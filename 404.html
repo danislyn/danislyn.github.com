@@ -15,18 +15,25 @@
     var url = window.location.href;
 
     // 非新版blog url
-    if(!/.*fuxiaode.cn\/blog\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url) && /.*\/.*\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url)){
-        // 重定向到新版blog url
+    // if(!/.*fuxiaode.cn\/blog\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url) && /.*\/.*\/\d{4}\/\d{2}\/\d{2}\/.*/.test(url)){
+    //     // 重定向到新版blog url
+    //     redirect = function(){
+    //         // FUCK
+    //         // window.location.href = url.replace('fuxiaode\.cn\/\w*\/', 'fuxiaode.cn/blog/');
+    //         var temps = url.split('/');
+    //         temps[temps.length - 6] = 'blog';
+    //         window.location.href = temps.join('/');
+    //     };
+    // }
+
+    // permalink末尾不带'/'
+    if(/\/blog\/\d{4}\/\d{2}\/\d{2}\/(\w|-|\d)*\/$/.test(url)){
         redirect = function(){
-            // FUCK
-            // window.location.href = url.replace('fuxiaode\.cn\/\w*\/', 'fuxiaode.cn/blog/');
-            var temps = url.split('/');
-            temps[temps.length - 6] = 'blog';
-            window.location.href = temps.join('/');
+            window.location.href = url.substring(0, url.length-1);
         };
     }
 
-    setTimeout(redirect, 1500);
+    setTimeout(redirect, 500);
     </script>
 </body>
 </html>
