@@ -45,7 +45,7 @@ define(['jquery', 'mods/util'], function($, Util){
             // FUCK: 不知为啥真实宽度无法撑满table
             // thead与sticky定宽
             $thead.find('th').each(function(i){
-                $(this).css('width', $sticky.find('th').eq(i).width() + 'px');
+                $(this).css('width', $sticky.find('th').eq(i).outerWidth() + 'px');
             });
         },
         start: function(){
