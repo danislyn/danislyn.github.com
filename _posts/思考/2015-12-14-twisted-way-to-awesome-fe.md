@@ -32,15 +32,15 @@ tags: [前端]
 
 #### 首先要了解css的布局原理
 
-- [盒模型](/blog/2015/03/21/css-box-model/)
-- [定位模型](/blog/2015/03/22/css-position-model/)
+- [盒模型](/blog/2015/03/21/css-box-model)
+- [定位模型](/blog/2015/03/22/css-position-model)
 - 有了布局的基本理论后，尝试去理解Boostrap里的栅格系统 `row` `col` `span2` 背后的style
 
 #### js最重要的三点: 闭包、原型、作用域
 
-- [JS中的闭包及使用场合](/blog/2015/03/28/closure-in-js/)
-- [使用闭包解决循环引用问题](/blog/2015/03/29/apply-closure-to-forloop/)
-- [闭包、原型、作用域 面试整理](/blog/2015/04/22/some-interview-questions-of-javascript-2/)
+- [JS中的闭包及使用场合](/blog/2015/03/28/closure-in-js)
+- [使用闭包解决循环引用问题](/blog/2015/03/29/apply-closure-to-forloop)
+- [闭包、原型、作用域 面试整理](/blog/2015/04/22/some-interview-questions-of-javascript-2)
 
 关于js的原型和作用域，我没专门写过文章，建议去[博客园](http://www.cnblogs.com)搜下。如果想要完整的理解js语言机制，可以去看《Javascript模式》这本书，或者看我整理的读书笔记
 
@@ -96,9 +96,9 @@ tags: [前端]
 
 还写过下面一些文章
 
-- [自己写的jquery分页插件](/blog/2015/03/03/step-by-step-jquery-plugin-pagination-1/)
-- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts/) （有点类似上面示例中的`AjaxTable`）
-- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections/) （系列长文，如何把一段生硬实现的代码一步一步封装和扩展成为一个可配置的UI组件）
+- [自己写的jquery分页插件](/blog/2015/03/03/step-by-step-jquery-plugin-pagination-1)
+- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts) （有点类似上面示例中的`AjaxTable`）
+- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections) （系列长文，如何把一段生硬实现的代码一步一步封装和扩展成为一个可配置的UI组件）
 
 
 模块化开发
@@ -116,8 +116,8 @@ tags: [前端]
 
 ### 实战案例
 
-- [用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs/)
-- [前端模块化开发demo之攻击地图](/blog/2015/12/05/attack-map-with-amd/)
+- [用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs)
+- [前端模块化开发demo之攻击地图](/blog/2015/12/05/attack-map-with-amd)
 
 
 页面继承
@@ -240,7 +240,7 @@ tags: [前端]
 
 平凡之路
 --------
-前端发展了十几年，现在几乎到达顶峰的速度了，近两年推出的框架层出不穷，jquery早已不是一统江湖了。每个人的精力都有限，不可能一个个都学过来，但是必须承认，[前端是一个完整的体系](/blog/2015/09/20/fe-review-points/)（我之前整理的知识体系），有它独特和魅力之处。不仅是框架，还有更多的工程化问题，框架都是为了解决某类相通的问题而生。模板和数据分离也好，“状态”和“表现”分离也好，我越来越体会到
+前端发展了十几年，现在几乎到达顶峰的速度了，近两年推出的框架层出不穷，jquery早已不是一统江湖了。每个人的精力都有限，不可能一个个都学过来，但是必须承认，[前端是一个完整的体系](/blog/2015/09/20/fe-review-points)（我之前整理的知识体系），有它独特和魅力之处。不仅是框架，还有更多的工程化问题，框架都是为了解决某类相通的问题而生。模板和数据分离也好，“状态”和“表现”分离也好，我越来越体会到
 
 > “分”是为了“合”
 

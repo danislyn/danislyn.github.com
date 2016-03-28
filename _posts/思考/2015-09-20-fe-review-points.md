@@ -20,8 +20,8 @@ tags: [面试, 前端]
 
 首先是模型的理解
 
-- [盒模型](/blog/2015/03/21/css-box-model/)
-- [定位模型](/blog/2015/03/22/css-position-model/)
+- [盒模型](/blog/2015/03/21/css-box-model)
+- [定位模型](/blog/2015/03/22/css-position-model)
 - [Flexbox模型](http://www.w3cplus.com/css3/a-guide-to-flexbox.html)
 - 理解类似Boostrap里的栅格系统
 
@@ -66,7 +66,7 @@ JS里最重要的3点
 其中还涉及到一些js变量环境和单线程的知识点，详见我以前整理的文章
 
 - [《JavaScript模式》读书笔记系列](/tags.html#读书笔记-ref)
-- [一道腾讯笔试题想到的JS中的一些特性](/blog/2015/03/30/a-question-of-intern-recruit-test-by-tencent/)
+- [一道腾讯笔试题想到的JS中的一些特性](/blog/2015/03/30/a-question-of-intern-recruit-test-by-tencent)
 
 当然光看理论不行，得拿东西练手
 

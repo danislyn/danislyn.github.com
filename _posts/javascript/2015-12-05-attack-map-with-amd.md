@@ -6,7 +6,7 @@ tags: [javascript, AMD]
 ---
 {% include JB/setup %}
 
-很早以前写过一篇[用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs/)，当时用Highcharts做图表，在其上封装了一层ajax，最后只是简单套用了一下requireJS。由于当时自己才接触模块化，理解层面还太浅，后来经过其他项目的磨练以及实习获得的见识，想重新结合一个示例来写点前端模块化的开发方式。
+很早以前写过一篇[用RequireJS包装AjaxChart](/blog/2015/02/07/wrap-ajaxchart-with-requirejs)，当时用Highcharts做图表，在其上封装了一层ajax，最后只是简单套用了一下requireJS。由于当时自己才接触模块化，理解层面还太浅，后来经过其他项目的磨练以及实习获得的见识，想重新结合一个示例来写点前端模块化的开发方式。
 
 <!-- break -->
 

@@ -12,7 +12,7 @@ tags: [javascript, AMD]
 
 问题由来
 ----------
-在上一篇写[AjaxChart](/blog/2015/02/05/ajax-chart-for-highcharts/)，它只是在Highcharts做了层包装，所以依赖于Highcharts，而Highcharts又依赖于jQuery，因此html引入的`<script>`会像这样。
+在上一篇写[AjaxChart](/blog/2015/02/05/ajax-chart-for-highcharts)，它只是在Highcharts做了层包装，所以依赖于Highcharts，而Highcharts又依赖于jQuery，因此html引入的`<script>`会像这样。
 
     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdn.staticfile.org/highcharts/4.0.4/highcharts.js"></script>

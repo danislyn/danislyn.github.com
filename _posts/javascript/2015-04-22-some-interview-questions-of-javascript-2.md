@@ -83,7 +83,7 @@ tags: [javascript, 面试]
 
 原型
 -------
-原型prototype是用来实现JS中的对象继承的，具体可看我以前这篇[Javascript模式之五-代码复用模式](/blog/2014/03/07/js-pattern-part5-code-reuse-pattern/)。
+原型prototype是用来实现JS中的对象继承的，具体可看我以前这篇[Javascript模式之五-代码复用模式](/blog/2014/03/07/js-pattern-part5-code-reuse-pattern)。
 
 问题1：
 
@@ -102,7 +102,7 @@ Q1：写段代码让B继承A
     F.prototype = A.prototype;
     B.prototype = new F();
 
-我使用了[圣杯模式](/blog/2014/03/07/js-pattern-part5-code-reuse-pattern/#section-6)的思想来继承，通过一个中间的空函数，使得B的原型对象实例最小，不会包含A的实例变量`name`。
+我使用了[圣杯模式](/blog/2014/03/07/js-pattern-part5-code-reuse-pattern#section-6)的思想来继承，通过一个中间的空函数，使得B的原型对象实例最小，不会包含A的实例变量`name`。
 
 Q2：下面输出结果是多少？
 
@@ -133,7 +133,7 @@ Q：能调用`car.f()`和`car.o()`吗？
 
 闭包
 ------
-面试中问闭包问的最多的就是循环引用问题，我在[使用闭包解决循环引用问题](/blog/2015/03/29/apply-closure-to-forloop/)这篇文章中已经列出很多例子了。比如，有一个数组`var array = [1, 2, 3, 4]`，请每隔1秒依次输出数组中的元素。这里就不多写了。
+面试中问闭包问的最多的就是循环引用问题，我在[使用闭包解决循环引用问题](/blog/2015/03/29/apply-closure-to-forloop)这篇文章中已经列出很多例子了。比如，有一个数组`var array = [1, 2, 3, 4]`，请每隔1秒依次输出数组中的元素。这里就不多写了。
 
 
 

@@ -6,7 +6,7 @@ tags: [javascript, web组件]
 ---
 {% include JB/setup %}
 
-最近面试经常拿这个[学校选择器](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections/)作为例子来讲自己的JS学习过程，有位工程师哥哥直接打开[这里](http://mooctest.net/)“注册”里的第二步，就是我这个功能最初应用的地方。跟他讨论实现模态时事件的unbind[这种方式](/blog/2015/02/25/step-by-step-js-component-schoolbox-7/#section-2)是不是不好时，他给了我一点启发，于是我回过头来重新思考。
+最近面试经常拿这个[学校选择器](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections)作为例子来讲自己的JS学习过程，有位工程师哥哥直接打开[这里](http://mooctest.net/)“注册”里的第二步，就是我这个功能最初应用的地方。跟他讨论实现模态时事件的unbind[这种方式](/blog/2015/02/25/step-by-step-js-component-schoolbox-7#section-2)是不是不好时，他给了我一点启发，于是我回过头来重新思考。
 
 <!-- break -->
 
@@ -67,7 +67,7 @@ tags: [javascript, web组件]
 
 因此以上实现代码是有弊端的，页面上多个元素共享同一个模态对话框时，无法正确地响应事件。
 
-在上一篇[一步步做组件-学校选择器(7)](/blog/2015/02/25/step-by-step-js-component-schoolbox-7/#section-2)中使用了一种暴力的解决办法，每次click时都对SchoolBox对象unbind掉所有的事件，然后重新监听，以保证每次打开SchoolBox时handlers map中该事件类型的回调函数只有唯一的一个。很明显这种做法不是很妥。
+在上一篇[一步步做组件-学校选择器(7)](/blog/2015/02/25/step-by-step-js-component-schoolbox-7#section-2)中使用了一种暴力的解决办法，每次click时都对SchoolBox对象unbind掉所有的事件，然后重新监听，以保证每次打开SchoolBox时handlers map中该事件类型的回调函数只有唯一的一个。很明显这种做法不是很妥。
 
 
 
@@ -163,7 +163,7 @@ tags: [javascript, web组件]
 
 我开始怀疑自己，*为什么在一个循环中反复去为不同的元素ID监听同一个事件类型，更可笑的是使用同一个回调函数？*于是我开始反思当初设计监听者回调函数的初衷。
 
-最早在[一步步做组件-学校选择器(2)](/blog/2015/01/19/step-by-step-js-component-schoolbox-2/#section-2)中我是这样使用回调的。
+最早在[一步步做组件-学校选择器(2)](/blog/2015/01/19/step-by-step-js-component-schoolbox-2#section-2)中我是这样使用回调的。
 
     var schoolBox = new SchoolBox({
         appendTo: '#schoolBoxWrapper',
@@ -187,7 +187,7 @@ tags: [javascript, web组件]
 
 在回调时判断
 -------------
-我从[事件委托](/blog/2014/12/09/js-pattern-part7-browser-pattern/#section-1)那里得到了启发，为何不为相似的元素统一监听一个事件，并且只有唯一一个回调函数。具体做法就是在`fire`事件时加入“由哪个元素触发”，以避免对所有元素都做出响应。
+我从[事件委托](/blog/2014/12/09/js-pattern-part7-browser-pattern#section-1)那里得到了启发，为何不为相似的元素统一监听一个事件，并且只有唯一一个回调函数。具体做法就是在`fire`事件时加入“由哪个元素触发”，以避免对所有元素都做出响应。
 
     SchoolBox.prototype = {
         on: function(type, handler){

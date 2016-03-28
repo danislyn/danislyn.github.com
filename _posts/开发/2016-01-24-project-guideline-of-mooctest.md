@@ -157,7 +157,7 @@ DAO事务与泛型编程
 ----------------
 如上面定义了`Exam`类后，该Model就被注入了JPA提供的增删改查操作了，为了防止职责乱用，我们统一约定由DAO层来封装数据库事务。这样`Exam`就会有个`ExamDao`，`Teacher`就会有个`TeacherDao`，我们会发现简单的增删改查对所有Model都适用的，为了避免简单操作方法的重复，我们引入“泛型Dao”的概念。
 
-我在以前的文章中写过关于[JPA泛型DAO](/blog/2015/02/01/generic-dao-for-jpa/)，需要定义一个泛型的`GenericDao`类，提供通用的增删改查操作。
+我在以前的文章中写过关于[JPA泛型DAO](/blog/2015/02/01/generic-dao-for-jpa)，需要定义一个泛型的`GenericDao`类，提供通用的增删改查操作。
 
 	public abstract class GenericDao<T, PK extends Serializable> {
 		
@@ -215,7 +215,7 @@ DAO事务与泛型编程
 		}
 	}
 
-关于`GenericDao`的更多细节请看[JPA泛型DAO](/blog/2015/02/01/generic-dao-for-jpa/)
+关于`GenericDao`的更多细节请看[JPA泛型DAO](/blog/2015/02/01/generic-dao-for-jpa)
 
 
 后端MVC框架
@@ -245,12 +245,12 @@ DAO事务与泛型编程
 
 前端页面继承与复用
 ----------------
-对于前端页面模板，Play框架里同样支持页面继承，Play中使用[Groovy模板引擎](https://www.playframework.com/documentation/1.2.x/templates)。关于页面继承细节可看这篇文章[前端要给力 — 平凡之路](/blog/2015/12/14/twisted-way-to-awesome-fe/#section-8)，虽然里面是以Django框架的模板引擎为例，但是原理相同，模板语法略有不同而已。
+对于前端页面模板，Play框架里同样支持页面继承，Play中使用[Groovy模板引擎](https://www.playframework.com/documentation/1.2.x/templates)。关于页面继承细节可看这篇文章[前端要给力 — 平凡之路](/blog/2015/12/14/twisted-way-to-awesome-fe#section-8)，虽然里面是以Django框架的模板引擎为例，但是原理相同，模板语法略有不同而已。
 
 
 前端UI组件的沉淀
 --------------
-在mooctest这个项目中，前端总体上用页面继承和[自定义页面tags](https://www.playframework.com/documentation/1.2.x/templates#tags)来组织。虽然项目起步时偷懒没有引入[RequireJS](/blog/2015/12/14/twisted-way-to-awesome-fe/#section-6)来组织js，但最终还是拎出了不少js组件，使用最朴素的js类定义和jquery插件的写法来封装代码。
+在mooctest这个项目中，前端总体上用页面继承和[自定义页面tags](https://www.playframework.com/documentation/1.2.x/templates#tags)来组织。虽然项目起步时偷懒没有引入[RequireJS](/blog/2015/12/14/twisted-way-to-awesome-fe#section-6)来组织js，但最终还是拎出了不少js组件，使用最朴素的js类定义和jquery插件的写法来封装代码。
 
 ### 1、动态图表
 
@@ -258,7 +258,7 @@ DAO事务与泛型编程
 
 使用[Highcharts](http://www.hcharts.cn)作图表库，由于项目中大部分图表都是动态从后端取数据的，所以在Highcharts上面封装了一层ajax过程，并且将各图表配置options做了剥离。具体细节可见下面这篇文章：
 
-- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts/)
+- [为Highcharts做包装](/blog/2015/02/05/ajax-chart-for-highcharts)
 
 ### 2、分页插件
 
@@ -266,7 +266,7 @@ DAO事务与泛型编程
 
 这是一个jquery插件，可自动生成带“滑动窗口”的分页数目，可支持分页直接刷新页面，或者可自行配置ajax分页替换函数。具体细节可见下面这篇文章：
 
-- [自己写的jquery分页插件](/blog/2015/03/03/step-by-step-jquery-plugin-pagination-1/)
+- [自己写的jquery分页插件](/blog/2015/03/03/step-by-step-jquery-plugin-pagination-1)
 
 ### 3、学校选择器
 
@@ -274,7 +274,7 @@ DAO事务与泛型编程
 
 这是mooctest项目中最复杂的一个前端功能，并且有多处地方需要编辑学校，需要提供搜索和自定义添加学校的功能。具体实现细节可见下面这个系列文章：
 
-- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections/)
+- [一步步做组件-学校选择器(系列)](/blog/2015/02/11/step-by-step-js-component-schoolbox-collections)
 
 这是系列长文，讲述了如何把一段生硬实现的代码一步一步封装和扩展成为一个可配置的UI组件！
 

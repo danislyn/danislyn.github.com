@@ -12,7 +12,7 @@ tags: [javascript, web组件]
 
 观察者模式
 -----------
-在之前的[javascript设计模式](/blog/2014/11/30/js-pattern-part6-design-pattern/#section-7)中有一个观察者模式的例子，在那个例子中的记录了事件类型、回调函数以及回调`context`。这里我们对其简化，暂不考虑回调函数的`context`。
+在之前的[javascript设计模式](/blog/2014/11/30/js-pattern-part6-design-pattern#section-7)中有一个观察者模式的例子，在那个例子中的记录了事件类型、回调函数以及回调`context`。这里我们对其简化，暂不考虑回调函数的`context`。
 
 1.由于需要在对象外部监听/订阅事件，我们在`SchoolBox`的`prototype`中添加两个方法。
 

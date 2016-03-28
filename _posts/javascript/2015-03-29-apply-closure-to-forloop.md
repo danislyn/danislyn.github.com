@@ -46,7 +46,7 @@ tags: [javascript]
 
 使用闭包
 ----------
-在[上一篇](/blog/2015/03/28/closure-in-js/#section-6)中，我们使用的闭包是这样的。
+在[上一篇](/blog/2015/03/28/closure-in-js#section-6)中，我们使用的闭包是这样的。
 
     var elems = document.getElementsByTagName('div');
     for(var i=0, len=elems.length; i<len; i++){

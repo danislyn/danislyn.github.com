@@ -52,7 +52,7 @@ PC上没啥问题，那来看看手机端的表现。
 		alert('document touchend');
 	});
 
-按照PC上类似的逻辑，以及[前一篇文章中提到的touch事件原理](/blog/2015/10/04/touch-event-and-defect/)，我们很容易猜出alert顺序是：touchstart -> touchmove -> scroll -> touchend *但这是事件发生的顺序，并不是alert结果的顺序*。可以扫二维码看看，这个alert很诡异的。
+按照PC上类似的逻辑，以及[前一篇文章中提到的touch事件原理](/blog/2015/10/04/touch-event-and-defect)，我们很容易猜出alert顺序是：touchstart -> touchmove -> scroll -> touchend *但这是事件发生的顺序，并不是alert结果的顺序*。可以扫二维码看看，这个alert很诡异的。
 
 <img src="/assets/captures/20151010_01.png" style="max-width: 172px;">
 

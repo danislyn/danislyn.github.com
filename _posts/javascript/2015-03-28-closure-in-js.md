@@ -68,7 +68,7 @@ JS的作用域又是词法性质的（lexically scoped），这意味着函数�
 
 ### 模块化模式 ###
 
-由上面的再往下过渡，就是JS中的模块化模式了。这是面向对象的编程思想，用来管理方法和属性的可见度。在以前封装[学校选择器](/blog/2015/01/19/step-by-step-js-component-schoolbox-2/#section-1)的时候，就写过一段面向对象的例子。
+由上面的再往下过渡，就是JS中的模块化模式了。这是面向对象的编程思想，用来管理方法和属性的可见度。在以前封装[学校选择器](/blog/2015/01/19/step-by-step-js-component-schoolbox-2#section-1)的时候，就写过一段面向对象的例子。
 
     var Book = (function(){
         // 私有静态属性
@@ -105,7 +105,7 @@ JS的作用域又是词法性质的（lexically scoped），这意味着函数�
         }
     })();
 
-这里就是通过创建一个自执行函数，里面再返回一个函数，以实现类的构造函数，并将私有属性封装在内部。对外部来说，`Book`就是一个封装好的模块。注意，这里省略了`prototype`部分，具体请看[这里](/blog/2015/01/19/step-by-step-js-component-schoolbox-2/#section-1)。
+这里就是通过创建一个自执行函数，里面再返回一个函数，以实现类的构造函数，并将私有属性封装在内部。对外部来说，`Book`就是一个封装好的模块。注意，这里省略了`prototype`部分，具体请看[这里](/blog/2015/01/19/step-by-step-js-component-schoolbox-2#section-1)。
 
 
 ### 偏函数应用 ###
