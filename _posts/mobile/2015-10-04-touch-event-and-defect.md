@@ -12,7 +12,7 @@ tags: [mobile, javascript]
 
 touch事件的来源
 ---------------
-PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，包括`mousedown`、`mouseup`、`mousemove`和`click`事件。一次点击行为，可被拆解成：`mousedown` -> `click` -> `mouseup`三步。
+PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，包括`mousedown`、`mouseup`、`mousemove`和`click`事件。一次点击行为，可被拆解成：`mousedown` -> `mouseup` -> `click` 三步。
 
 手机上没有鼠标，所以就用触摸事件去实现类似的功能。touch事件包含`touchstart`、`touchmove`、`touchend`，注意手机上并没有`tap`事件。手指触发触摸事件的过程为：`touchstart` -> `touchmove` -> `touchend`。
 
