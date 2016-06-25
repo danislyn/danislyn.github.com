@@ -256,8 +256,12 @@ mongod也可以从配置文件启动（启动参数位于配置文件中）
 日志文件会持续增长，占用大量磁盘空间，如需关闭日志，可添加启动参数`--nojournal`。
 
 
+### mysql
+
+我直接看官方的guide，添加yum repo来安装最新的mysql，详见[http://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/](http://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/)
+
 
 TODO
 -----
-之后有空再记录mysql的安装、nginx项目部署，以及脚本构建方面的内容。
+之后有空再记录nginx项目部署，以及脚本构建方面的内容。
 
