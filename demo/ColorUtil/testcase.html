@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta charset="utf8">
+    <title>ColorUtil测试</title>
+</head>
+<body>
+    <script src="./colorUtil.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var hex1 = '#0077FE';
+    var rgb1 = ColorUtil.parseColorHex(hex1);
+    var hsv1 = ColorUtil.rgb2hsv(rgb1);
+
+    document.write([
+        '<p>' + hex1 + ' to RGB is ' + JSON.stringify(rgb1) + '</p>',
+        '<p>' + JSON.stringify(rgb1) + ' to 十六进制 is #' + ColorUtil.rgb2hex(rgb1) + '</p>'
+    ].join(''));
+
+    document.write([
+        '<p>' + JSON.stringify(rgb1) + ' to HSV is ' + JSON.stringify(hsv1) + '</p>',
+        '<p>' + JSON.stringify(hsv1) + ' to RGB is ' + JSON.stringify(ColorUtil.hsv2rgb(hsv1)) + '</p>'
+    ].join(''));
+
+    </script>
+</body>
+</html>
