@@ -119,7 +119,7 @@ table tbody tr:nth-child(2n) td{
     color: #FFCC66;
 }
 #mainBody{
-    margin-top: 50px;
+    // padding-top: 50px;
 }
 #mainContent{
     float: left;

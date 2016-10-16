@@ -117,6 +117,7 @@
 	    </div>
 
 		<script type="text/javascript" src="/assets/custom/js/highlight.pack.js"></script>
+		<script type="text/javascript" src="/assets/custom/js/jquery.pin.min.js"></script>
 		<script type="text/javascript">
 		(function($){
 			// 移动版页面导航栏click
@@ -180,6 +181,11 @@
 					// 高亮
 					hljs.highlightBlock(block);
 				});
+			});
+
+			$('#sidebar').pin({
+				containerSelector: '#mainBody',
+				minWidth: 768
 			});
 			
 		})(jQuery);
