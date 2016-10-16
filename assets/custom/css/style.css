@@ -118,6 +118,9 @@ table tbody tr:nth-child(2n) td{
 #logo a:hover{
     color: #FFCC66;
 }
+#mainBody{
+    margin-top: 50px;
+}
 #mainContent{
     float: left;
     margin-right: 0.83%;
@@ -137,17 +140,18 @@ table tbody tr:nth-child(2n) td{
 #footer a{
     color: #0088cc;
 }
-.outer{
+.outer-padding{
     margin: 0 auto;
     max-width: 1170px;
     padding: 0 20px;
     *zoom: 1;
 }
-.outer:after, .outer:before{
+.outer-padding:after,
+.outer-padding:before{
     content: ' ';
     display: block;
 }
-.outer:after{
+.outer-padding:after{
     clear: both;
 }
 /* outline ENDS */
@@ -217,7 +221,7 @@ table tbody tr:nth-child(2n) td{
 
 /* article STARTS */
 .article{
-    margin: 50px 0;
+    margin-bottom: 50px;
 }
 .article-info{
     color: #999;
@@ -307,7 +311,7 @@ table tbody tr:nth-child(2n) td{
 
 /* widget STARTS */
 .widget-wrap{
-    margin: 50px 0;
+    margin-bottom: 50px;
 }
 .widget-title{
     color: #999;
