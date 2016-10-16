@@ -183,9 +183,13 @@
 				});
 			});
 
+			// sidebar 固定
 			$('#sidebar').pin({
 				containerSelector: '#mainBody',
-				minWidth: 768
+				minWidth: 768,
+				padding: {
+					top: 50
+				}
 			});
 			
 		})(jQuery);
