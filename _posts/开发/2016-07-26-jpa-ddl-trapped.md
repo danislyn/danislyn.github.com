@@ -36,10 +36,10 @@ DDL的全称为：Data Definition Language，大概是学数据库课或集成�
 
 回到上面那段定义，我理解的JPA中ddl的过程如下
 
-- 1. 读取实体对象类中 Java Annotation 对属性的定义
-- 2. 生成 DDL 的描述文件
-- 3. 根据具体数据库的dialect，生成 schema 的SQL语句
-- 4. 在数据库中生成对应的schema
+1. 读取实体对象类中 Java Annotation 对属性的定义
+2. 生成 DDL 的描述文件
+3. 根据具体数据库的dialect，生成 schema 的SQL语句
+4. 在数据库中生成对应的schema
 
 
 所以坑是
@@ -56,12 +56,12 @@ DDL的全称为：Data Definition Language，大概是学数据库课或集成�
 
 下面是重点，我的坑在于，我在本地开发状态下，图省事直接让项目连接了服务器上的数据库 <img src="/assets/photos/wulian.jpg" style="width:56px; vertical-align:text-top;">
 
-结果就是我还处于 DEV 状态，然而默认`jpa.default.ddl=update`，当我增加实体对象类中的属性时，就会帮我重新 build 一遍 schema，服务器上我亲手建的数据表里的字段类型和外键索引都乱了。。。
+结果就是我还处于 DEV 状态，然而默认`jpa.default.ddl=update`，当我增加实体对象类中的属性时，就会帮我重新 build 一遍 schema，服务器上我亲手建的数据表里的字段类型和外键索引都乱了。。。最后我把`jpa.default.ddl=none`加上了
 
 
 教训
 -----
 1. 本地开发时禁止连接服务器数据库
 2. 不要使用 ddl 生成的数据库表，字段类型和外键名很丑，反正最后还得手动调
-3. 希望是先手动建表，然后可以使用类似 hibernate中逆向工程的那种工具将表结构反射到对象class
+3. 希望是先手动建表，然后可以使用类似 hibernate 中逆向工程的那种工具将表结构反射到对象class
 

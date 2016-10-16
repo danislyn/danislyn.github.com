@@ -24,13 +24,13 @@ description: fuxiaode,弗晓得,弗晓得依宁,javascript,模块化,web开发,�
             </h1>
         </div>
         <div class="article-entry">
-            <p>
+            <div class="content">
                 {% if post.description %}
                 {{ post.description }}
                 {% else %}
                 {{ post.content | split: '<!-- break -->' | first }}
                 {% endif %}
-            </p>
+            </div>
             <div class="read-more">
                 <a href="{{ BASE_PATH }}{{ post.url }}" class="btn btn-inverse btn-radius">阅读全文</a>
             </div>
