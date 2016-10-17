@@ -70,6 +70,8 @@ top: 0; bottom: 0; left: 0; right: 0;
 }
 ```
 
+[demo效果](/demo/css/layout/floatCenter.html)
+
 
 浮动
 -----

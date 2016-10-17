@@ -497,25 +497,18 @@
             $('#mainNavList').toggle();
         });
 
-        var offsetMem;
-        var offsetMem2;
-        var offsetStatus = null;
-
+        // sidebar 固定
         $(window).on('scroll', function(){
             var $sidebar = $('#sidebar');
-            var sidebarDOM = $sidebar.get(0);
             var offset = $sidebar.offset();
 
             var scrollTop = $(window).scrollTop();
-            var docHeight = $(document).height();
+            var PADDING_TOP = 50;
+            var PADDING_BOTTOM = 200;
 
-            var PADDING_TOP = 30;
-            var PADDING_BOTTOM = 195;
-
-            if (!offsetStatus && scrollTop + PADDING_TOP > offset.top) {
-                offsetMem = offset.top;
-                offsetStatus = 'top';
-                console.log('to top: ' + offsetMem)
+            if (scrollTop + PADDING_TOP > offset.top) {
+                // debugger
+                window.offsetMem = offset.top;
 
                 $sidebar.css({
                     position: 'fixed',
@@ -527,39 +520,20 @@
                 });
             }
 
-            if (offsetStatus === 'top'
-                && offset.top + $sidebar.outerHeight() + PADDING_BOTTOM > docHeight) {
-                offsetMem2 = offset.top;
-                offsetStatus = 'bottom';
-                console.log('to bottom: ' + offsetMem2)
-
-                $sidebar.css({
-                    position: 'fixed',
-                    top: 'auto',
-                    bottom: PADDING_BOTTOM + 'px',
-                    right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
-                    width: $sidebar.outerWidth() + 'px'
-                });
+            if (offset.top + $sidebar.outerHeight() + PADDING_BOTTOM > $(document).height()) {
+                // debugger
+                // $sidebar.css({
+                //     position: 'absolute',
+                //     top: 'auto',
+                //     bottom: PADDING_BOTTOM + 'px',
+                //     right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
+                //     width: $sidebar.outerWidth() + 'px'
+                // });
             }
 
-            if (offsetStatus === 'top' && offset.top < offsetMem) {
-                offsetStatus = null;
-
-                $sidebar.css({
-                    position: 'static',
-                    width: 'initial'
-                });
+            if (offset.top < window.offsetMem) {
+                $sidebar.removeAttr('style');
             }
-
-            if (offsetStatus === 'bottom'
-                && offset.top + $sidebar.outerHeight() + PADDING_BOTTOM < docHeight) {
-                offsetStatus = 'top';
-                $sidebar.css({
-                    top: PADDING_TOP + 'px',
-                    bottom: 'auto'
-                });
-            }
-
         });
     })(jQuery);
     </script>
