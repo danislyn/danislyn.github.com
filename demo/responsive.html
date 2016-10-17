@@ -187,6 +187,12 @@
     .widget-wrap{
         margin: 50px 0;
     }
+    .widget-wrap:first-child{
+        margin-top: 0;
+    }
+    .widget-wrap:last-child{
+        margin-bottom: 0;
+    }
     .widget-title{
         color: #999;
         font-size: 16px;
@@ -410,6 +416,54 @@
                                 <a href="#category">随笔</a>
                                 <span class="category-list-count">(2)</span>
                             </li>
+                            <li>
+                                <a href="#category">CSS</a>
+                                <span class="category-list-count">(1)</span>
+                            </li>
+                            <li>
+                                <a href="#category">Javascript</a>
+                                <span class="category-list-count">(3)</span>
+                            </li>
+                            <li>
+                                <a href="#category">随笔</a>
+                                <span class="category-list-count">(2)</span>
+                            </li>
+                            <li>
+                                <a href="#category">CSS</a>
+                                <span class="category-list-count">(1)</span>
+                            </li>
+                            <li>
+                                <a href="#category">Javascript</a>
+                                <span class="category-list-count">(3)</span>
+                            </li>
+                            <li>
+                                <a href="#category">随笔</a>
+                                <span class="category-list-count">(2)</span>
+                            </li>
+                            <li>
+                                <a href="#category">CSS</a>
+                                <span class="category-list-count">(1)</span>
+                            </li>
+                            <li>
+                                <a href="#category">Javascript</a>
+                                <span class="category-list-count">(3)</span>
+                            </li>
+                            <li>
+                                <a href="#category">随笔</a>
+                                <span class="category-list-count">(2)</span>
+                            </li>
+                            <li>
+                                <a href="#category">CSS</a>
+                                <span class="category-list-count">(1)</span>
+                            </li>
+                            <li>
+                                <a href="#category">Javascript</a>
+                                <span class="category-list-count">(3)</span>
+                            </li>
+                            <li>
+                                <a href="#category">随笔</a>
+                                <span class="category-list-count">(2)</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -441,6 +495,71 @@
     (function($){
         $('#mainNavToggle').click(function(){
             $('#mainNavList').toggle();
+        });
+
+        var offsetMem;
+        var offsetMem2;
+        var offsetStatus = null;
+
+        $(window).on('scroll', function(){
+            var $sidebar = $('#sidebar');
+            var sidebarDOM = $sidebar.get(0);
+            var offset = $sidebar.offset();
+
+            var scrollTop = $(window).scrollTop();
+            var docHeight = $(document).height();
+
+            var PADDING_TOP = 30;
+            var PADDING_BOTTOM = 195;
+
+            if (!offsetStatus && scrollTop + PADDING_TOP > offset.top) {
+                offsetMem = offset.top;
+                offsetStatus = 'top';
+                console.log('to top: ' + offsetMem)
+
+                $sidebar.css({
+                    position: 'fixed',
+                    top: PADDING_TOP + 'px',
+                    bottom: 'auto',
+                    // left: offset.left + 'px',  // 百分比布局下 left 会不准
+                    right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
+                    width: $sidebar.outerWidth() + 'px'
+                });
+            }
+
+            if (offsetStatus === 'top'
+                && offset.top + $sidebar.outerHeight() + PADDING_BOTTOM > docHeight) {
+                offsetMem2 = offset.top;
+                offsetStatus = 'bottom';
+                console.log('to bottom: ' + offsetMem2)
+
+                $sidebar.css({
+                    position: 'fixed',
+                    top: 'auto',
+                    bottom: PADDING_BOTTOM + 'px',
+                    right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
+                    width: $sidebar.outerWidth() + 'px'
+                });
+            }
+
+            if (offsetStatus === 'top' && offset.top < offsetMem) {
+                offsetStatus = null;
+
+                $sidebar.css({
+                    position: 'static',
+                    width: 'initial'
+                });
+            }
+
+            if (offsetStatus === 'bottom'
+                && offset.top + $sidebar.outerHeight() + PADDING_BOTTOM < docHeight) {
+                offsetStatus = 'top';
+                $sidebar.css({
+                    top: PADDING_TOP + 'px',
+                    bottom: 'auto'
+                });
+            }
+
         });
     })(jQuery);
     </script>

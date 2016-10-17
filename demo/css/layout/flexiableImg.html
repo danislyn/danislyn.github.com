@@ -1,0 +1,72 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+	<style type="text/css">
+	body{
+		background: #ccc;
+		height: auto;
+		margin: 0;
+		width: auto;
+	}
+	#mainContainer{
+		box-sizing: border-box;
+		padding: 10px;
+		width: 100%;
+	}
+
+	#itemList{
+		overflow: hidden;
+		padding: 10px 0 0 10px;
+		*zoom: 1;
+	}
+	.item{
+		float: left;
+		width: 50%;
+	}
+	.img-wrapper{
+		margin: 0 10px 10px 0;
+		position: relative;
+	}
+	.img-wrapper::before{
+		content: '';
+		display: block;
+		padding-top: 30%;
+	}
+	.img-wrapper img{
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	</style>
+</head>
+<body>
+	<div id="mainContainer">
+		<div id="itemList">
+			<div class="item">
+				<div class="img-wrapper">
+					<img src="http://img.taobaocdn.com/tfscom/TB1Fhi3HVXXXXXlXpXXSutbFXXX_q50.jpg">
+				</div>
+			</div>
+			<div class="item">
+				<div class="img-wrapper">
+					<img src="http://img.taobaocdn.com/tfscom/TB1Fhi3HVXXXXXlXpXXSutbFXXX_q50.jpg">
+				</div>
+			</div>
+			<div class="item">
+				<div class="img-wrapper">
+					<img src="http://img.taobaocdn.com/tfscom/TB1Fhi3HVXXXXXlXpXXSutbFXXX_q50.jpg">
+				</div>
+			</div>
+			<div class="item">
+				<div class="img-wrapper">
+					<img src="http://img.taobaocdn.com/tfscom/TB1Fhi3HVXXXXXlXpXXSutbFXXX_q50.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
