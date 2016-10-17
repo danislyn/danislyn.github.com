@@ -17,14 +17,14 @@ position 拉伸
 
 ### 撑满整个未知宽高容器
 
-```
+```css
 position: absolute;
 top: 0; bottom: 0; left: 0; right: 0;
 ```
 
 ### 撑满整个屏幕
 
-```
+```css
 position: fixed;
 top: 0; bottom: 0; left: 0; right: 0;
 ```
@@ -39,7 +39,7 @@ top: 0; bottom: 0; left: 0; right: 0;
 
 已知元素宽度
 
-```
+```css
 #parent {
 	position: relative;
 }
@@ -53,7 +53,7 @@ top: 0; bottom: 0; left: 0; right: 0;
 
 未知元素宽度
 
-```
+```css
 #parentWrapper {
     position: relative;
     overflow: hidden;
@@ -76,7 +76,7 @@ top: 0; bottom: 0; left: 0; right: 0;
 
 ### 完备的clearfix
 
-```
+```css
 .clearfix() {
     *zoom: 1;
     &:before,
@@ -152,7 +152,7 @@ BFC (block formatting context)
 
 实现10px的文字大小，而部分浏览器比如chrome只支持最小12px的文字。
 
-```
+```css
 transform-origin: 0 50%;
 transform: scale(10/12);
 ```
@@ -163,7 +163,7 @@ transform: scale(10/12);
 
 单行文字
 
-```
+```css
 .ui-text-overflow(){
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -173,7 +173,7 @@ transform: scale(10/12);
 
 多行文字（仅webkit有效）
 
-```
+```css
 .ui-text-overflow-lines(@line: 2, @lineHeight: 1.5){
     display: -webkit-box;
     -webkit-line-clamp: @line;
@@ -192,7 +192,7 @@ transform: scale(10/12);
 
 ### 背景图固定不跟随滚动
 
-```
+```css
 background-attachment: fixed
 ```
 
@@ -204,7 +204,7 @@ background-attachment: fixed
 
 这是一个类似`√`符号的icon，css绘制出来，支持等比缩放。
 
-```
+```css
 .icon-get{
     background-color: #59b726;
     border-radius: 50%;

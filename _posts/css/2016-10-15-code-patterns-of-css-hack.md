@@ -15,7 +15,7 @@ tags: [css, 常用片段]
 
 ### opacity
 
-```
+```css
 /* IE 8 */
 -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
 	
@@ -34,7 +34,7 @@ opacity: 0.5;
 
 ### 灰白滤镜
 
-```
+```css
 .grayscale(){
     filter: gray; /* For IE 6 - 9 */
     filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); 
@@ -54,7 +54,7 @@ opacity: 0.5;
 
 ### table-cell 垂直居中
 
-```
+```css
 .table {
     height: 300px;/*高度值不能少*/
     width: 300px;/*宽度值不能少*/
@@ -84,7 +84,7 @@ opacity: 0.5;
 
 ### inline-block IE6/7 hack
 
-```
+```css
 *display: inline;
 *zoom: 1;
 ```

@@ -117,7 +117,6 @@
 	    </div>
 
 		<script type="text/javascript" src="/assets/custom/js/highlight.pack.js"></script>
-		<script type="text/javascript" src="/assets/custom/js/jquery.pin.min.js"></script>
 		<script type="text/javascript">
 		(function($){
 			// 移动版页面导航栏click
@@ -184,11 +183,31 @@
 			});
 
 			// sidebar 固定
-			$('#sidebar').pin({
-				containerSelector: '#mainBody',
-				minWidth: 768,
-				padding: {
-					top: 50
+			$(window).on('scroll', function(){
+				var $sidebar = $('#sidebar');
+				var offset = $sidebar.offset();
+
+				var scrollTop = $(window).scrollTop();
+				var PADDING_TOP = 50;
+
+				if (scrollTop + PADDING_TOP > offset.top) {
+					window.offsetMem = offset.top;
+
+					$sidebar.css({
+						position: 'fixed',
+						top: PADDING_TOP + 'px',
+						bottom: 'auto',
+						// left: offset.left + 'px',  // 百分比布局下 left 会不准
+						right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
+						width: $sidebar.outerWidth() + 'px'
+					});
+				}
+
+				if (offset.top < window.offsetMem) {
+					$sidebar.css({
+						position: 'static',
+						width: 'initial'
+					});
 				}
 			});
 			
