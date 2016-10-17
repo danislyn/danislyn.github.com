@@ -204,10 +204,7 @@
 				}
 
 				if (offset.top < window.offsetMem) {
-					$sidebar.css({
-						position: 'static',
-						width: 'initial'
-					});
+					$sidebar.removeAttr('style');
 				}
 			});
 			
