@@ -183,30 +183,36 @@
 			});
 
 			// sidebar 固定
-			$(window).on('scroll', function(){
-				var $sidebar = $('#sidebar');
-				var offset = $sidebar.offset();
+			if (window.innerWidth >= 768) {
+				var offsetMem;
 
-				var scrollTop = $(window).scrollTop();
-				var PADDING_TOP = 50;
+				var scrollFn = function(){
+					var $sidebar = $('#sidebar');
+					var offset = $sidebar.offset();
 
-				if (scrollTop + PADDING_TOP > offset.top) {
-					window.offsetMem = offset.top;
+					var scrollTop = $(window).scrollTop();
+					var PADDING_TOP = 50;
 
-					$sidebar.css({
-						position: 'fixed',
-						top: PADDING_TOP + 'px',
-						bottom: 'auto',
-						// left: offset.left + 'px',  // 百分比布局下 left 会不准
-						right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
-						width: $sidebar.outerWidth() + 'px'
-					});
-				}
+					if (scrollTop + PADDING_TOP > offset.top) {
+						offsetMem = offset.top;
 
-				if (offset.top < window.offsetMem) {
-					$sidebar.removeAttr('style');
-				}
-			});
+						$sidebar.css({
+							position: 'fixed',
+							top: PADDING_TOP + 'px',
+							bottom: 'auto',
+							// left: offset.left + 'px',  // 百分比布局下 left 会不准
+							right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
+							width: $sidebar.outerWidth() + 'px'
+						});
+					}
+
+					if (offset.top < offsetMem) {
+						$sidebar.removeAttr('style');
+					}
+				};
+
+				$(window).on('scroll', scrollFn);
+			}
 			
 		})(jQuery);
 		</script>

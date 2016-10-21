@@ -199,7 +199,7 @@ background-attachment: fixed
 ```
 
 
-图标
+其他
 -----
 
 ### 手绘icon
@@ -236,6 +236,30 @@ background-attachment: fixed
         height: percentage(7/18);
         top: percentage(4/18);;  //before.top - after.height
         left: percentage(5/18);
+    }
+}
+```
+
+### 自定义滚动条样式
+
+类似mac上滚动条的感觉
+
+```
+.mac-scroll {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    /*定义滑条*/
+    &::-webkit-scrollbar-thumb {
+        background-color: $gray-lightest;
+        background-clip: content-box;
+        border-top: 5px solid rgba(255,255,255,0);
+        border-bottom: 5px solid rgba(255,255,255,0);
+        border-right: 4px solid rgba(255,255,255,0);
+    }
+    /*定义滚动条轨道*/
+    &::-webkit-scrollbar-track {
+        background-color: #fbfbfb;
     }
 }
 ```
