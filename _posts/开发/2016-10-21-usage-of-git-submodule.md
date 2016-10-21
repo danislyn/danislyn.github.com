@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "使用 git submodule 建立子项目的依赖"
+title: "使用 git submodule 建立子项目依赖"
 category: 开发
 tags: [git]
 ---
