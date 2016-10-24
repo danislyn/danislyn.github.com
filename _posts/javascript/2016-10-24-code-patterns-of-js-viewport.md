@@ -14,7 +14,9 @@ tags: [javascript, 常用片段]
 
 在jquery中直接`$(window).scrollTop()`就完事了，但也要知道在原生js中的兼容性写法为
 
-> window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+```
+window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+```
 
 可参考如下
 
@@ -31,7 +33,7 @@ tags: [javascript, 常用片段]
 
 判断是否在当前视窗范围内的临界值
 
-> (式1) deltaTop - TOP_MARGIN > 0
+> (式1)  deltaTop - TOP_MARGIN > 0
 
 元素距视窗底部
 
@@ -39,15 +41,15 @@ tags: [javascript, 常用片段]
 
 判断是否在当前视窗范围内的临界值
 
-> (式2) deltaBottom - BOTTOM_MARGIN > 0
+> (式2)  deltaBottom - BOTTOM_MARGIN > 0
 
 替换`deltaBottom`的计算式后，上式等价于
 
-> (式3) deltaTop < window.innerHeight - el.outerHeight() - BOTTOM_MARGIN
+> (式3)  deltaTop < window.innerHeight - el.outerHeight() - BOTTOM_MARGIN
 
-注：以上【TOP_MARGIN】【BOTTOM_MARGIN】表示距离视窗范围的固定量，类似于fixed定位时的`top``bottom`所代表的距离。
+注：以上【TOP_MARGIN】【BOTTOM_MARGIN】表示距离视窗范围的固定量，类似于fixed定位时的 `top` `bottom` 所代表的距离。
 
-综上，如果要判定一个元素是否在视窗范围内，只要同时满足(式1)(式2/式3)即可。
+综上，如果要判定一个元素是否在视窗范围内，只要同时满足 (式1)(式2/式3) 即可。
 
 
 ### 三、判断到达页面底部
