@@ -50,6 +50,7 @@ Node起步
 	- [eventproxy](https://github.com/JacksonTian/eventproxy) @朴灵的基于事件的流程控制，我觉着和promise或async搭配着使用很好用
 
 
+
 主程序设计
 ----------
 在摘要中已经提到，这个项目的目标分为3步：添加检测任务 => 爬虫执行任务 => 前端报表展现。但在具体实现时，需要对爬虫进行细分，最终会有6步过程。
@@ -102,28 +103,92 @@ Node起步
 
 ### 架构图
 
-整个系统分为4个部分：前端系统、任务Producer、爬虫系统、日志计算同步进程。
+整个系统分为4个部分：前端系统、任务Producer、爬虫系统、日志计算同步进程。架构图如下，可以看到箭头就代表着数据流的方向。
 
-
+<img src="/assets/captures/20161121_project_architecture.png" style="max-width:500px">
 
 而爬虫调度和执行是典型的“生产者-消费者”模式，这里生产者只有1个，而有N个消费者爬虫进程。
 
+<img src="/assets/captures/20161121_producer_and_runner.png" style="max-width:400px">
+
+所谓的检测任务队列，实际就是数据库中的一张表，多个爬虫进程或多台爬虫机器都共享这张表，只要保证从表的顶部开始读取，读完后就要重置状态位，防止被其他进程重复读取。而当任务执行失败后，会将该检测任务的记录移到table的队尾，并设置1个失败次数的字段。
 
 
 
 爬虫实现思路
 -----------
 
+### 技术框架
+
+在本文第一节中就列出了一些库，在页面爬取方面，使用[superagent](http://visionmedia.github.io/superagent/)获取页面内容，使用[cheerio](https://github.com/cheeriojs/cheerio)做文档解析。而对于一些不需要解析内容的爬取任务（比如查询某个页面的 header 信息，或是检查某个页面是否 200 状态），使用[request](https://github.com/request/request)来发请求。
+
+对于爬虫系统中最关键的异步流控制，我在实现时做了多种风格的尝试，在数据库读写层面使用promise风格，在检测项内部使用[async](https://github.com/caolan/async)，而在爬虫的实例中使用[eventproxy](https://github.com/JacksonTian/eventproxy)来进行流控制。
+
+
+### 目录结构
+
+- base/  跟继承和通用相关的
+- conf/  各种配置项（检测项的配置、规则的配置）
+- constant/  各种常量的定义和配置
+- database/  数据库配置和连接池
+- models/  数据库表对应的 json schema
+- dao/  与model相应的Dao增删改查封装
+- util/  通用数据的helper
+
+- factory/  工厂封装类，统一任务的组建过程
+- modules/  具体检测项 (爬虫上搭载的具体task实现)
+	- basic/  基础信息 可用性检测
+	- content/  内容检测大类
+	- secure/  安全检测大类
+	- common/  站点入库、链接入库，以及抓取页面内容也抽象成1个通用task
+- crawler/  爬虫对象与池管理（1个crawler实例只负责1次页面请求）
+- scheduler/  监控和调度进程 (每隔一段时间就执行一轮)
+	- runner.js  用来执行检测任务 (任务消费者)
+	- siteRunner.js  针对“站点链接入库”的runner
+
+- app.js  主程序，用来启动runner
+- appSite.js  主程序之一，用来启动SiteRunner
+- appPath.js  用来启动低频高请求量的检测任务（详见下面的地址型检测类）
+
+
 ### 检测项管道模式
 
-
-### 爬虫Runner种类
-
+由上面的结构可以看到，程序运行时的调用过程是：app.js => runner.js => crawler => 具体检测项。
 
 
-异步控制流
----------
-主程序 async
-检测项载体 eventproxy
-检测项内部 async
-数据库读写 promise
+1个`Crawler`对象只负责1次页面请求，
+
+
+
+### 检测项分类
+
+```
+// 表明这个TaskItem属于哪一大类的TaskFragment (通用的除外)
+var modDict = {
+	COMMON_CRAWL: 'COMMON_CRAWL',		// 通用爬取方法 如请求页面document, 取链接等
+	BASIC_DETECT: 'BASIC_DETECT',		// 可用性检测
+	CONTENT_DETECT: 'CONTENT_DETECT',	// 内容检测 合并了篡改检测
+	SECURE_DETECT: 'SECURE_DETECT'		// 安全检测
+};
+
+// 表明这个TaskItem能否与其他合并, 共用1次请求
+var typeDict = {
+	EXCLUSIVE: 'EXCLUSIVE',				// 排它性 (独占request的任务)
+	INCLUSIVE: 'INCLUSIVE'				// 可合并性 (只需传递context)
+};
+
+// 表明这个TaskItem应该在哪个表中, 应该交给哪个Runner处理
+var runnerTypeDict = {
+	COMMON: 'COMMON_TASK',				// 普通任务 -> crawl_task ->
+	SITE: 'SITE_TASK',					// 站点入库类 -> site_crawl_task -> SiteRunner
+	PATH: 'PATH_TASK'					// 路径检测类 -> path_crawl_task ->
+};
+```
+
+
+
+
+总结展望
+--------
+
+
