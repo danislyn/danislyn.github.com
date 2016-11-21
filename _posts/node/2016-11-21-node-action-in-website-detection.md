@@ -3,7 +3,6 @@ layout: post
 title: "网站安全监测 - Node实战"
 category: node
 tags: [nodejs]
-published: false
 ---
 {% include JB/setup %}
 
@@ -151,19 +150,189 @@ Node起步
 - appPath.js  用来启动低频高请求量的检测任务（详见下面的地址型检测类）
 
 
-### 检测项管道模式
 
+爬虫实现流程
+------------
 由上面的结构可以看到，程序运行时的调用过程是：app.js => runner.js => crawler => 具体检测项。
 
+### app.js
 
-1个`Crawler`对象只负责1次页面请求，
+其中 app.js 只是个程序入口，里面构造了一些参数给runner，代表性的参数有：runner每轮执行时取出的任务数量（即1个消费者每次消耗的数量），以及每轮执行之间的间隔时间（因为执行1轮任务时会有N个请求，如果不做间隔时间的限制，同时等待请求响应的线程太多会爆）。
 
+
+### runner.js
+
+runner.js 首先提供1个支持间隔时间的循环执行接口，这里使用 async 库来实现。
+
+```
+RunnerBase.prototype = {
+    start: function(){
+        var that = this;
+        that._count = 0;
+
+        async.whilst(
+            function(){
+                if(that.loopCount){
+                    return that._count < that.loopCount;
+                }
+                return true;
+            },
+            function (callback){
+                // 第一次立即执行
+                if(!that._count){
+                    that._count = 1;
+                    that.run();
+                    callback(null, that._count);
+                }
+                else{
+                    that._count++;
+                    setTimeout(function(){
+                        that.run();
+                        callback(null, that._count);
+                    }, that.loopInterval || 10000);  // 默认10秒间隔
+                }
+            },
+            function (n){
+                console.log('Runner with [n=' + n + ']');
+            }
+        );
+    }
+};
+```
+
+而runner中的`run()`方法就是每轮具体要执行的操作，它其实整体是个串行过程，有以下步骤：
+
+- 1、取出数据库中的任务队列中靠前的 N 个任务
+- 2、如果取出为空，直接跳到第6步
+- 3、将任务状态标为`PROCESSING`
+- 4、对 N 个任务按检测的url重新分组，比如得到 M 个组，则构造 M 个 Crawler 实例（**这里设计的准则就是1个Crawler实例只爬取1个页面**）
+- 5、使用`async.parallel`并行执行 M 个 Crawler 的`run()`方法
+- 6、一轮 runner 执行结束
+
+这里整体是串行，使用了 eventproxy 来进行流程控制
+
+```
+Runner.prototype.run = function(cb){
+	var that = this;
+	var ep = new EventProxy();
+
+    // 统一错误处理 TODO
+    ep.fail(function (err){
+        console.log(err);
+    });
+
+	// 各步骤一起调用，通过 event信号 等待
+	Runner.steps.forEach(function (fn){
+		fn.call(that, ep, cb);
+	});
+}
+```
+
+而其中最关键的步骤是并行执行 M 个 Crawler，其实现原理如下
+
+```
+function (ep){
+	var that = this;
+
+	ep.on('crawlerReady', function (crawlers){
+		// 构造 async.parallel 的执行函数
+		var threads = crawlers.map(function (crawler){
+			return function (callback){
+				// run前的累计
+				that.crawlerCount++;
+
+				crawler.run(function (err){
+                    // run完的累计
+                    that.crawlerCountDone++;
+					if (err){
+						console.log(err);
+						callback(err);
+					} else {
+						callback(null);
+					}
+				});
+			}
+		});
+
+		async.parallel(threads, function (err, res){
+			console.log('[OK] 并行Crawler[len=' + threads.length + ']执行完毕');
+		});
+
+		// 这里释放信号不能放在 async.parallel 的回调里，以防有爬虫挂了就卡死了
+		// 直接到最后1步，可在每轮的最后看到爬虫累计的页面数目，and 爬虫监控池 TODO
+		ep.emit('crawlerDone');
+	});
+},
+
+function (ep, cb){
+	var that = this;
+
+	ep.on('crawlerDone', function(){
+		console.log('[OK] 消费者1轮, ' +
+			'累计爬了 ' + that.crawlerCount + ' 个页面, ' +
+			'累计结束 ' + that.crawlerCountDone + ' 个页面');
+		cb && cb();
+	});
+}
+```
+
+
+### crawler.js
+
+上面已经提到了多次：1个`Crawler`对象只负责`1次`页面请求，在 Crawler 对象中主要记录着分组后的任务数组，它们有着同样的目标url。先请求页面url，得到页面文档后将内容依次传递给各检测项去各自执行任务。所以总的来说，这里也是一个串行过程，具体步骤如下：
+
+- 1、将分组后的任务，通过任务类型的key，反射到具体的类，得到可执行的任务对象的数组。
+- 2、调用请求页面内容的通用检测项，作为 starter
+- 3、将页面内容的文档作为 context 入参，依次调用各任务对象的数组
+- 4、任务全部完成后，在数据库中将其移出队列；若失败，则先移除，计失败次数+1，然后重新插入队尾
+
+这里也是用 eventproxy 控制流程的，其中关键的 context 传参调用各任务对象，实现如下
+
+```
+function (ep){
+	var that = this;
+
+	// 使 task.run() 结果按顺序排列
+	ep.after('oneTaskFinished', that.tasks.length, function (results){
+		ep.emit('allTasksFinished', results);	
+	});
+
+	ep.on('starterFinished', function (context){
+		that.tasks.forEach(function (task){
+			task.run(context, ep.group('oneTaskFinished'));
+		});
+	});
+},
+```
+
+注意，使用`ep.group()`方法可以保证得到的执行结果的顺序是与调用顺序一致的，而各task的执行是并行的。
+
+
+
+检测项工作模式
+-------------
+
+### 反射原理
+
+在上面讲 crawler 的第1步中提到：将分组后的任务，通过任务类型的key，反射到具体的类。因为从数据库任务队列取来的检测任务只会含有`模板url`/`检测大类`/`检测项小类`这样的数据，所以就要反射到具体的检测类来构造对象。
+
+“反射”是强类型编程语言中的概念（我最早是在 Java 中了解的），而 js 天然的弱类型和动态特性，很容易实现。
+
+```
+// 根据命名规则，取检测模块的引用
+getModuleFromCrawlTask: function(crawlTask){
+	var modulePath = ModuleConf.getPath(crawlTask['item_key']);
+	return require(modulePath);
+}
+```
+
+这里每个检测项任务都会带有`item_key`字段，表示具体的检测项，其实还有`mod_key`，对应到系统的3大类检测：可用性，内容检测，安全检测。具体见下一段。
 
 
 ### 检测项分类
 
 ```
-// 表明这个TaskItem属于哪一大类的TaskFragment (通用的除外)
+// 表明这个TaskItem属于哪一大类 (通用的除外)
 var modDict = {
 	COMMON_CRAWL: 'COMMON_CRAWL',		// 通用爬取方法 如请求页面document, 取链接等
 	BASIC_DETECT: 'BASIC_DETECT',		// 可用性检测
@@ -171,7 +340,7 @@ var modDict = {
 	SECURE_DETECT: 'SECURE_DETECT'		// 安全检测
 };
 
-// 表明这个TaskItem能否与其他合并, 共用1次请求
+// 表明这个TaskItem能否与其他合并, 能否共用1次请求
 var typeDict = {
 	EXCLUSIVE: 'EXCLUSIVE',				// 排它性 (独占request的任务)
 	INCLUSIVE: 'INCLUSIVE'				// 可合并性 (只需传递context)
@@ -179,16 +348,32 @@ var typeDict = {
 
 // 表明这个TaskItem应该在哪个表中, 应该交给哪个Runner处理
 var runnerTypeDict = {
-	COMMON: 'COMMON_TASK',				// 普通任务 -> crawl_task ->
-	SITE: 'SITE_TASK',					// 站点入库类 -> site_crawl_task -> SiteRunner
-	PATH: 'PATH_TASK'					// 路径检测类 -> path_crawl_task ->
+	COMMON: 'COMMON_TASK',				// 普通任务 -> Runner -> app.js
+	SITE: 'SITE_TASK',					// 站点入库类 -> SiteRunner  -> appSite.js
+	PATH: 'PATH_TASK'					// 路径检测类 -> Runner -> appPath.js
 };
 ```
 
+这里定义了两种表示任务属性的类型：`INCLUSIVE`表示该任务是可以与同目标url的其他任务合并的，只需要请求1次页面，传递页面内容的context即可，详见 crawler.js 的部分实现代码。而`EXCLUSIVE`表示该任务内部要自己发请求，比如查Whois信息，或者要检测是否存在某些后门路径，这类任务是不可以合并的。
+
+而`runnerType`又是另一个层面的另一种分类，在[第二节主程序设计](#主程序设计)中提到过站点链接入库。我在实现时做了一层抽象，将“站点入库”和“链接入库”也视为一种检测项任务，任务放在单独的一个队列表中。这样就能共用一些 crawler 和 runner 的逻辑。
+
+此外对于路径类检测，比如Webshell地址检测，或是敏感路径检测，由于规则的字典很大，1个检测项可能会有上千次请求。因此对于这类“低频”又“高请求量”的检测项，我也单独将任务放在另一个独立的队列表中，也由另一个程序入口启动。
+
+
+### 并行与管道
+
+总结整个爬虫调度与检测项的工作流程，是“串行”与“并行”同时存在着。
+
+<img src="/assets/captures/20161121_runner_task_pipe.png" style="max-width:400px">
+
+由runner执行时每轮会取出一堆任务，生成多个crawler实例，这是并行的。而在每个crawler内部可以理解为像工厂的流水线模式，先请求页面url，然后将页面内容一个个传递给各检测项去完成相应的提取或检测工作。每个检测项内部都会去写各自的log文件，最后所有检测任务都完成后，间隔一段时间后会进入下一轮runner的执行。
+
+注意的是，检测项是根据目标url来分组的，搭载在crawler实例上执行的，同一组的检测项都执行完后，相应的crawler实例也应该销毁。而 runner 对象的实例是始终存在的，它像一个定时器一样每隔十来秒就会再触发1轮执行。同时，1个runner实例应该对应1个进程，多个runner实例应该跑在多台爬虫服务器上。
 
 
 
-总结展望
---------
+总结与不足
+----------
 
 
