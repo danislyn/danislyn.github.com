@@ -40,13 +40,13 @@ Node起步
 
 - 用于爬虫
 	- [superagent](http://visionmedia.github.io/superagent/) 处理请求的模块
-	- [request](https://github.com/request/request) 另一个处理请求的模块，比起superagent，语法配置项更多一些。如果说superagent是`$.post()`，那request就是`$.ajax()`
-	- [cheerio](https://github.com/cheeriojs/cheerio) 用于DOM解析，提供与jquery选择器类似的接口
+	- [request](https://github.com/request/request) 另一个处理请求的模块，比起 superagent，语法配置项更多一些。如果说 superagent 是 `$.post()`，那 request 就是 `$.ajax()`
+	- [cheerio](https://github.com/cheeriojs/cheerio) 用于DOM解析，提供与 jquery 选择器类似的接口
 
 - 异步流程控制
-	- [Q in Github](https://github.com/kriskowal/q) Promise化的一种实现，promise不是万能，改造复杂的动态决定的执行链是件比较吃力的事情
+	- [Q in Github](https://github.com/kriskowal/q) Promise 化的一种实现，promise 不是万能，改造复杂的动态决定的执行链是比较烦的事情
 	- [async](https://github.com/caolan/async) 点赞数很高的库，有人说有毒，我觉着很好用
-	- [eventproxy](https://github.com/JacksonTian/eventproxy) @朴灵的基于事件的流程控制，我觉着和promise或async搭配着使用很好用
+	- [eventproxy](https://github.com/JacksonTian/eventproxy) @朴灵的基于事件的流程控制，我觉着和 promise 或 async 搭配着使用很好用
 
 
 
@@ -71,7 +71,7 @@ Node起步
 
 ### 2、站点入库
 
-由于上面“内容检测”和“安全检测”都需要对网站首页下的其他页面全部检测，因此我们需要维护一个`site`表和`site_link`表，记录下网站的域名和 ip 信息，并且存下每个页面链接的信息，包括该页面相对于首页的深度层级，该页面的链接是`同源`、`同域`还是`外链`，以及页面的发现时间、状态信息等。
+由于上面“内容检测”和“安全检测”都需要对网站首页下的其他页面全部检测，因此我们需要维护一个 `site` 表和 `site_link` 表，记录下网站的域名和 ip 信息，并且存下每个页面链接的信息，包括该页面相对于首页的深度层级，该页面的链接是 `同源`、`同域` 还是 `外链`，以及页面的发现时间、状态信息等。
 
 另外注意的是，从首页开始取链接，然后再对链接再取它的后继链接，整个过程应采用“广度优先”的策略。而“检测深度”和“最大页数”也是在这个时候进行限制的，如果当前页面深度为 N，`N + 1 > 检测深度`，那么该页面就不再往爬取队列中 push 后继链接了。
 
@@ -121,7 +121,7 @@ Node起步
 
 ### 技术框架
 
-在本文第一节中就列出了一些库，在页面爬取方面，使用[superagent](http://visionmedia.github.io/superagent/)获取页面内容，使用[cheerio](https://github.com/cheeriojs/cheerio)做文档解析。而对于一些不需要解析内容的爬取任务（比如查询某个页面的 header 信息，或是检查某个页面是否 200 状态），使用[request](https://github.com/request/request)来发请求。
+在本文第一节中就列出了一些库，在页面爬取方面，使用 [superagent](http://visionmedia.github.io/superagent/) 获取页面内容，使用 [cheerio](https://github.com/cheeriojs/cheerio) 做文档解析。而对于一些不需要解析内容的爬取任务（比如查询某个页面的 header 信息，或是检查某个页面是否 200 状态），使用 [request](https://github.com/request/request) 来发请求。
 
 对于爬虫系统中最关键的异步流控制，我在实现时做了多种风格的尝试，在数据库读写层面使用 promise 风格，在检测项内部使用 [async](https://github.com/caolan/async)，而在爬虫的实例中使用 [eventproxy](https://github.com/JacksonTian/eventproxy) 来进行流控制。
 
@@ -133,7 +133,7 @@ Node起步
 - constant/  各种常量的定义和配置
 - database/  数据库配置和连接池
 - models/  数据库表对应的 json schema
-- dao/  与model相应的Dao增删改查封装
+- dao/  与 model 相应的 Dao 增删改查封装
 - util/  通用数据的helper
 
 - factory/  工厂封装类，统一任务的组建过程
@@ -145,10 +145,10 @@ Node起步
 - crawler/  爬虫对象与池管理（1个crawler实例只负责1次页面请求）
 - scheduler/  监控和调度进程 (每隔一段时间就执行一轮)
 	- runner.js  用来执行检测任务 (任务消费者)
-	- siteRunner.js  针对“站点链接入库”的runner
+	- siteRunner.js  针对“站点链接入库”的 runner
 
-- app.js  主程序，用来启动runner
-- appSite.js  主程序之一，用来启动SiteRunner
+- app.js  主程序，用来启动 runner
+- appSite.js  主程序之一，用来启动 SiteRunner
 - appPath.js  用来启动低频高请求量的检测任务（详见下面的地址型检测类）
 
 
@@ -344,8 +344,8 @@ var modDict = {
 
 // 表明这个TaskItem能否与其他合并, 能否共用1次请求
 var typeDict = {
-	EXCLUSIVE: 'EXCLUSIVE',				// 排它性 (独占request的任务)
-	INCLUSIVE: 'INCLUSIVE'				// 可合并性 (只需传递context)
+	EXCLUSIVE: 'EXCLUSIVE',				// 排它性 (独占 request 的任务)
+	INCLUSIVE: 'INCLUSIVE'				// 可合并性 (只需传递 context)
 };
 
 // 表明这个TaskItem应该在哪个表中, 应该交给哪个Runner处理
@@ -377,7 +377,7 @@ var runnerTypeDict = {
 
 总结与不足
 ----------
-这个项目从去年11月开始需求分析，做界面demo，到任务分解和组装过程的设计，再到爬虫的实现，也是从零开始学 nodejs，整个过程最初都只有我1个人，对自己的挑战提升很大。熬了两三个月后才有人手帮我做日志的回收计算以及前端的报表部分，之后项目就交给他们了，他们后来做了一些安全检测项方面的强化以及多机器的部署和通信。
+这个项目从去年11月开始需求分析，做界面 demo，到任务分解和组装过程的设计，再到爬虫的实现，也是从零开始学 nodejs，整个过程最初都只有我1个人，对自己的挑战提升很大。熬了两三个月后才有人手帮我做日志的回收计算以及前端的报表部分，之后项目就交给他们了，他们后来做了一些安全检测项方面的强化以及多机器的部署和通信。
 
 我在单机（Mac Air Book @2012）上运行的效率平均1小时，爬取近1万个页面，并完成剩余的内容检测项部分。在前面图中一轮取出的任务数量以及并行 Crawler 的数目，对机器的性能和网速都有要求，如果入不敷出（每轮间隔时间内都只有少数的 crawler 执行完），最终会产生很多内存错误，或者 TCP 连接数过多，也得不到结果。
 
