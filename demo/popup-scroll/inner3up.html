@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>弹出层外部禁用，内部可滚css控制up</title>
+
+    <style type="text/css">
+    body{
+        margin: 0;
+    }
+    .container{
+        width: 100%;
+        overflow-y: scroll;
+        /*position: relative;*/
+    }
+    .layer-title{
+        width: 100%;
+        margin: 50px 0 0;
+        text-align: center;
+    }
+    .layer-action{
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        text-align: center;
+    }
+    .btn{
+        background-color: #08c;
+        border: 0;
+        color: #fff;
+        height: 30px;
+        line-height: 30px;
+        width: 100px;
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    #underLayer{
+        background-color: #eee;
+        width: 90%;
+        height: 500px;
+        margin: 30px auto 1000px;
+        text-align: center;
+    }
+    #underLayer p {
+        line-height: 400px;
+        margin: 0;
+    }
+    #underLayer .btn {
+        margin: 20px auto;
+    }
+
+    #popupLayer{
+        display: none;
+        background-color: #fff;
+        width: 80%;
+        height: 200px;
+        overflow: scroll;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-left: -40%;
+        margin-top: -100px;
+        line-height: 1em;
+        z-index: 1;
+        /* for iOS */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #bgMask{
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.6);
+    }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainContainer">
+        <div id="underLayer">
+            <p>底层元素</p>
+            <button class="btn" id="openPopup">打开</button>
+        </div>
+        <p class="text-center">页面底部</p>
+    </div>
+
+    <div id="popupLayer">
+        <div class="layer-title">弹出层</div>
+        <br>滚<br>动<br>滚<br>动<br>滚<br>动<br>滚<br>动
+        <div class="layer-action">
+            <button class="btn" id="closePopup">关闭</button>
+        </div>
+        <br>ha<br>ha<br>ha<br>ha<br>ha<br>ha<br>ha<br>到底了
+    </div>
+    <div id="bgMask"></div>
+
+
+    <script type="text/javascript" src="//cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <script type="text/javascript">
+    Zepto(function($){
+
+        $('#openPopup').on('click', function(){
+            $('#popupLayer').show();
+            $('#bgMask').show();
+
+            $('#mainContainer').css('position', 'fixed');
+        });
+
+        $('#closePopup').on('click', function(e){
+            $('#popupLayer').hide();
+            $('#bgMask').hide();
+
+            $('#mainContainer').css('position', 'static');
+        });
+
+    });
+    </script>
+</body>
+</html>

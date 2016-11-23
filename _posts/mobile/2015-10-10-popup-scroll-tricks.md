@@ -343,9 +343,36 @@ PC上简单有效，但是同样手机上不鸟这些。[见demo](/demo/popup-sc
 
 这里要注意的是，我加了一条判断，弹出层内部的滚动只能纵向滚，即 deltaY 要大于 deltaX。因为我发现个bug，当没有这条判断时，弹出层内部可以横向滚，滚出的都是空白，大家可以自己试下。还有这里到底使用`e.changedTouches[0]`还是像iscroll里的`e.touches[0]`获取当前滚动的手指，其实都OK，[可以看下这篇文章](http://www.cnblogs.com/aaronjs/p/4778020.html)
 
-[最后请看demo](/demo/popup-scroll/inner2up.html)，手机请扫二维码，效果棒棒的！
+[最后请看demo](/demo/popup-scroll/inner2up.html)，~~手机请扫二维码，效果棒棒的！~~
 
 <img src="/assets/captures/20151010_05.png" style="max-width: 171px;">
+
+注：一年前做这个demo时，我手机 ( Meizu Android 4.4.2 ) 上效果是OK的，在 [SegmentFault](https://segmentfault.com/) 论坛上不止一个人回复说上面的方案有问题，有一半机率是不行的，快速滑的时候肯定不行。
+
+
+### 来自SF网友的方案 ###
+
+网友 [jiehwa](https://segmentfault.com/u/jiehwa520) 的提到不需要重写事件那么麻烦，通过几个 css属性 控制即可。
+
+- 弹出层父元素设置属性 `overflow-y: scroll`
+- 弹窗弹出时，用js控制底层元素的 position 属性置为 `fixed`
+- 弹窗关闭时，用js控制底层元素的 position 属性置为 `static`
+- 在 iOS 端，为了弹窗里面的滚动效果看起来顺滑，需要设置弹窗层的包裹元素属性：`-webkit-overflow-scrolling: touch`
+
+[css方案的demo](/demo/popup-scroll/inner3.html)（感谢 SegmentFault 网友）
+
+<img src="/assets/captures/20151010_06.png" style="max-width: 170px;">
+
+可以看到有瑕疵，当强行将底层元素置为 `fixed` 后，由于 fixed 定位会让元素脱离正常的DOM文档流，所以原本位于页面底部的元素就一下子顶上来了。还有当底层元素滑动一段距离后再打开弹出层，底层元素又被 fixed 定位重置了，看着也很别扭。
+
+仔细阅读后发现我误解了，控制底层元素的 fixed 定位应该作用在 `<body>` 的一级子元素，而弹出层的包裹元素也是 `<body>` 的一级子元素，于是 [改进后的 demo](/demo/popup-scroll/inner3up.html) 如下
+
+<img src="/assets/captures/20151010_07.png" style="max-width: 170px;">
+
+现在“页面底部”这几个字不会顶上来了，但是滑动一段距离后再打开弹出层时的页面底层还是会抖动，这个暂时也想不出很好的解决方案
+
+<img src="/assets/photos/wulian.jpg" style="width: 56px;">
+
 
 
 最后感谢[叶小钗](http://www.cnblogs.com/yexiaochai/)，最近一直在看他关于移动端事件原理的博客，有点学会了他那种 代码实验 -> 猜测解释 -> 验证原理 -> 改进问题 这样的学习方法。本文也花了很大力气写代码实验，疏漏之处望多多指正，谢谢耐心的看完
