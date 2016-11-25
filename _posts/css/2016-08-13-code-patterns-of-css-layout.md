@@ -104,16 +104,34 @@ top: 0; bottom: 0; left: 0; right: 0;
 - 父容器可定宽，也可100%铺满
 
 
-BFC (block formatting context)
+BFC (Block Formatting Context)
 -------------------------------
+页面上任何一个元素都可以看成 box，box 种类有：Block-level，Inline-level 和匿名box
 
-- block-level box 须通过设置如overflow不为visible(IE6/7无效，可以设zoom)、float不为none等等来创建block formatting context
-	
-- 触发了bfc的block level box，没有margin callapse的问题（父元素与子元素的margin callapse），并且边缘不会和float box的边缘重叠，利用它可以清浮动。
+BFC (Block Formatting Context) 是一个独立的渲染区域，只有 Block-level box 参与， 它规定了内部的 Block-level box 如何布局，并且与这个区域外部毫不相干。
 
-- 页面上任何一个元素都可以看成box，box分block-level，inline-level和匿名的
-	
+BFC布局规则
+
+- 内部的 Box 会在垂直方向，一个接一个地放置
+- Box 垂直方向的距离由 margin 决定。属于同一个 BFC 的两个相邻 Box 的 margin 会发生重叠（margin callapse）
+    - 即使是子元素和父元素的关系，如果它们在同一个 BFC Box 下，也会发生 margin callapse
+- 每个元素的 margin box 的左边， 与包含块 border box 的左边相接触（对于从左往右的格式化，否则相反）
+    - **即使存在浮动元素也是如此**，即在一个 BFC Box 内部，浮动流和文档流会发生重叠
+- BFC 的区域不会与浮动元素重叠（利用它重新构造个 BFC 区域，就可以清除浮动）
+- 计算 BFC 区域的高度时，浮动元素也参与计算
+- 总结 BFC，就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素
+
+如何触发BFC
+
+- float 属性不为 none （即脱离文档流，到浮动流）
+- position 为 absolute 或 fixed （即脱离文档流，到定位流）
+- overflow 不为 visible （IE6/7 无效时，可以设 `zoom: 1` 触发 hasLayout）
+- display 为 inline-block, table-cell, table-caption, flex, inline-flex
+
+参考资料
+
 - W3C标准 [Visual formatting model](http://www.w3.org/TR/CSS2/visuren.html)
+- [前端精选文摘：BFC 神奇背后的原理](http://www.cnblogs.com/lhb25/p/inside-block-formatting-ontext.html)
 
 
 行排列
