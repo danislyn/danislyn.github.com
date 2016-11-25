@@ -69,3 +69,26 @@ window.pageYOffset || document.documentElement.scrollTop || document.body.scroll
 这里【BOTTOM_MARGIN】表示距离页面底部的可接受距离。
 
 
+
+附
+----
+
+### offsetHeight & clientHeight & scrollHeight
+
+参考文章：[JavaScript中的各种宽高以及位置总结](https://segmentfault.com/a/1190000002545307)
+
+
+### 几种窗口的宽度
+
+document.documentElement.offsetWidth：视窗宽度（不滚动的情况下，一屏可以看到多宽的文档），且不包含滚动条的宽度
+
+document.body.offsetWidth：页面文档真正的宽度，可以通过滚动看到的文档的全部宽度
+
+window.innerWidth：同“视窗宽度”，但貌似在 IE8 下与 document.documentElement.offsetWidth 不相等
+
+window.outerWidth：整个浏览器窗口的宽度，如果不开调试工具窗口，一般情况下其等于 `视窗宽度 + 滚动条宽度`
+
+window.screen.width：整个屏幕的宽度，与你怎么拖拽窗口大小没有关系。。。
+
+window.screen.availWidth：啥情况下会小于 `window.screen.width` ？(TODO)
+
