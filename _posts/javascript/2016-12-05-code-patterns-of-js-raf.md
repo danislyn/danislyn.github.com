@@ -38,6 +38,8 @@ var raf = window.requestAnimationFrame
 
 以上是来自 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 的解释，链接里还包含了 demo 代码，以及它的兼容性情况。
 
+特别需要注意的是：**在页面当前不在活动状态下，`requestAnimationFrame`是不会运行的**，而 `setTimeout` 仍会在后台运行。
+
 我举个不一定恰当的类比：如果 `setTimeout` 是不停重设元素 position 来做的动画，那 `requestAnimationFrame ` 就好比是 CSS3 transition 动画。效果和性能，显然后者胜于前者。
 
 
@@ -45,7 +47,7 @@ Polyfill
 ---------
 RAF 既然这么好的东西，显然是存在兼容问题的，在上面 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) 链接里可以看到，**IE 10+**，不容乐观啊。。。所以本文最初第一印象的那段代码可以视为一种 Polyfill (可以理解为“备胎”函数)
 
-查了网上的解决方案，包括 淘宝 也使用了这套 Polyfill
+查了网上的解决方案，包括 淘宝 也使用了这套 Polyfill：
 
 ```
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
