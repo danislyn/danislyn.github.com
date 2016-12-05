@@ -110,7 +110,7 @@ var requestAnimFrame = window.requestAnimationFrame || (function () {
         var timeCurrent = (new Date()).getTime();
         var timeDelta;
         /* Dynamically set the delay on a per-tick basis to more closely match 60fps. */
-        /* Technique by Erik Moller. MIT license: https://gist.github.com/paulirish/1579671. */
+        /* Technique by Erik Moller. MIT license. */
         timeDelta = Math.max(0, 16 - (timeCurrent - timeLast));
         timeLast = timeCurrent + timeDelta;
         return setTimeout(function () {
@@ -122,7 +122,8 @@ var requestAnimFrame = window.requestAnimationFrame || (function () {
 // 递归调用 timeout
 self.timer = setTimeout(function () {
     // 保证在上一次动画结束后再执行
-    // 若页面不在 active 状态下，requestAnimFrame 不会执行，相比 “递归 setTimeout” 会一直运行，节省CPU
+    // 若页面不在 active 状态下，requestAnimFrame 不会执行
+    // 相比 “递归 setTimeout” 动画会一直运行，节省CPU（尤其在移动端）
     requestAnimFrame(function () {
         clearTimeout(self.timer);
         self.next();
