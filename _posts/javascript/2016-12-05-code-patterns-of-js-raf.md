@@ -1,9 +1,8 @@
 ---
 layout: post
-title: "常用模式片段之RAF"
+title: "常用模式片段之 RAF"
 category: javascript
 tags: [javascript, 常用片段]
-published: true
 ---
 {% include JB/setup %}
 
@@ -89,19 +88,22 @@ RAF 既然这么好的东西，显然是存在兼容问题的，在上面 [MDN](
 ### 应用1：确保页面onload
 
 ```
-onLoad: function(callback){
+onLoad: function(callback) {
     var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function(fun) {
         setTimeout(fun, 16);
     };
-    if(document.readyState === 'complete'){
+    if (document.readyState === 'complete') {
         rAF(callback);
-    }else{
-        window.addEventListener('load', function(){
+    }
+    else {
+        window.addEventListener('load', function() {
             rAF(callback);
         });
     }
 }
 ```
+
+上述效果即 `window.onload()`，确保了 callback 都在 RAF 中有序的执行，减少了执行 onload 回调时页面卡顿（丢帧）的发生情况。
 
 ### 应用2：改进动画性能
 
@@ -132,6 +134,8 @@ self.timer = setTimeout(function () {
     });
 }, self.timeout);
 ```
+
+注：这个动画方案主要用在 app 内嵌 webview 的页面中，当 app 不在活动状态时（在后台驻着），递归的 `setTimeout` 仍会执行下去，会导致后台CPU使用率升高。而 `requestAnimFrame` 只会在页面重绘的时候调用，当页面不在 active 时，RAF 的回调并不会执行。
 
 ### 应用3：模块懒加载
 
@@ -164,3 +168,8 @@ window.requestAnimationFrame(function() {
 }, 5000);
 ```
 
+主要用于当页面上有很多个模块组成的时候（尤其是一些商品活动页面），每个模块都有自己的 js 执行逻辑，而在页面加载后，没必要一下子把所有模块的 js 逻辑都执行一遍。这里便采用的是当用户操作（例如滚动页面）时，才执行各模块的 js。
+
+我们可以结合之前的[常用模式片段之JS视窗](/blog/2016/10/24/code-patterns-of-js-viewport)，改进懒加载的逻辑：当模块处在当前视窗的一定范围内时，才执行该模块的 js 代码。
+
+**requestAnimationFrame 是个好东西**
