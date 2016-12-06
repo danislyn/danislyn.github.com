@@ -148,5 +148,79 @@ document.ready = function (callback) {
 })();
 ```
 
-[jquery 官方实现]() TODO
+jquery 官方实现
+
+```
+bindReady: function() {
+	if ( readyBound ) {
+		return;
+	}
+
+	readyBound = true;
+
+	// Catch cases where $(document).ready() is called after the
+	// browser event has already occurred.
+	if ( document.readyState === "complete" ) {
+		// Handle it asynchronously to allow scripts the opportunity to delay ready
+		return setTimeout( jQuery.ready, 1 );
+	}
+
+	// Mozilla, Opera and webkit nightlies currently support this event
+	if ( document.addEventListener ) {
+		// Use the handy event callback
+		document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
+		
+		// A fallback to window.onload, that will always work
+		window.addEventListener( "load", jQuery.ready, false );
+
+	// If IE event model is used
+	} else if ( document.attachEvent ) {
+		// ensure firing before onload,
+		// maybe late but safe also for iframes
+		document.attachEvent("onreadystatechange", DOMContentLoaded);
+		
+		// A fallback to window.onload, that will always work
+		window.attachEvent( "onload", jQuery.ready );
+
+		// If IE and not a frame
+		// continually check to see if the document is ready
+		var toplevel = false;
+
+		try {
+			toplevel = window.frameElement == null;
+		} catch(e) {}
+
+		if ( document.documentElement.doScroll && toplevel ) {
+			doScrollCheck();
+		}
+	}
+}
+```
+
+- [ready 函数](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L275)
+
+- [bindReady](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L458)
+
+- [doScrollCheck](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L458)
+
+```
+// The DOM ready check for Internet Explorer
+function doScrollCheck() {
+	if ( jQuery.isReady ) {
+		return;
+	}
+
+	try {
+		// If IE is used, use the trick by Diego Perini
+		// http://javascript.nwbox.com/IEContentLoaded/
+		document.documentElement.doScroll("left");
+	} catch(e) {
+		setTimeout( doScrollCheck, 1 );
+		return;
+	}
+
+	// and execute any waiting functions
+	jQuery.ready();
+}
+```
 
