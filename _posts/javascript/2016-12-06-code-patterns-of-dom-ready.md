@@ -150,8 +150,8 @@ document.ready = function (callback) {
     // 兼容 IE
     else if (document.attachEvent) {
         document.attachEvent('onreadytstatechange', function () {
-              if (document.readyState == "complete") {
-                    document.detachEvent("onreadystatechange", arguments.callee);
+              if (document.readyState == 'complete') {
+                    document.detachEvent('onreadystatechange', arguments.callee);
                     callback();
                }
         })
@@ -264,7 +264,7 @@ bindReady: function() {
 }
 ```
 
-jquery 中 ready 函数最核心的部分就是上面这段，和前面[深度兼容](#section-6)的原理一致，但有一些特殊的 fallback 处理，还判断了在 IE 中是否是顶层 frame。源代码可参见以下链接：
+jquery 中 ready 函数最核心的部分就是上面这段，和前面[深度兼容](#section-3)的原理大体一致，但有一些特殊的 fallback 处理，还判断了在 IE 中是否是顶层 frame。源代码可参见以下链接：
 
 - [ready 函数入口](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L275)
 
@@ -272,5 +272,8 @@ jquery 中 ready 函数最核心的部分就是上面这段，和前面[深度�
 
 - [DOMContentLoaded handler](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L873)
 
-- [doScrollCheck](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L458)
+- [doScrollCheck 检测trick](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L458)
 
+- [jQuery.ready 执行逻辑](https://github.com/jquery/jquery/blob/1.4.4/jquery.js#L415)
+
+*第一次认真学习 jquery 源码*
