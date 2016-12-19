@@ -22,7 +22,7 @@
 		<!-- 站点验证 -->
 		<meta name="baidu-site-verification" content="DlNPNpTkvi" />
 		<meta name="bugglare-site-verification" content="YWbnWi">
-    	
+
 		<link rel="stylesheet" type="text/css" href="/assets/custom/css/style.css">
 		<link rel="stylesheet" type="text/css" href="/assets/custom/css/highlight-hybrid.css">
 		<link rel="shortcut icon" href="/favicon.ico">
@@ -32,8 +32,8 @@
     	<link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
 
     	{% include JB/analytics %}
-		<!-- 其他页面只会替换content 必须放头部 -->
-	    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
+		<!-- 其他页面（search页面特殊需求）只会替换content 必须放头部 -->
+	    <script type="text/javascript" src="//cdn.staticfile.org/jquery/1.7.2/jquery.min.js"></script>
 	</head>
 	<body>
 	    <div id="bodyWrap">
@@ -183,36 +183,95 @@
 			});
 
 			// sidebar 固定
-			if (window.innerWidth >= 768) {
-				var offsetMem;
+			(function () {
+				if (window.innerWidth <= 768) {
+					return;
+				}
+
+				var $el = $('#sidebar');
+				var elW = $el.outerWidth();
+				var elH = $el.outerHeight();
+
+				var docH = document.body.offsetHeight;
+				var winH = window.innerHeight;
+				var winW = window.innerWidth;
+
+				// 元素定位时的上下左右（相对于body）
+				var PADDING_TOP = 50;
+				var PADDING_BOTTOM = 195;
+				var PADDING_LEFT = $el.offset().left;
+				var PADDING_RIGHT = winW - PADDING_LEFT - elW;
+
+				// 到达页面顶部限制时的 scrollTop值 TODO
+				// var TOP_SCROLL_TOP = $el.offset().top - PADDING_TOP;
+				// 到达页面底部限制时的 offsetTop值
+				var BOTTOM_OFFSET_TOP = docH - elH - PADDING_BOTTOM;
+
+				var offsetTopStart;  // 开始 fixed 时的 offset记录
+				var scrollTopEnd;	 // 结束 fixed 时的 scrollTop记录
+				var state = 'INIT';  // 当前状态: INIT | FIXED | BOTTOM
 
 				var scrollFn = function(){
-					var $sidebar = $('#sidebar');
-					var offset = $sidebar.offset();
-
+					var offset = $el.offset();
 					var scrollTop = $(window).scrollTop();
-					var PADDING_TOP = 50;
 
-					if (scrollTop + PADDING_TOP > offset.top) {
-						offsetMem = offset.top;
+					// INIT => FIXED
+					if (scrollTop + PADDING_TOP > offset.top && state === 'INIT') {
+						offsetTopStart = offset.top;
+						state = 'FIXED';
 
-						$sidebar.css({
+						$el.css({
 							position: 'fixed',
 							top: PADDING_TOP + 'px',
 							bottom: 'auto',
-							left: offset.left + 'px',  // 百分比布局下 left 会不准
-							right: window.innerWidth - (offset.left + $sidebar.outerWidth()),
-							width: $sidebar.outerWidth() + 'px'
+							left: PADDING_LEFT + 'px',  // 百分比布局下 left 会不准
+							right: PADDING_RIGHT + 'px',
+							width: elW + 'px'
 						});
+						return;
 					}
 
-					if (offset.top < offsetMem) {
-						$sidebar.removeAttr('style');
+					// FIXED => BOTTOM
+					if (offset.top > BOTTOM_OFFSET_TOP && state === 'FIXED') {
+						scrollTopEnd = scrollTop;
+						state = 'BOTTOM';
+
+						$el.css({
+							position: 'absolute',
+							top: 'auto',
+							bottom: PADDING_BOTTOM + 'px',
+							left: PADDING_LEFT + 'px',
+							right: PADDING_RIGHT + 'px',
+							width: elW + 'px'
+						});
+						return;
+					}
+
+					// BOTTOM => FIXED
+					if (scrollTop < scrollTopEnd && state === 'BOTTOM') {
+						state = 'FIXED';
+
+						$el.css({
+							position: 'fixed',
+							top: PADDING_TOP + 'px',
+							bottom: 'auto',
+							left: PADDING_LEFT + 'px',
+							right: PADDING_RIGHT + 'px',
+							width: elW + 'px'
+						});
+						return;
+					}
+
+					// FIXED => INIT
+					if (offset.top < offsetTopStart && state === 'FIXED') {
+						state = 'INIT';
+						$el.removeAttr('style');
+						return;
 					}
 				};
 
 				$(window).on('scroll', scrollFn);
-			}
+			})();
 			
 		})(jQuery);
 		</script>

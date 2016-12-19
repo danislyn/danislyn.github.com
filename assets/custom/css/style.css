@@ -96,6 +96,7 @@ table tbody tr:nth-child(2n) td{
 /* outline STARTS */
 #bodyWrap{
     background-color: #eee;
+    position: relative;
 }
 #header{
     background: url('../img/hdbg02.jpg') no-repeat;
@@ -313,6 +314,9 @@ table tbody tr:nth-child(2n) td{
 .widget-wrap{
     margin-bottom: 50px;
 }
+.widget-wrap:last-child {
+    margin-bottom: 0;
+}
 .widget-title{
     color: #999;
     font-size: 16px;
@@ -450,7 +454,7 @@ a.underline:hover{
 /* pagination STARTS */
 /* simple*/
 .pagination{
-    margin: 20px 0;
+    margin: 40px 0;
     text-align: center;
 }
 .pagination ul{
@@ -478,7 +482,7 @@ a.underline:hover{
 /* list */
 .pagination-list{
     display: inline-block;
-    margin-bottom: 20px;
+    margin-right: -5px;
 }
 .pagination-list li{
     float: left;
