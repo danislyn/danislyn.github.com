@@ -192,8 +192,8 @@
 				var elW = $el.outerWidth();
 				var elH = $el.outerHeight();
 
-				var docH = document.body.offsetHeight;
-				var winH = window.innerHeight;
+				// var docH = document.body.offsetHeight;
+				// var winH = window.innerHeight;
 				var winW = window.innerWidth;
 
 				// 元素定位时的上下左右（相对于body）
@@ -205,7 +205,10 @@
 				// 到达页面顶部限制时的 scrollTop值 TODO
 				// var TOP_SCROLL_TOP = $el.offset().top - PADDING_TOP;
 				// 到达页面底部限制时的 offsetTop值
-				var BOTTOM_OFFSET_TOP = docH - elH - PADDING_BOTTOM;
+				var getBottomOffsetTop = function () {
+					// 不能直接用 docH，避免页面底部有动态加载的部分而改变页面高度
+					return document.body.offsetHeight - elH - PADDING_BOTTOM;
+				};
 
 				var offsetTopStart;  // 开始 fixed 时的 offset记录
 				var scrollTopEnd;	 // 结束 fixed 时的 scrollTop记录
@@ -232,7 +235,7 @@
 					}
 
 					// FIXED => BOTTOM
-					if (offset.top > BOTTOM_OFFSET_TOP && state === 'FIXED') {
+					if (offset.top > getBottomOffsetTop() && state === 'FIXED') {
 						scrollTopEnd = scrollTop;
 						state = 'BOTTOM';
 
@@ -270,9 +273,23 @@
 					}
 				};
 
-				$(window).on('scroll', scrollFn);
+				var raf = window.requestAnimationFrame
+					|| window.webkitRequestAnimationFrame
+					|| window.mozRequestAnimationFrame
+					|| function(callback) {
+						// 保证 60fps 帧率的流畅效果，每帧间隔 16.7 ms
+						window.setTimeout(callback, 1000 / 60);
+				};
+
+				setTimeout(function () {
+					// raf 节流优化
+					$(window).on('scroll', function () {
+						raf(scrollFn);
+					});
+				}, 0);
+
 			})();
-			
+
 		})(jQuery);
 		</script>
 	</body>
