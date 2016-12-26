@@ -1,0 +1,12 @@
+<div id="MusicFrameAnchor"></div>
+<script type="text/javascript">
+window.MusicUtil = {
+    insertIframe: function (src, width, height) {
+        var w = width || 330;
+        var h = height || 86;
+
+        document.getElementById('MusicFrameAnchor').innerHTML =
+            '<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="' + w + '" height="' + h + '" src="' + src + '"></iframe>';
+    }
+};
+</script>
