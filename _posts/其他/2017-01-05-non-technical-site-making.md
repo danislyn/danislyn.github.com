@@ -19,25 +19,40 @@ published: false
 
 对于前者简单的网站，没必要找专业人员开发，一般千元以内就能搞定，那就是使用“建站产品”。我这儿推荐两款：
 
+
 ### 1. 建站之星：[http://www.sitestar.cn/](http://www.sitestar.cn/)
 
 建站之星是[美橙互联](http://www.cndns.com/)旗下的板块，可以到官网的[企业建站](http://www.cndns.com/cn/website/)板块下看。付的费用其实就是买“模板”，几百块就能买一个。同时它也提供了私人订制的服务，那就贵了，几千和上万的都有。
 
+<img src="/assets/captures/20170105_sitestar_template.png" style="max-width:800px">
 
+<img src="/assets/captures/20170105_sitestar_custom.png" style="max-width:800px">
 
 为什么我推荐这家公司的建站产品呢，因为我博客的域名就是在美橙互联上买的，它是国内比较早的搞域名注册和服务器托管的公司了，应该比[阿里云](https://www.aliyun.com/)和[万网](https://wanwang.aliyun.com/)（原来是 www.net.cn）都要早。因此论公司资质的话，“建站之星”作为美橙互联公司的企业建站产品，应该靠谱。
 
+这是建站的套餐价格，包含了服务器租费、域名费(很便宜)、以及建站模板和后台服务费。
+
+<img src="/assets/captures/20170105_cndns_site_price.png" style="max-width:800px">
+
+<img src="/assets/captures/20170105_cndns_shop_price.png" style="max-width:800px">
+
+注：这里的“网店版”即我后面要说的*业务型网站*
+
+
 ### 2. 凡科：[http://www.faisco.com/](http://www.faisco.com/)
 
+凡科的建站产品是我在知乎里看到的，该公司成立于2009年，相比美橙互联的公司资质稍逊，这一点可以从它们的官网上很容易感觉出来。
 
-凡科最大的一个优势就是价格，而且它提供免费版，各版本的功能对比可详见：[http://jz.faisco.com/proFunc.html](http://jz.faisco.com/proFunc.html)
+凡科最大的一个优势就是价格，并且它提供免费版，可以先试用看效果。各版本的功能对比可详见：[http://jz.faisco.com/proFunc.html](http://jz.faisco.com/proFunc.html)
 
-凡科与建站之星的评测：[http://jz.faisco.com/news/443](http://jz.faisco.com/news/443)
+<img src="/assets/captures/20170105_faisco_price.png" style="max-width:800px">
+
+最后看各人选择，想要长期稳定的话就选建站之星，毕竟公司规模大，配套设施多；但想要节约成本的话，可以先用凡科看是否能达到预期效果。这里有个对两者产品的使用评测：[http://jz.faisco.com/news/443](http://jz.faisco.com/news/443)
 
 
 业务型网站
 ----------
-其实上面介绍门户型网站的两个产品里也都包含“营销版”的产品，即业务型网站。
+其实上面介绍门户型网站的两个产品里也都包含“营销版”/“商城版”的产品，即业务型网站。
 
 
 
@@ -51,7 +66,7 @@ published: false
 
 
 
-参考
-
-https://www.zhihu.com/question/26027774
+参考资料
+--------
+知乎讨论：[https://www.zhihu.com/question/26027774](https://www.zhihu.com/question/26027774)
 
