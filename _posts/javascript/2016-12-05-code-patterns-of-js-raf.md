@@ -103,7 +103,7 @@ onLoad: function(callback) {
 }
 ```
 
-上述效果即 `window.onload()`，确保了 callback 都在 RAF 中有序的执行，减少了执行 onload 回调时页面卡顿（丢帧）的发生情况。
+上述效果即 `window.onload()`，~~确保了 callback 都在 RAF 中有序的执行，减少了执行 onload 回调时页面卡顿（丢帧）的发生情况。~~（2017.1.6日更新）现在我觉得是避免 onload 时页面已不处于 active 状态（比如用户切换了浏览器标签），因此用 RAF 可以保证页面在 active 时才执行回调。
 
 ### 应用2：改进动画性能
 
@@ -142,29 +142,29 @@ self.timer = setTimeout(function () {
 ```
 var __lazyLoaded = false;
 function runLazyQueue() {
-  if(__lazyLoaded) {
-    return;
-  }
-  __lazyLoaded = true;
-  
-  $(window).detach("mousemove scroll mousedown touchstart touchmove keydown resize onload", runLazyQueue);
-  
-  var module;
-  while (module = lazyQueue.shift()) {
-    ~function(m){
-      // 保证在浏览器空闲时间处理 JS 程序, 保证不阻塞
-      window.requestAnimationFrame(function() {
-        new Loader(m.$mod, m.data, m.force);
-      });
-    }(module);
-  }
+	if(__lazyLoaded) {
+		return;
+	}
+	__lazyLoaded = true;
+	  
+	$(window).detach("mousemove scroll mousedown touchstart touchmove keydown resize onload", runLazyQueue);
+
+	var module;
+	while (module = lazyQueue.shift()) {
+		~function(m){
+			// 保证在浏览器空闲时间处理 JS 程序, 保证不阻塞
+			window.requestAnimationFrame(function() {
+				new Loader(m.$mod, m.data, m.force);
+			});
+		}(module);
+	}
 }
 
 $(window).on("mousemove scroll mousedown touchstart touchmove keydown resize onload", runLazyQueue);
 
 // 担心未触发 onload 事件, 5s 之后执行懒加载队列
 window.requestAnimationFrame(function() {
-  runLazyQueue();
+	runLazyQueue();
 }, 5000);
 ```
 
@@ -173,3 +173,43 @@ window.requestAnimationFrame(function() {
 我们可以结合之前的[常用模式片段之JS视窗](/blog/2016/10/24/code-patterns-of-js-viewport)，改进懒加载的逻辑：当模块处在当前视窗的一定范围内时，才执行该模块的 js 代码。
 
 **requestAnimationFrame 是个好东西**
+
+（以下 2017.1.6日补充）
+
+### 应用4：函数节流
+
+[引自：ghugo.com] 在高频率事件中，为了防止16ms内发生多次函数执行，使用 raf 可保证16ms内只触发一次，这既能保证流畅性也能更好的节省函数执行的开销。16ms内函数执行多次没有意义，因为显示器16ms刷新一次，多次执行并不会在界面上有任何显示。
+
+```
+$box.on('mousemove', function(e){
+  requestAnimationFrame(function(){
+      $point.css({
+          top : e.pageY,
+          left : e.pageX
+      })
+  })
+})
+```
+
+[引自：404forest.com] 认为在循环体中调用 raf 并不能达到真正的函数节流，因为循环中的 raf 已经一下子执行完了，只是 raf 中的回调会按照 16ms 的频率依次排队执行。
+
+```
+$(function(){
+	var lazyLoadList = [A, B, C, D];
+	var load = function() {
+		var module = lazyLoadList.shift();
+		if(module) {
+			new module();
+			// 要写个递归，才能真正保证一个模块加载完再执行下一个模块
+			window.requestAnimationFrame(load);
+		}
+	}
+	window.requestAnimationFrame(load);
+})
+```
+
+参考文章
+
+- 天猫实习时组里的大神博客：[http://www.ghugo.com/requestanimationframe-best-practice/](http://www.ghugo.com/requestanimationframe-best-practice/)
+- 详细的实验对比文章：[https://www.404forest.com/2016/08/15/使用%20requestAnimationFrame%20实现性能优化与懒执行/](https://www.404forest.com/2016/08/15/使用%20requestAnimationFrame%20实现性能优化与懒执行/)
+
