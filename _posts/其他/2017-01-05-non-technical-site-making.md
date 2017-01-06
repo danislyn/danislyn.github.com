@@ -24,7 +24,7 @@ published: false
 
 建站之星是[美橙互联](http://www.cndns.com/)旗下的板块，可以到官网的[企业建站](http://www.cndns.com/cn/website/)板块下看。付的费用其实就是买“模板”，几百块就能买一个。同时它也提供了私人订制的服务，那就贵了，几千和上万的都有。
 
-<img src="/assets/captures/20170105_sitestar_template.png" style="max-width:800px">
+<img src="/assets/captures/20170105_sitestar_template.jpg" style="max-width:800px">
 
 <img src="/assets/captures/20170105_sitestar_custom.png" style="max-width:800px">
 
@@ -53,6 +53,10 @@ published: false
 业务型网站
 ----------
 其实上面介绍门户型网站的两个产品里也都包含“营销版”/“商城版”的产品，即业务型网站。
+
+<img src="/assets/captures/20170105_weimob_wx.jpg" style="max-width:800px">
+
+<img src="/assets/captures/20170105_qianmi_wx.jpg" style="max-width:800px">
 
 
 
