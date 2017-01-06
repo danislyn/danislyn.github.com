@@ -26,15 +26,15 @@ published: false
 
 <img src="/assets/captures/20170105_sitestar_template.jpg" style="max-width:800px">
 
-<img src="/assets/captures/20170105_sitestar_custom.png" style="max-width:800px">
+<img src="/assets/captures/20170105_sitestar_custom.jpg" style="max-width:800px">
 
 为什么我推荐这家公司的建站产品呢，因为我博客的域名就是在美橙互联上买的，它是国内比较早的搞域名注册和服务器托管的公司了，应该比[阿里云](https://www.aliyun.com/)和[万网](https://wanwang.aliyun.com/)（原来是 www.net.cn）都要早。因此论公司资质的话，“建站之星”作为美橙互联公司的企业建站产品，应该靠谱。
 
 这是建站的套餐价格，包含了服务器租费、域名费(很便宜)、以及建站模板和后台服务费。
 
-<img src="/assets/captures/20170105_cndns_site_price.png" style="max-width:800px">
+<img src="/assets/captures/20170105_cndns_site_price.jpg" style="max-width:800px">
 
-<img src="/assets/captures/20170105_cndns_shop_price.png" style="max-width:800px">
+<img src="/assets/captures/20170105_cndns_shop_price.jpg" style="max-width:800px">
 
 注：这里的“网店版”即我后面要说的*业务型网站*
 
@@ -45,7 +45,7 @@ published: false
 
 凡科最大的一个优势就是价格，并且它提供免费版，可以先试用看效果。各版本的功能对比可详见：[http://jz.faisco.com/proFunc.html](http://jz.faisco.com/proFunc.html)
 
-<img src="/assets/captures/20170105_faisco_price.png" style="max-width:800px">
+<img src="/assets/captures/20170105_faisco_price.jpg" style="max-width:800px">
 
 最后看各人选择，想要长期稳定的话就选建站之星，毕竟公司规模大，配套设施多；但想要节约成本的话，可以先用凡科看是否能达到预期效果。这里有个对两者产品的使用评测：[http://jz.faisco.com/news/443](http://jz.faisco.com/news/443)
 
