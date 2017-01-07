@@ -145,7 +145,7 @@ tags: [建站]
 
 对于这样的数据统计和观察需求，我首推[百度统计](http://tongji.baidu.com/)，不仅仅是因为我这个博客也使用了它，而是这两三年里我确实看到了它在进步。（它还是免费的）
 
-<img src="/assets/captures/20170105_baidu_tongji.jpg" style="max-width:150px">
+<img src="/assets/captures/20170105_baidu_tongji.jpg" style="max-width:800px">
 
 
 参考资料
