@@ -57,7 +57,7 @@ tags: [建站]
 
 [微盟](http://weimob.com/)在微信公众号开放后开始火了起来，我两三年前就听说过。当时有个被炒起来的概念“微商”，而微盟抓住了这条船，把微信商城做了起来。我前几天有专门打过咨询电话，了解到他们去年就得到了腾讯的投资，腾讯已是他们第二大股东。不言而论，微盟的微信商城产品肯定是市面上与微信结合做得最好的产品之一。
 
-这款产品叫[微盟旺铺](http://www.weimob.com/website/info_1.html)，我在微盟官网找了个客户案例：[http://318325.m.weimob.com/vshop/index](http://318325.m.weimob.com/vshop/index) 
+这款产品叫[微盟旺铺](http://www.weimob.com/website/topic/wangpu)，我在微盟官网找了个客户案例：[http://318325.m.weimob.com/vshop/index](http://318325.m.weimob.com/vshop/index) 
 
 <img src="/assets/captures/20170105_weimob_demo.jpg" style="max-width:800px">
 
@@ -152,3 +152,14 @@ tags: [建站]
 --------
 知乎讨论：[https://www.zhihu.com/question/26027774](https://www.zhihu.com/question/26027774)
 
+建站之星：[http://www.sitestar.cn/](http://www.sitestar.cn/)
+
+凡科建站：[http://jz.faisco.com/](http://jz.faisco.com/)
+
+微盟-旺铺：[http://www.weimob.com/website/topic/wangpu](http://www.weimob.com/website/topic/wangpu)
+
+千米网-云商城：[http://www.qianmi.com/products/ysc/](http://www.qianmi.com/products/ysc/)
+
+百度推广：[http://e.baidu.com/](http://e.baidu.com/)
+
+百度统计：[http://tongji.baidu.com/](http://tongji.baidu.com/)
