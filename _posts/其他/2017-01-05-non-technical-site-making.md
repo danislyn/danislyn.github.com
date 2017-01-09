@@ -57,7 +57,7 @@ tags: [建站]
 
 [微盟](http://weimob.com/)在微信公众号开放后开始火了起来，我两三年前就听说过。当时有个被炒起来的概念“微商”，而微盟抓住了这条船，把微信商城做了起来。我前几天有专门打过咨询电话，了解到他们去年就得到了腾讯的投资，腾讯已是他们第二大股东。不言而论，微盟的微信商城产品肯定是市面上与微信结合做得最好的产品之一。
 
-这款产品叫[微盟旺铺](http://www.weimob.com/website/topic/wangpu)，我在微盟官网找了个客户案例：[http://318325.m.weimob.com/vshop/index](http://318325.m.weimob.com/vshop/index) 
+这款产品叫[微盟旺铺](http://www.weimob.com/website/info.html?id=1)，我在微盟官网找了个客户案例：[http://318325.m.weimob.com/vshop/index](http://318325.m.weimob.com/vshop/index) 
 
 <img src="/assets/captures/20170105_weimob_demo.jpg" style="max-width:800px">
 
@@ -68,7 +68,7 @@ tags: [建站]
 
 ### 2. 千米网：[http://www.qianmi.com/](http://www.qianmi.com/)
 
-[千米网](http://www.qianmi.com/)是我在[南京软件开发者大会](http://www.njsd-china.org/)上了解的这家公司，公司总部在南京，应该说是在江苏内做电商产品的较专业的公司。其实在前面介绍[门户型网站](#section)时，建站之星和凡科的“营销版”/“网店版”也能满足商城的需求，但我会更倾向专一做电商解决方案的千米网的[云商城产品](http://www.qianmi.com/products/ysc/)。
+[千米网](http://www.qianmi.com/)是我在[南京软件开发者大会](http://www.njsd-china.org/)上了解的这家公司，公司总部在南京，应该说是在江苏内做电商产品的较专业的公司。其实在前面介绍[门户型网站](#section)时，建站之星和凡科的“营销版”/“网店版”也能满足商城的需求，但我会更倾向专一做电商解决方案的千米网的[云商城产品](http://www.qianmi.com/products/ysc/)。主打“魔方建站”的概念，即像玩魔方一样，一转就是一个面，电商的各个面。
 
 这是联系他们售前顾问，找到了一个示例：[http://store148551.b2c.1000.com/](http://store148551.b2c.1000.com/) *（注意这是测试的站点，请不要真下单）*
 
@@ -156,7 +156,10 @@ tags: [建站]
 
 凡科建站：[http://jz.faisco.com/](http://jz.faisco.com/)
 
-微盟-旺铺：[http://www.weimob.com/website/topic/wangpu](http://www.weimob.com/website/topic/wangpu)
+微盟首页：[http://weimob.com/](http://weimob.com/)
+
+- 旺铺宣传页：[http://www.weimob.com/website/topic/wangpu](http://www.weimob.com/website/topic/wangpu)
+- 旺铺产品手册：[http://www.weimob.com/website/site/help?help=12](http://www.weimob.com/website/site/help?help=12)
 
 千米网-云商城：[http://www.qianmi.com/products/ysc/](http://www.qianmi.com/products/ysc/)
 
