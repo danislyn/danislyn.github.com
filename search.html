@@ -23,13 +23,14 @@ header: Search Results
     var SID = '4591294383270242430';
     var API = '//zhannei.baidu.com/api/customsearch/apiaccept?sid=' + SID + '&v=2.0&callback=';
 
-    var searchStart = function () {
-        // TODO 待优化
-        var keyword = (window.location.href.split('query='))[1];
+    // 页面跳转进来时带入的关键词
+    var urlQuery = (window.location.href.split('query='))[1];
+
+    var searchStart = function (keyword) {
+        var wd = keyword || urlQuery;
         var cse = new BCse.Search(SID);
-        cse.getResult(keyword, displayRes);
+        cse.getResult(wd, displayRes);
     };
-    window.searchStart = searchStart;
 
     // load script
     var script = document.createElement('script'); 
@@ -38,6 +39,20 @@ header: Search Results
     script.src = API + 'searchStart';
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(script, s);
+
+    // 站内搜索脚本载入后的回调
+    window.searchStart = searchStart;
+
+
+    // 搜索输入框 阻止页面跳转
+    $('#queryInput').on('keyup', function (event) {
+        var keycode = event.which;
+        // 回车键
+        if (keycode === 13) {
+            event.preventDefault();
+            searchStart($.trim($(this).val()));
+        }
+    });
 
     // TODO template
     var displayRes = function (data) {

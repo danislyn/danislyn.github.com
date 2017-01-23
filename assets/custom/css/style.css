@@ -120,7 +120,8 @@ table tbody tr:nth-child(2n) td{
     color: #FFCC66;
 }
 #mainBody{
-    margin-top: 50px;
+    /* 为了响应式，分页和sidebar不加 margin-bottom */
+    margin: 50px auto;
 }
 #mainContent{
     float: left;
@@ -454,7 +455,6 @@ a.underline:hover{
 /* pagination STARTS */
 /* simple*/
 .pagination{
-    margin: 40px 0;
     text-align: center;
 }
 .pagination ul{
@@ -587,6 +587,7 @@ a.underline:hover{
         float: none;
         margin-left: 0;
         width: 100%;
+        margin-top: 50px;
     }
     #mainNavToggle{
         display: inline-block;
