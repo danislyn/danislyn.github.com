@@ -27,7 +27,7 @@ header: Search Results
         // TODO 待优化
         var keyword = (window.location.href.split('query='))[1];
         var cse = new BCse.Search(SID);
-        cse.getResult('phantomjs', displayRes);
+        cse.getResult(keyword, displayRes);
     };
     window.searchStart = searchStart;
 
@@ -66,29 +66,4 @@ header: Search Results
         $('#searchResult').empty().append($list);
     };
 })();
-</script>
-
-<script type="text/template">
-    // Tapir: http://tapirgo.com/
-    // token: 551b57e63093edd78200000b
-    // secret token: ebb08f86bbf7b6f8c9697db17253080785c125e8
-
-    var Tapir_URL = 'http://www.tapirgo.com/api/1/search.json?token=551b57e63093edd78200000b&query=<keyword>&callback=?';
-    var keyword = (window.location.href.split('query='))[1];
-    var linkReg = /^http/;
-
-    // JSONP
-    $.getJSON(Tapir_URL.replace('<keyword>', keyword), function(data){
-        var $list = $('<ul></ul>');
-
-        for(var i=0, len=data.length; i<len; i++){
-            var $li = $('<li></li>');
-            $li.append('<span>' + (data[i]['published_on'].split('T'))[0] + '</span>');
-            $li.append('<span>&nbsp;&raquo;&nbsp;</span>');
-            $li.append('<a class="default info underline" href="' + (linkReg.test(data[i]['link']) ? data[i]['link'] : ('http://' + data[i]['link'])) + '" target="_blank">' + data[i]['title'] + '</a>');
-            $list.append($li);
-        }
-
-        $('#searchResult').append($list);
-    });
 </script>
