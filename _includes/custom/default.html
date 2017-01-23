@@ -202,6 +202,11 @@
 				var PADDING_LEFT = $el.offset().left;
 				var PADDING_RIGHT = winW - PADDING_LEFT - elW;
 
+				// 防止 sidebar 抖动，原因是页面高度不够
+    			if ($('#mainBody').height() < elH + PADDING_TOP) {
+    				$('#mainBody').css({height: (elH + PADDING_TOP) + 'px'});
+    			}
+
 				// 到达页面顶部限制时的 scrollTop值 TODO
 				// var TOP_SCROLL_TOP = $el.offset().top - PADDING_TOP;
 				// 到达页面底部限制时的 offsetTop值
