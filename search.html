@@ -12,13 +12,63 @@ header: Search Results
         <div class="article-entry">
             <div class="content" id="searchResult"></div>
             <div id="searchProvider">
-                搜索结果由 <a class="default info" href="http://tapirgo.com/" target="_blank">Tapir</a> 提供（暂不支持中文）
+                搜索结果由 <a class="default info" href="http://zn.baidu.com/" target="_blank">百度站内搜索</a> 提供
             </div>
         </div>
     </div>
 </div>
 
 <script type="text/javascript">
+(function () {
+    var SID = '4591294383270242430';
+    var API = '//zhannei.baidu.com/api/customsearch/apiaccept?sid=' + SID + '&v=2.0&callback=';
+
+    var searchStart = function () {
+        // TODO 待优化
+        var keyword = (window.location.href.split('query='))[1];
+        var cse = new BCse.Search(SID);
+        cse.getResult('phantomjs', displayRes);
+    };
+    window.searchStart = searchStart;
+
+    // load script
+    var script = document.createElement('script'); 
+    script.type = 'text/javascript';
+    script.charset = 'utf-8';
+    script.src = API + 'searchStart';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+
+    // TODO template
+    var displayRes = function (data) {
+        var $list = $('<ul></ul>');
+        var reg = /^https?:\/\//i;
+
+        for(var i = 0, len = data.length; i < len; i++){
+            var item = data[i];
+            // 之前没做 abstract 和 keywords 管理，规避掉无关的结果
+            if (item.abstract.split(' ') > 10 || item.title === 'Fuxiaode') {
+                continue;
+            }
+
+            var $li = $('<li></li>');
+            $li.append('<span>' + item.dispTime + '</span>');
+            $li.append('<span>&nbsp;&raquo;&nbsp;</span>');
+            $li.append('<a class="default info underline" href="'
+                + (reg.test(item.linkUrl) ? item.linkUrl : ('//' + item.linkUrl))
+                + '" target="_blank">' + item.title + '</a>');
+            
+            // 先不显示摘要，重新排版 TODO
+            $li.append('<div class="abstract" style="display:none">' + item.abstract + '</div>')
+            $list.append($li);
+        }
+
+        $('#searchResult').empty().append($list);
+    };
+})();
+</script>
+
+<script type="text/template">
     // Tapir: http://tapirgo.com/
     // token: 551b57e63093edd78200000b
     // secret token: ebb08f86bbf7b6f8c9697db17253080785c125e8
@@ -41,5 +91,4 @@ header: Search Results
 
         $('#searchResult').append($list);
     });
-
 </script>
