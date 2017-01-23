@@ -24,14 +24,22 @@ header: Search Results
     var API = '//zhannei.baidu.com/api/customsearch/apiaccept?sid=' + SID + '&v=2.0&callback=';
 
     // 页面跳转进来时带入的关键词
-    var urlQuery = (window.location.href.split('query='))[1];
+    var urlQuery = decodeURIComponent(window.location.href.split('query=')[1]);
     // 搜索框的当前输入（触发搜索时才更新）
     var inputQuery;
 
     var searchStart = function (keyword) {
         var wd = keyword || urlQuery;
-        var cse = new BCse.Search(SID);
-        cse.getResult(wd, displayRes);
+        wd = wd ? $.trim(wd) : null;
+
+        if (wd) {
+            var cse = new BCse.Search(SID);
+            cse.getResult(wd, displayRes);
+        }
+        else {
+            // 显示无结果的msg
+            displayRes([]);
+        }
     };
 
     // load script
@@ -51,7 +59,7 @@ header: Search Results
         var keycode = event.which;
         // 回车键触发
         if (keycode === 13) {
-            event.preventDefault();
+            event.preventDefault();  // FUCK 没能拦截
             inputQuery = $.trim($(this).val());
             searchStart(inputQuery);
         }
@@ -85,7 +93,8 @@ header: Search Results
             $('#searchResult').empty().append($list);
         }
         else {
-            $('#searchResult').html('当前关键词：' + (inputQuery || urlQuery) + '  暂无搜索结果' + '<br><br>');
+            $('#searchResult').html('当前关键词：' + (inputQuery || urlQuery)
+                + '  暂无搜索结果' + '<br><br>');
         }
     };
 })();
