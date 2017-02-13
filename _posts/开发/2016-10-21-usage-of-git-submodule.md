@@ -65,13 +65,16 @@ Git 在主项目中记录了一个子模块的提交日志的指针，用于保�
 
 方法1：
 
-> git clone git@github.com:xxx/your-app.git
-> git submodule update --init --recursive
+```
+git clone git@github.com:xxx/your-app.git
+git submodule update --init --recursive
+```
 
 方法2：
 
-> git clone --recursive git@github.com:xxx/your-app.git
-
+```
+git clone --recursive git@github.com:xxx/your-app.git
+```
 
 Submodule 开发协作
 ------------------
