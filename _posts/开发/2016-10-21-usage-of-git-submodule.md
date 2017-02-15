@@ -76,6 +76,14 @@ git submodule update --init --recursive
 git clone --recursive git@github.com:xxx/your-app.git
 ```
 
+今后对主项目 pull 时
+
+```
+git pull
+git submodule update --recursive
+```
+
+
 Submodule 开发协作
 ------------------
 
