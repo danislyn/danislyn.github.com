@@ -11,7 +11,7 @@ tags: [胡思乱想]
 
 <!-- break -->
 
-<img src="/assets/captures/20170216_bookmark1.png" style="max-width:700px;">
+<img src="/assets/captures/20170216_bookmark1.png" style="max-width:800px;">
 
 满满的回忆，在学校的最后两年里，自己网上找资料学前端，整个实验室近20号人就我独爱前端，chrome 存了一堆书签，evernote 里也收藏了上百条文章。在我准备校招面试期间，都有把这些回顾看过。
 
