@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>viz test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+        maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+
+    <style>
+    body {
+        /*margin: 10px;*/
+        margin-top: 100px;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    input, button {
+        border: 1px solid #000;
+    }
+    #fixedBtn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+    #hrefBtn {
+        margin: 0 20px;
+    }
+
+    span.icon {
+        color: #999;
+    }
+    div.block {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #ccc;
+    }
+    #scroller {
+        margin: 20px auto;
+        height: 60px;
+        overflow: auto;
+        border: 1px solid #000;
+    }
+    #scroller ul li {
+        display: block;
+        list-style: none;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    #scroller2 {
+        margin: 20px 0;
+        height: 30px;
+        width: 250px;
+        overflow: scroll;
+        border: 1px solid #000;
+    }
+    #scroller2 ul {
+        /*overflow: hidden;*/
+        width: 500px;
+    }
+    #scroller2 ul li {
+        float: left;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+    }
+    </style>
+</head>
+<body>
+    <input type="text" id="replyText">
+    <button id="fixedBtn">Fixed Btn</button>
+    <p>看对方啦啦<span class="icon">this is inline icon</span>额度看见了空间了解了解花虎沟哦多久哦i撒娇拉金德拉放假来看惊世毒妃离开教室地方了</p>
+
+    <input type="button" id="touchBtn" value="touchend js跳转" >
+
+    <a id="hrefBtn" href="javascript:window.location.href='http://huilan.me/'">href js跳转</a>
+
+    <div id="scroller">
+        <ul>
+            <li><a href="javascript:void(0)">Item 1</a></li>
+            <li><a href="javascript:void(0)">Item 2</a></li>
+            <li><a href="javascript:void(0)">Item 3</a></li>
+            <li><a href="javascript:void(0)">Item 4</a></li>
+            <li><a href="javascript:void(0)">Item 5</a></li>
+        </ul>
+    </div>
+
+    <div id="scroller2">
+        <ul>
+            <li><a href="javascript:void(0)">Item 1</a></li>
+            <li><a href="http://baidu.com" title="跳到百度">Item 2</a></li>
+            <li><a href="javascript:void(0)">Item 3</a></li>
+            <li><a href="javascript:void(0)">Item 4</a></li>
+            <li><a href="javascript:void(0)">Item 5</a></li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 20px">
+        <a href="javascript:void(0)">here are messages</a>
+        <div class="block"></div>
+        <div id="messages">
+            this is a wrapper
+            <div class="block"></div>
+            <span class="block">this is a span</span>
+            <div class="block"></div>
+        </div>
+        <div class="block"></div>
+    </div>
+
+    <script>
+    document.getElementById('touchBtn').addEventListener('touchend', function (event) {
+        window.location.href = 'http://huilan.me';
+        event.preventDefault();
+    });
+    document.addEventListener('click', function (event) {
+        // alert('click')
+    }, true);
+    document.addEventListener('touchend', function (event) {
+        // alert('touchend')
+    }, true);
+    </script>
+</body>
+</html>
