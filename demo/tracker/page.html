@@ -66,6 +66,24 @@
         height: 30px;
         line-height: 30px;
     }
+
+    #scroller3 {
+        margin: 20px 0;
+        height: 60px;
+        width: 400px;
+        overflow: auto;
+        border: 1px solid #000;
+    }
+    #scroller3 ul {
+        width: 2000px;
+        transform: translate3d(-1600px,0,0);
+    }
+    #scroller3 ul li {
+        float: left;
+        width: 400px;
+        height: 60px;
+        line-height: 60px;
+    }
     </style>
 </head>
 <body>
@@ -76,6 +94,17 @@
     <input type="button" id="touchBtn" value="touchend js跳转" >
 
     <a id="hrefBtn" href="javascript:window.location.href='http://huilan.me/'">href js跳转</a>
+
+    <div style="display: none">这是 display: none</div>
+    <div style="visibility: hidden">这是 visibility: hidden</div>
+    <div style="opacity: 0">这是 opacity: 0</div>
+
+    <div style="">
+        <div style="float: left">float left</div>
+        <div style="float: right">float right</div>
+    </div>
+
+    <div style="clear: both; height: 0; overflow: hidden;">这是 height: 0; overflow: hidden;</div>
 
     <div id="scroller">
         <ul>
@@ -94,6 +123,16 @@
             <li><a href="javascript:void(0)">Item 3</a></li>
             <li><a href="javascript:void(0)">Item 4</a></li>
             <li><a href="javascript:void(0)">Item 5</a></li>
+        </ul>
+    </div>
+
+    <div id="scroller3">
+        <ul>
+            <li><a href="javascript:void(0)">Item 1</a></li>
+            <li><a href="javascript:void(0)">Item 2</a></li>
+            <li><a href="javascript:void(0)">Item 3</a></li>
+            <li><a href="javascript:void(0)">Item 4</a></li>
+            <li><a href="javascript:void(0)">Item 5 (已对ul设负translate)</a></li>
         </ul>
     </div>
 
