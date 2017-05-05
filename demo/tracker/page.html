@@ -33,6 +33,18 @@
     #hrefBtn {
         margin: 0 20px;
     }
+    #popupDiv {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        border: 1px solid #ccc;
+        background: #fff;
+    }
 
     span.icon {
         color: #999;
@@ -112,6 +124,9 @@
 
     <a id="hrefBtn" class="btn" href="javascript:window.location.href='http://huilan.me/'">href js跳转</a>
 
+    <input type="button" id="dynBtn" value="弹个框" onclick="document.getElementById('popupDiv').style.display='block';">
+    <div id="popupDiv">this is a dialog</div>
+
     <div style="display: none">这是 display: none</div>
     <div style="visibility: hidden">这是 visibility: hidden</div>
     <div style="opacity: 0">这是 opacity: 0</div>
@@ -189,7 +204,7 @@
         // event.preventDefault();
     });
 
-    new AlloyFinger(document.body, {
+    AlloyFinger && new AlloyFinger(document.body, {
         tap: function () {
             // alert('tap')
             // sendLog('tap=1');
