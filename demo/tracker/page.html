@@ -4,6 +4,7 @@
     <title>viz test</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"> -->
 
     <style>
     body {
@@ -17,6 +18,11 @@
     }
     input, button {
         border: 1px solid #000;
+    }
+    .btn {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
     }
     #fixedBtn {
         position: fixed;
@@ -99,12 +105,12 @@
 </head>
 <body>
     <input type="text" id="replyText">
-    <button id="fixedBtn">Fixed Btn</button>
+    <button id="fixedBtn" class="btn">Fixed Btn</button>
     <p>看对方啦啦<span class="icon">this is inline icon</span>额度看见了空间了解了解花虎沟哦多久哦i撒娇拉金德拉放假来看惊世毒妃离开教室地方了</p>
 
-    <input type="button" id="touchBtn" value="touchend js跳转" >
+    <button type="button" id="touchBtn" class="btn">touchend js跳转</button>
 
-    <a id="hrefBtn" href="javascript:window.location.href='http://huilan.me/'">href js跳转</a>
+    <a id="hrefBtn" class="btn" href="javascript:window.location.href='http://huilan.me/'">href js跳转</a>
 
     <div style="display: none">这是 display: none</div>
     <div style="visibility: hidden">这是 visibility: hidden</div>
@@ -164,16 +170,52 @@
         <div class="block"></div>
     </div>
 
+    <script src="https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+    <script src="./alloy_finger.js"></script>
     <script>
-    document.getElementById('touchBtn').addEventListener('touchend', function (event) {
-        window.location.href = 'http://huilan.me';
+    // 
+    FastClick.attach(document.body);
+
+    var sendLog = function (param, withTimestamp) {
+        return
+        new Image().src = 'http://' + window.location.hostname + ':9000?'
+            + param + (withTimestamp !== false ? '&t=' + new Date().getTime() : '');
+    };
+
+
+    var touchBtn = document.getElementById('touchBtn');
+    touchBtn.addEventListener('touchend', function (event) {
+        window.location.href = window.location.href;
         // event.preventDefault();
     });
+
+    new AlloyFinger(document.body, {
+        tap: function () {
+            // alert('tap')
+            // sendLog('tap=1');
+            // sendLog('invoked=1');
+        },
+        doubleTap: function () {
+            // sendLog('doubleTap=1');
+        },
+        singleTap: function () {
+            // sendLog('singleTap=1');
+        }
+    });
+
+
     document.addEventListener('click', function (event) {
         // alert('click')
+        // sendLog('invoked=1');
     }, true);
+
     document.addEventListener('touchend', function (event) {
         // alert('touchend')
+        sendLog('invoked=1');
+    }, true);
+    
+    document.addEventListener('gesturestart', function (event) {
+        sendLog('gesturestart=1');
     }, true);
     </script>
 </body>
