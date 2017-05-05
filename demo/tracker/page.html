@@ -189,7 +189,7 @@
     <script src="./alloy_finger.js"></script>
     <script>
     // 会阻止 document 上的 click，在 touchend 时构造一个 MouseEvent 来模拟
-    FastClick.attach(document.body);
+    // FastClick.attach(document.body);
 
     var sendLog = function (param, withTimestamp) {
         new Image().src = 'http://' + window.location.hostname + ':9000?'
