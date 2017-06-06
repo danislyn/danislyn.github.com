@@ -1,0 +1,43 @@
+---
+layout: page
+header: SPA 测试
+---
+{% include JB/setup %}
+
+<style>
+.spa-btn {
+    color: 
+}
+#popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 200px;
+    margin: -100px 0 0 -200px;
+    border: 1px solid #333;
+}
+</style>
+
+<a href="javascript:void(0)" class="btn spa-btn" id="link1">点我弹框</a>
+<a href="javascript:void(0)" class="btn spa-btn" id="link2">点我tab</a>
+
+<div id="popup" style="display: none">this is dialog (双击关闭)</div>
+
+<script type="text/javascript">
+(function () {
+    $('#link1').on('click', function () {
+        $('#popup').show();
+        ga('send', 'pageview', '/spa/popup');
+    });
+
+    $('#link2').on('click', function () {
+        $('#popup').hide();
+        ga('send', 'pageview', '/spa/tab');
+    });
+
+    $('#popup').on('dblclick', function () {
+        $('#popup').hide();
+    });
+})();
+</script>
