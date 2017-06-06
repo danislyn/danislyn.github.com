@@ -21,19 +21,27 @@ header: SPA 测试
 
 <a href="javascript:void(0)" class="btn spa-btn" id="link1">点我弹框</a>
 <a href="javascript:void(0)" class="btn spa-btn" id="link2">点我tab</a>
+<a href="/demo/spa.html" target="_blank">新开页面</a>
+<a href="/demo/spa.html">刷新页面</a>
 
 <div id="popup" style="display: none">this is dialog (双击关闭)</div>
 
 <script type="text/javascript">
 (function () {
+
+    var trackPage = function (path) {
+        ga('send', 'pageview', path);
+        _hmt.push(['_trackPageview', path]);
+    };
+
     $('#link1').on('click', function () {
         $('#popup').show();
-        ga('send', 'pageview', '/spa/popup');
+        trackPage('/spa/popup');
     });
 
     $('#link2').on('click', function () {
         $('#popup').hide();
-        ga('send', 'pageview', '/spa/tab');
+        trackPage('/spa/tab');        
     });
 
     $('#popup').on('dblclick', function () {
