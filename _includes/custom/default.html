@@ -84,7 +84,8 @@
 	                        <li>
 	                            <a href="/atom.xml" target="_blank">RSS订阅</a>
 	                        </li>
-	                        <li class="search">
+	                        <!-- fuxiaode域名失效，百度站内搜索已无法使用 -->
+	                        <li class="search" style="display: none">
 	                        	<form action="/search.html" method="get">
 	                        		<input type="text" name="query" id="queryInput" placeholder="搜索... (输入完成按回车)">
 	                        		<!-- <img src="/assets/custom/images/search.png" id="searchIcon"> -->
@@ -204,6 +205,8 @@
 
 			// sidebar 固定
 			(function () {
+				// TODO 待整体改版
+				return;
 				if (window.innerWidth <= 768) {
 					return;
 				}
